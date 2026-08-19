@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Dwell — User Guide — Slate, publisher of Atlassian Marketplace apps.">
+<title>Dwell User Guide</title>
+<style>
+  /* Same Slate document system as the privacy policy — mineral neutrals, one
+     wet-slate teal, serif body / grotesque headings / mono for identifiers.
+     Here the spine numbers a real sequence: the three surfaces in the order a
+     new install meets them. Reference blocks (metrics, troubleshooting) drop
+     the numbering, because they are lookup tables, not steps. */
+  :root {
+    --ground: #F5F7F8;
+    --surface: #FFFFFF;
+    --ink: #14181C;
+    --ink-2: #59656E;
+    --ink-3: #8A959D;
+    --rule: #DDE3E7;
+    --accent: #34697A;
+    --accent-soft: #E3EDF0;
+    --measure: 66ch;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #101417; --surface: #161B1F; --ink: #E6ECEF; --ink-2: #97A4AD;
+      --ink-3: #6B777F; --rule: #262E34; --accent: #7FB3C4; --accent-soft: #1B282E;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #101417; --surface: #161B1F; --ink: #E6ECEF; --ink-2: #97A4AD;
+    --ink-3: #6B777F; --rule: #262E34; --accent: #7FB3C4; --accent-soft: #1B282E;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: Newsreader, Georgia, "Times New Roman", serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 62rem; margin: 0 auto; padding: clamp(2rem, 6vw, 5rem) clamp(1.25rem, 5vw, 3rem) 5rem; }
+
+  .masthead { border-bottom: 2px solid var(--ink); padding-bottom: 1.75rem; }
+  .vendor {
+    font-family: "Instrument Sans", system-ui, sans-serif;
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--accent); margin: 0 0 1.25rem;
+  }
+  h1 {
+    font-family: "Instrument Sans", system-ui, sans-serif;
+    font-weight: 600; font-size: clamp(2rem, 5vw, 3rem); line-height: 1.08;
+    letter-spacing: -0.02em; text-wrap: balance; margin: 0 0 1rem;
+  }
+  .standfirst { max-width: var(--measure); color: var(--ink-2); font-size: 1.1rem; margin: 0; }
+
+  /* ── Surfaces overview ── */
+  .surfaces { display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin: 2.25rem 0 0; }
+  .surface-row { background: var(--ground); display: grid; grid-template-columns: minmax(0, 11rem) minmax(0, 1fr) minmax(0, 15rem); gap: 0.35rem 1.5rem; padding: 1rem 1.25rem; }
+  .surface-row h3 { font-family: "Instrument Sans", system-ui, sans-serif; font-size: 0.95rem; font-weight: 600; margin: 0; }
+  .surface-row p { margin: 0; color: var(--ink-2); font-size: 0.98rem; }
+  .surface-row .where {
+    font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.76rem;
+    color: var(--accent); line-height: 1.5;
+  }
+  @media (max-width: 52rem) { .surface-row { grid-template-columns: 1fr; } }
+
+  section {
+    display: grid; grid-template-columns: 4.5rem minmax(0, 1fr); gap: 0 1.75rem;
+    padding: 2.25rem 0; border-bottom: 1px solid var(--rule);
+  }
+  section:last-of-type { border-bottom: 0; }
+  .num {
+    font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.78rem;
+    color: var(--accent); padding-top: 0.45rem; font-variant-numeric: tabular-nums;
+  }
+  .num.plain { color: var(--ink-3); }
+  h2 {
+    font-family: "Instrument Sans", system-ui, sans-serif; font-size: 1.15rem;
+    font-weight: 600; letter-spacing: -0.01em; margin: 0 0 0.75rem; text-wrap: balance;
+  }
+  .body > * { max-width: var(--measure); }
+  .body p { margin: 0 0 0.9rem; }
+  .body > :last-child { margin-bottom: 0; }
+  .body strong { font-weight: 600; }
+
+  dl.defs { margin: 0 0 0.9rem; display: flex; flex-direction: column; gap: 0.7rem; }
+  dl.defs dt {
+    font-family: "Instrument Sans", system-ui, sans-serif; font-size: 0.9rem;
+    font-weight: 600; margin-bottom: 0.1rem;
+  }
+  dl.defs dd { margin: 0; color: var(--ink-2); font-size: 0.99rem; }
+
+  .note {
+    background: var(--surface); border: 1px solid var(--rule); border-left: 3px solid var(--accent);
+    padding: 1rem 1.2rem; margin: 0 0 1rem;
+  }
+  .note p { margin: 0; color: var(--ink-2); font-size: 0.98rem; }
+  .note strong { color: var(--ink); }
+
+  .tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; max-width: none; }
+  .tier { background: var(--surface); border: 1px solid var(--rule); padding: 1.1rem 1.25rem; }
+  .tier h3 {
+    font-family: "Instrument Sans", system-ui, sans-serif; font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin: 0 0 0.5rem;
+  }
+  .tier p { margin: 0; color: var(--ink-2); font-size: 0.98rem; }
+
+  code {
+    font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.84em;
+    color: var(--accent); background: var(--accent-soft); padding: 0.1rem 0.35rem; border-radius: 3px;
+  }
+  a { color: var(--accent); text-underline-offset: 0.18em; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  footer {
+    margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--rule);
+    font-family: "Instrument Sans", system-ui, sans-serif; font-size: 0.82rem; color: var(--ink-3);
+  }
+
+  @media (max-width: 46rem) {
+    section { grid-template-columns: 1fr; gap: 0.4rem; }
+    .num { padding-top: 0; }
+  }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+</head>
+<body>
+
+
+<div class="wrap">
+  <header class="masthead">
+    <p class="vendor">Slate</p>
+    <h1>Dwell User Guide</h1>
+    <p class="standfirst">
+      Dwell answers “how long has this issue spent in each status?” and “what is our cycle and lead
+      time?” — questions Jira can't answer natively without adding up the changelog by hand. It runs
+      entirely inside your Atlassian cloud; no data leaves Atlassian.
+    </p>
+  </header>
+
+  <div class="surfaces">
+    <div class="surface-row">
+      <h3>Issue panel</h3>
+      <p>Per-status time breakdown and lead time for one issue, computed live.</p>
+      <p class="where">Any issue → Apps → Time in Status</p>
+    </div>
+    <div class="surface-row">
+      <h3>Project report</h3>
+      <p>Cycle &amp; lead time (median / p85), flow efficiency, time between any two statuses, blocked time, weekly trend, aging WIP, histogram, group-by, CSV export.</p>
+      <p class="where">Project → Apps → Time in Status</p>
+    </div>
+    <div class="surface-row">
+      <h3>Dashboard gadget</h3>
+      <p>Cycle-time histogram for a saved JQL.</p>
+      <p class="where">Any dashboard → Add gadget</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="num">01</div>
+    <div class="body">
+      <h2>Issue panel — free on every issue</h2>
+      <p>
+        Open any issue, then click the <strong>Apps</strong> button in the issue view and choose
+        <strong>Time in Status</strong>. The panel shows a row per status with the total time the
+        issue has spent there, plus its <strong>lead time</strong> (created → done). It is computed
+        live from the issue's history, so it is always current. Nothing to configure.
+      </p>
+      <div class="note">
+        <p>
+          <strong>You only do this once per issue.</strong> Jira's newer issue view keeps app panels
+          behind the <strong>Apps</strong> button until you pick them; after that the panel stays put.
+          If you open an issue and don't see Time in Status, that's where it is — the app isn't
+          broken and nothing needs configuring.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">02</div>
+    <div class="body">
+      <h2>Project report</h2>
+      <p>Open your project → <strong>Apps</strong> → <strong>Time in Status</strong>.</p>
+      <dl class="defs">
+        <div>
+          <dt>Quick filters (default)</dt>
+          <dd>Pick a date range, issue types, statuses and assignees, then the report runs. Or switch to <strong>Advanced (JQL)</strong> to paste any JQL.</dd>
+        </div>
+        <div>
+          <dt>First run indexes the project</dt>
+          <dd>Indexing happens in the background so large projects stay fast. If numbers look empty at first, wait a few seconds and re-run.</dd>
+        </div>
+        <div>
+          <dt>Metric cards</dt>
+          <dd>Average, <strong>median</strong> and <strong>p85</strong> for lead and cycle time. Open issues count their live time so far in these cards.</dd>
+        </div>
+        <div>
+          <dt>Aging WIP</dt>
+          <dd>Open issues flagged <strong>“At risk”</strong> once they pass the p85 cycle time of the issues that actually finished in scope — i.e. slower than 85% of your completed work. The table names the exact threshold it used.</dd>
+        </div>
+        <div>
+          <dt>Trend</dt>
+          <dd>Weekly median and p85 cycle time, bucketed by the week each issue completed.</dd>
+        </div>
+        <div>
+          <dt>Histogram</dt>
+          <dd>Distribution of cycle times across the scope.</dd>
+        </div>
+        <div>
+          <dt>Flow efficiency</dt>
+          <dd>Of the time issues spent in the workflow, how much was <strong>actively worked on</strong> (In Progress statuses) versus <strong>waiting in a queue</strong> (To Do statuses), shown as <code>X% active</code>. Done time is excluded. A low number means work is mostly sitting in queues.</dd>
+        </div>
+        <div>
+          <dt>Time between statuses</dt>
+          <dd>Pick a <strong>From</strong> and a <strong>To</strong> status; Dwell measures the working time from the first entry into one to the first entry into the other — Backlog → In Progress “reaction time”, or In Review → Done — with median, p85 and a distribution. Only issues that reached <strong>both</strong> statuses, in order, are counted.</dd>
+        </div>
+        <div>
+          <dt>Blocked time</dt>
+          <dd>How long issues sat <strong>Flagged</strong>, with median and p85 across flagged issues and a list of the ones stuck longest. Only issues that have been Flagged appear.</dd>
+        </div>
+        <div>
+          <dt>Group by</dt>
+          <dd>Break the numbers down by assignee, priority, issue type or status.</dd>
+        </div>
+        <div>
+          <dt>CSV</dt>
+          <dd>Copy the report out; it opens cleanly in Excel and Google Sheets.</dd>
+        </div>
+      </dl>
+      <div class="note">
+        <p>
+          <strong>What is p85?</strong> The 85th percentile — 85% of issues finished at or below this
+          time. It is a more honest “typical worst case” than the average, which a few outliers can
+          distort.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">03</div>
+    <div class="body">
+      <h2>Dashboard gadget</h2>
+      <p>
+        On any dashboard → <strong>Add gadget</strong> → <strong>Time in Status</strong> → edit it
+        and enter a JQL. The gadget shows a cycle-time histogram plus median and p85 for that scope.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num plain">▪</div>
+    <div class="body">
+      <h2>Free vs paid</h2>
+      <div class="tiers">
+        <div class="tier">
+          <h3>Free forever</h3>
+          <p>The per-issue <strong>panel</strong>, on every issue, any team size.</p>
+        </div>
+        <div class="tier">
+          <h3>Paid — free up to 10 users</h3>
+          <p>The <strong>project report</strong>, <strong>dashboard gadget</strong> and the background <strong>index</strong>. Above 10 users these need an active license; an admin can start a free trial under <strong>Settings → Apps → Manage apps</strong>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="num plain">▪</div>
+    <div class="body">
+      <h2>Troubleshooting</h2>
+      <dl class="defs">
+        <div>
+          <dt>Report is empty or still loading</dt>
+          <dd>The first open triggers a one-time index; give it a moment and re-run. A very narrow date range or JQL can also legitimately return nothing — the report says so explicitly and shows the scope it ran.</dd>
+        </div>
+        <div>
+          <dt>“Project reports are a paid feature”</dt>
+          <dd>You're above the free tier without an active license. Start a trial as above; the issue panel keeps working.</dd>
+        </div>
+        <div>
+          <dt>A status was renamed</dt>
+          <dd>Jira tracks status changes by name, so a rename starts a new series for that status. This is a known edge case.</dd>
+        </div>
+        <div>
+          <dt>Blocked time is empty after an update</dt>
+          <dd>The blocked-time metric needs the project re-indexed on the current version; existing projects fill it in automatically as issues change. Only issues that have ever been Flagged appear.</dd>
+        </div>
+        <div>
+          <dt>Flow efficiency or Time between looks off</dt>
+          <dd>Flow efficiency relies on Jira's status categories (To Do / In Progress / Done); custom statuses in unexpected categories may need interpreting. “Time between” only counts issues that reached both chosen statuses.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section>
+    <div class="num plain">▪</div>
+    <div class="body">
+      <h2>Data &amp; privacy</h2>
+      <p>
+        Dwell <strong>Runs on Atlassian</strong> — no external servers, no egress. It reads your
+        issues on your behalf and stores a derived index inside Forge storage in your tenant.
+        Reports resolve using <strong>your own permissions</strong>, so you only see issues you are
+        already allowed to see.
+      </p>
+      <p>
+        Support: <a href="mailto:phuongdang12697@gmail.com">phuongdang12697@gmail.com</a>
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    Slate · Dwell — Time in Status, Cycle &amp; Lead Time for Jira
+  </footer>
+</div>
+
+</body>
+</html>

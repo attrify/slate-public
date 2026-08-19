@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Provider-Specific Terms — Slate, publisher of Atlassian Marketplace apps.">
+<title>Slate Provider-Specific Terms</title>
+<style>
+  /* Slate document system, same as the privacy policies and user guides — one
+     visual identity across every public Slate document. Numbering is real: these
+     are numbered provider terms that attach to a numbered standard agreement. */
+  :root {
+    --ground: #F5F7F8;
+    --surface: #FFFFFF;
+    --ink: #14181C;
+    --ink-2: #59656E;
+    --ink-3: #8A959D;
+    --rule: #DDE3E7;
+    --accent: #34697A;
+    --accent-soft: #E3EDF0;
+    --measure: 64ch;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #101417; --surface: #161B1F; --ink: #E6ECEF; --ink-2: #97A4AD;
+      --ink-3: #6B777F; --rule: #262E34; --accent: #7FB3C4; --accent-soft: #1B282E;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #101417; --surface: #161B1F; --ink: #E6ECEF; --ink-2: #97A4AD;
+    --ink-3: #6B777F; --rule: #262E34; --accent: #7FB3C4; --accent-soft: #1B282E;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--ground); color: var(--ink);
+    font-family: Newsreader, Georgia, "Times New Roman", serif;
+    font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 62rem; margin: 0 auto; padding: clamp(2rem, 6vw, 5rem) clamp(1.25rem, 5vw, 3rem) 5rem; }
+  .masthead { border-bottom: 2px solid var(--ink); padding-bottom: 1.75rem; }
+  .vendor {
+    font-family: "Instrument Sans", system-ui, sans-serif; font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin: 0 0 1.25rem;
+  }
+  h1 {
+    font-family: "Instrument Sans", system-ui, sans-serif; font-weight: 600;
+    font-size: clamp(2rem, 5vw, 3rem); line-height: 1.08; letter-spacing: -0.02em;
+    text-wrap: balance; margin: 0 0 1rem;
+  }
+  .standfirst { max-width: var(--measure); color: var(--ink-2); font-size: 1.1rem; margin: 0 0 1.75rem; }
+  .stamps { display: flex; flex-wrap: wrap; gap: 0.5rem 2.5rem; font-family: "Instrument Sans", system-ui, sans-serif; font-size: 0.8rem; }
+  .stamp { display: flex; flex-direction: column; gap: 0.15rem; }
+  .stamp dt { color: var(--ink-3); letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.68rem; font-weight: 600; }
+  .stamp dd { margin: 0; color: var(--ink); font-weight: 500; }
+  section {
+    display: grid; grid-template-columns: 4.5rem minmax(0, 1fr); gap: 0 1.75rem;
+    padding: 2.25rem 0; border-bottom: 1px solid var(--rule);
+  }
+  section:last-of-type { border-bottom: 0; }
+  .num { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.78rem; color: var(--accent); padding-top: 0.45rem; font-variant-numeric: tabular-nums; }
+  .num.plain { color: var(--ink-3); }
+  h2 { font-family: "Instrument Sans", system-ui, sans-serif; font-size: 1.15rem; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 0.75rem; text-wrap: balance; }
+  .body > * { max-width: var(--measure); }
+  .body p { margin: 0 0 0.9rem; }
+  .body > :last-child { margin-bottom: 0; }
+  .body strong { font-weight: 600; }
+  .scopes { display: flex; flex-direction: column; gap: 0.85rem; margin: 0 0 1rem; }
+  .scope { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr); gap: 0.25rem 1.25rem; }
+  .scope code {
+    font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.8rem; color: var(--accent);
+    background: var(--accent-soft); padding: 0.15rem 0.45rem; border-radius: 3px; justify-self: start; word-break: break-all;
+  }
+  .scope span { color: var(--ink-2); font-size: 0.98rem; }
+  @media (max-width: 34rem) { .scope { grid-template-columns: 1fr; } }
+  .seal {
+    grid-column: 1 / -1; margin-top: 1.5rem; background: var(--surface); border: 1px solid var(--rule);
+    border-left: 3px solid var(--accent); padding: 1.15rem 1.35rem; max-width: none;
+  }
+  .seal p { margin: 0; color: var(--ink-2); font-size: 0.98rem; max-width: var(--measure); }
+  .seal strong { color: var(--ink); }
+  .note { background: var(--surface); border: 1px solid var(--rule); border-left: 3px solid var(--accent); padding: 1rem 1.2rem; margin: 0 0 1rem; }
+  .note p { margin: 0; color: var(--ink-2); font-size: 0.98rem; }
+  .note strong { color: var(--ink); }
+  dl.defs { margin: 0 0 0.9rem; display: flex; flex-direction: column; gap: 0.7rem; }
+  dl.defs dt { font-family: "Instrument Sans", system-ui, sans-serif; font-size: 0.9rem; font-weight: 600; margin-bottom: 0.1rem; }
+  dl.defs dd { margin: 0; color: var(--ink-2); font-size: 0.99rem; }
+  .surfaces { display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin: 2.25rem 0 0; }
+  .surface-row { background: var(--ground); display: grid; grid-template-columns: minmax(0, 11rem) minmax(0, 1fr) minmax(0, 15rem); gap: 0.35rem 1.5rem; padding: 1rem 1.25rem; }
+  .surface-row h3 { font-family: "Instrument Sans", system-ui, sans-serif; font-size: 0.95rem; font-weight: 600; margin: 0; }
+  .surface-row p { margin: 0; color: var(--ink-2); font-size: 0.98rem; }
+  .surface-row .where { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.76rem; color: var(--accent); line-height: 1.5; }
+  @media (max-width: 52rem) { .surface-row { grid-template-columns: 1fr; } }
+  .tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; max-width: none; }
+  .tier { background: var(--surface); border: 1px solid var(--rule); padding: 1.1rem 1.25rem; }
+  .tier h3 { font-family: "Instrument Sans", system-ui, sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin: 0 0 0.5rem; }
+  .tier p { margin: 0; color: var(--ink-2); font-size: 0.98rem; }
+  .states { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: 0.75rem; max-width: none; margin: 0 0 1rem; }
+  .state { border: 1px solid var(--rule); background: var(--surface); padding: 0.85rem 1rem; }
+  .state b { font-family: "Instrument Sans", system-ui, sans-serif; font-size: 0.82rem; display: block; margin-bottom: 0.25rem; }
+  .state span { color: var(--ink-2); font-size: 0.94rem; }
+  code { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.84em; color: var(--accent); background: var(--accent-soft); padding: 0.1rem 0.35rem; border-radius: 3px; }
+  a { color: var(--accent); text-underline-offset: 0.18em; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+  footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); font-family: "Instrument Sans", system-ui, sans-serif; font-size: 0.82rem; color: var(--ink-3); }
+  @media (max-width: 46rem) { section { grid-template-columns: 1fr; gap: 0.4rem; } .num { padding-top: 0; } }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+</head>
+<body>
+
+
+<div class="wrap">
+  <header class="masthead">
+    <p class="vendor">Slate</p>
+    <h1>Provider-Specific Terms</h1>
+    <p class="standfirst">
+      Slate's apps are licensed under the <strong>Bonterms Standard End User Agreement</strong> as
+      adopted through the Atlassian Marketplace. These Provider-Specific Terms add the details that
+      the Standard Agreement leaves to the provider &mdash; support, security and data handling.
+      They do not replace it.
+    </p>
+    <dl class="stamps">
+      <div class="stamp"><dt>Effective</dt><dd>19 August 2026</dd></div>
+      <div class="stamp"><dt>Provider</dt><dd>Slate</dd></div>
+      <div class="stamp"><dt>Applies to</dt><dd>Dwell &middot; Pact &middot; Warden</dd></div>
+      <div class="stamp"><dt>Standard agreement</dt><dd>Bonterms Standard EUA v1.0</dd></div>
+    </dl>
+  </header>
+
+  <section>
+    <div class="num">&sect; 01</div>
+    <div class="body">
+      <h2>What governs your use of the apps</h2>
+      <p>
+        Your right to use a Slate app comes from the
+        <a href="https://www.atlassian.com/licensing/marketplace/end-user-agreement-v1">Bonterms
+        Standard End User Agreement</a>, which Slate has adopted for every app it lists on the
+        Atlassian Marketplace. Purchase, billing and renewal are handled by Atlassian under the
+        Atlassian Marketplace Terms of Use.
+      </p>
+      <p>
+        This page is the &ldquo;Provider-Specific Terms&rdquo; the Standard Agreement refers to. Where
+        the Standard Agreement leaves something to the provider, the answer is here. Where this page
+        is silent, the Standard Agreement applies unchanged &mdash; including its governing-law
+        default, which Slate does <strong>not</strong> override.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">&sect; 02</div>
+    <div class="body">
+      <h2>Apps covered</h2>
+      <p>These terms apply to every app published by Slate on the Atlassian Marketplace:</p>
+      <div class="scopes">
+        <div class="scope">
+          <code>Dwell</code>
+          <span>Time in Status, Cycle &amp; Lead Time for Jira.</span>
+        </div>
+        <div class="scope">
+          <code>Pact</code>
+          <span>SLAs for Jira Software, without Jira Service Management.</span>
+        </div>
+        <div class="scope">
+          <code>Warden</code>
+          <span>Access Audit for Confluence.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">&sect; 03</div>
+    <div class="body">
+      <h2>Support policy</h2>
+      <p>
+        Support is provided by email at
+        <a href="mailto:phuongdang12697@gmail.com">phuongdang12697@gmail.com</a>, in English, for
+        every customer including those on the free tier. There is no separate paid support contract
+        and no additional support fee.
+      </p>
+      <p>
+        Slate is a small independent publisher and answers on a <strong>best-effort</strong> basis;
+        no response time or uptime commitment is offered, and none should be inferred. When
+        reporting a problem, include the app name, the Atlassian site, and what you saw &mdash; that
+        is usually enough to reproduce it.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">&sect; 04</div>
+    <div class="body">
+      <h2>Security measures</h2>
+      <p>
+        Every Slate app is an Atlassian Forge app in the <strong>Runs on Atlassian</strong> program.
+        It executes inside your own Atlassian cloud environment and declares no external
+        permissions and no web triggers, so there is no code path by which your data can leave your
+        Atlassian tenant. The apps therefore inherit Atlassian's platform security controls,
+        including SOC 2 Type II and ISO/IEC 27001, and Atlassian's data-residency options.
+      </p>
+      <p>
+        Each app requests the narrowest scopes its features need, and those scopes are shown to an
+        administrator on the install screen before installation is approved. Warden requests
+        read-only scopes only, and so cannot modify anything it audits.
+      </p>
+    </div>
+    <div class="seal">
+      <p>
+        <strong>Slate never receives your data.</strong> Because the apps run in-tenant with no
+        egress, Slate operates no servers that hold customer data, and there is nothing for Slate to
+        breach, sell, or hand over. This is a property of how the apps are built, not a promise
+        about how they are operated.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">&sect; 05</div>
+    <div class="body">
+      <h2>Data protection</h2>
+      <p>
+        What each app reads and stores is set out in its privacy policy, linked from its Marketplace
+        listing. In summary: apps read only what their declared scopes allow, store derived data in
+        Atlassian-hosted Forge storage inside your tenant, and copy nothing outside Atlassian.
+        Uninstalling an app removes its stored data from your environment.
+      </p>
+      <p>
+        Slate engages <strong>no sub-processors</strong>. Atlassian hosts the apps as part of its own
+        platform; there is no third party in the chain.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">&sect; 06</div>
+    <div class="body">
+      <h2>Ordering, billing and refunds</h2>
+      <p>
+        Slate apps are sold through the Atlassian Marketplace. Atlassian handles ordering, invoicing,
+        payment, renewal and refunds under its own policies; Slate does not process payments and
+        does not hold payment details.
+      </p>
+      <p>
+        Every Slate app is <strong>free for instances of up to 10 users</strong>. Above that, the paid
+        features listed on each app's Marketplace page require an active licence or trial.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">&sect; 07</div>
+    <div class="body">
+      <h2>Acceptable use</h2>
+      <p>
+        Use the apps for their intended purpose within your own Atlassian instance. Do not attempt to
+        circumvent licensing checks, resell access, or use an app to process data you are not
+        authorised to access in Atlassian &mdash; the apps resolve permissions through Atlassian, so
+        doing so would in any case fail.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">&sect; 08</div>
+    <div class="body">
+      <h2>Changes to these terms</h2>
+      <p>
+        Slate may update this page; material changes will be reflected here with a new effective
+        date. Changes apply to the version of an app published after the change.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">&sect; 09</div>
+    <div class="body">
+      <h2>Contact</h2>
+      <p>
+        Slate &mdash; <a href="mailto:phuongdang12697@gmail.com">phuongdang12697@gmail.com</a>
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    Slate &middot; Provider-Specific Terms &middot; Effective 19 August 2026 &middot; Attaches to the Bonterms Standard End User Agreement v1.0
+  </footer>
+</div>
+
+</body>
+</html>

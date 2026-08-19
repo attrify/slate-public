@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Warden — Privacy Policy — Slate, publisher of Atlassian Marketplace apps.">
+<title>Warden Privacy Policy</title>
+<style>
+  /* Slate document system — mineral neutrals, one wet-slate teal. For Warden the
+     read-only claim is the whole product, so the seal block carries it rather
+     than burying it in §6 prose. */
+  :root {
+    --ground: #F5F7F8;
+    --surface: #FFFFFF;
+    --ink: #14181C;
+    --ink-2: #59656E;
+    --ink-3: #8A959D;
+    --rule: #DDE3E7;
+    --accent: #34697A;
+    --accent-soft: #E3EDF0;
+    --measure: 64ch;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #101417; --surface: #161B1F; --ink: #E6ECEF; --ink-2: #97A4AD;
+      --ink-3: #6B777F; --rule: #262E34; --accent: #7FB3C4; --accent-soft: #1B282E;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #101417; --surface: #161B1F; --ink: #E6ECEF; --ink-2: #97A4AD;
+    --ink-3: #6B777F; --rule: #262E34; --accent: #7FB3C4; --accent-soft: #1B282E;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--ground); color: var(--ink);
+    font-family: Newsreader, Georgia, "Times New Roman", serif;
+    font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 62rem; margin: 0 auto; padding: clamp(2rem, 6vw, 5rem) clamp(1.25rem, 5vw, 3rem) 5rem; }
+  .masthead { border-bottom: 2px solid var(--ink); padding-bottom: 1.75rem; }
+  .vendor {
+    font-family: "Instrument Sans", system-ui, sans-serif; font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin: 0 0 1.25rem;
+  }
+  h1 {
+    font-family: "Instrument Sans", system-ui, sans-serif; font-weight: 600;
+    font-size: clamp(2rem, 5vw, 3rem); line-height: 1.08; letter-spacing: -0.02em;
+    text-wrap: balance; margin: 0 0 1rem;
+  }
+  .standfirst { max-width: var(--measure); color: var(--ink-2); font-size: 1.1rem; margin: 0 0 1.75rem; }
+  .stamps { display: flex; flex-wrap: wrap; gap: 0.5rem 2.5rem; font-family: "Instrument Sans", system-ui, sans-serif; font-size: 0.8rem; }
+  .stamp { display: flex; flex-direction: column; gap: 0.15rem; }
+  .stamp dt { color: var(--ink-3); letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.68rem; font-weight: 600; }
+  .stamp dd { margin: 0; color: var(--ink); font-weight: 500; }
+  section {
+    display: grid; grid-template-columns: 4.5rem minmax(0, 1fr); gap: 0 1.75rem;
+    padding: 2.25rem 0; border-bottom: 1px solid var(--rule);
+  }
+  section:last-of-type { border-bottom: 0; }
+  .num { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.78rem; color: var(--accent); padding-top: 0.45rem; font-variant-numeric: tabular-nums; }
+  .num.plain { color: var(--ink-3); }
+  h2 { font-family: "Instrument Sans", system-ui, sans-serif; font-size: 1.15rem; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 0.75rem; text-wrap: balance; }
+  .body > * { max-width: var(--measure); }
+  .body p { margin: 0 0 0.9rem; }
+  .body > :last-child { margin-bottom: 0; }
+  .body strong { font-weight: 600; }
+  .scopes { display: flex; flex-direction: column; gap: 0.85rem; margin: 0 0 1rem; }
+  .scope { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr); gap: 0.25rem 1.25rem; }
+  .scope code {
+    font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.8rem; color: var(--accent);
+    background: var(--accent-soft); padding: 0.15rem 0.45rem; border-radius: 3px; justify-self: start; word-break: break-all;
+  }
+  .scope span { color: var(--ink-2); font-size: 0.98rem; }
+  @media (max-width: 34rem) { .scope { grid-template-columns: 1fr; } }
+  .seal {
+    grid-column: 1 / -1; margin-top: 1.5rem; background: var(--surface); border: 1px solid var(--rule);
+    border-left: 3px solid var(--accent); padding: 1.15rem 1.35rem; max-width: none;
+  }
+  .seal p { margin: 0; color: var(--ink-2); font-size: 0.98rem; max-width: var(--measure); }
+  .seal strong { color: var(--ink); }
+  .note { background: var(--surface); border: 1px solid var(--rule); border-left: 3px solid var(--accent); padding: 1rem 1.2rem; margin: 0 0 1rem; }
+  .note p { margin: 0; color: var(--ink-2); font-size: 0.98rem; }
+  .note strong { color: var(--ink); }
+  dl.defs { margin: 0 0 0.9rem; display: flex; flex-direction: column; gap: 0.7rem; }
+  dl.defs dt { font-family: "Instrument Sans", system-ui, sans-serif; font-size: 0.9rem; font-weight: 600; margin-bottom: 0.1rem; }
+  dl.defs dd { margin: 0; color: var(--ink-2); font-size: 0.99rem; }
+  .surfaces { display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin: 2.25rem 0 0; }
+  .surface-row { background: var(--ground); display: grid; grid-template-columns: minmax(0, 11rem) minmax(0, 1fr) minmax(0, 15rem); gap: 0.35rem 1.5rem; padding: 1rem 1.25rem; }
+  .surface-row h3 { font-family: "Instrument Sans", system-ui, sans-serif; font-size: 0.95rem; font-weight: 600; margin: 0; }
+  .surface-row p { margin: 0; color: var(--ink-2); font-size: 0.98rem; }
+  .surface-row .where { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.76rem; color: var(--accent); line-height: 1.5; }
+  @media (max-width: 52rem) { .surface-row { grid-template-columns: 1fr; } }
+  .tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; max-width: none; }
+  .tier { background: var(--surface); border: 1px solid var(--rule); padding: 1.1rem 1.25rem; }
+  .tier h3 { font-family: "Instrument Sans", system-ui, sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin: 0 0 0.5rem; }
+  .tier p { margin: 0; color: var(--ink-2); font-size: 0.98rem; }
+  .states { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: 0.75rem; max-width: none; margin: 0 0 1rem; }
+  .state { border: 1px solid var(--rule); background: var(--surface); padding: 0.85rem 1rem; }
+  .state b { font-family: "Instrument Sans", system-ui, sans-serif; font-size: 0.82rem; display: block; margin-bottom: 0.25rem; }
+  .state span { color: var(--ink-2); font-size: 0.94rem; }
+  code { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.84em; color: var(--accent); background: var(--accent-soft); padding: 0.1rem 0.35rem; border-radius: 3px; }
+  a { color: var(--accent); text-underline-offset: 0.18em; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+  footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); font-family: "Instrument Sans", system-ui, sans-serif; font-size: 0.82rem; color: var(--ink-3); }
+  @media (max-width: 46rem) { section { grid-template-columns: 1fr; gap: 0.4rem; } .num { padding-top: 0; } }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+</head>
+<body>
+
+
+<div class="wrap">
+  <header class="masthead">
+    <p class="vendor">Slate</p>
+    <h1>Warden Privacy Policy</h1>
+    <p class="standfirst">
+      Warden inventories the page restrictions across your Confluence site and flags the ones that
+      have quietly stopped working. It runs entirely inside your own Atlassian cloud environment,
+      reads restriction metadata rather than page content, and holds no write scope at all.
+    </p>
+    <dl class="stamps">
+      <div class="stamp"><dt>Effective</dt><dd>13 July 2026</dd></div>
+      <div class="stamp"><dt>Vendor</dt><dd>Slate</dd></div>
+      <div class="stamp"><dt>App</dt><dd>Warden &mdash; Access Audit for Confluence</dd></div>
+      <div class="stamp"><dt>Platform</dt><dd>Atlassian Forge &middot; Runs on Atlassian</dd></div>
+    </dl>
+  </header>
+
+  <section>
+    <div class="num">&sect; 01</div>
+    <div class="body">
+      <h2>Summary</h2>
+      <p>
+        Warden (&ldquo;the App&rdquo;) is an Atlassian Forge app that participates in Atlassian's
+        <strong>Runs on Atlassian</strong> program. It runs entirely inside your Atlassian cloud
+        environment. It does <strong>not</strong> send your data to Slate's servers or to any third
+        party &mdash; there are no external servers, no analytics calls, and no data egress. The App
+        is <strong>read-only</strong>: it audits and reports on your page restrictions; it never
+        changes them.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">&sect; 02</div>
+    <div class="body">
+      <h2>Data we access</h2>
+      <p>
+        The App reads only the data required to audit page restrictions, using the granted Atlassian
+        scopes &mdash; all read-only, in-tenant, on your behalf:
+      </p>
+      <div class="scopes">
+        <div class="scope">
+          <code>read:space:confluence</code>
+          <span>Enumerate spaces.</span>
+        </div>
+        <div class="scope">
+          <code>read:page:confluence</code>
+          <span>Walk the page tree (page id, title, parent). The App does <strong>not</strong> read page bodies or content.</span>
+        </div>
+        <div class="scope">
+          <code>read:content-details:confluence</code>
+          <span>Read which pages are view/edit-restricted and to which users or groups, plus whether those users are still active. This is the READ scope for restrictions; <code>read:content.restriction</code> is Atlassian's <em>write</em> scope and the App does not request it.</span>
+        </div>
+        <div class="scope">
+          <code>read:group:confluence</code>
+          <span>Group membership, to detect empty groups and orphaned group references.</span>
+        </div>
+        <div class="scope">
+          <code>read:user:confluence</code>
+          <span>Resolve the accounts named in restrictions and detect deactivated or orphaned users.</span>
+        </div>
+        <div class="scope">
+          <code>storage:app</code>
+          <span>Store the scan snapshot.</span>
+        </div>
+      </div>
+      <p>
+        Warden is an administrative audit tool: it reads restriction metadata across the site to
+        produce the report, and does not read the content of your pages.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">&sect; 03</div>
+    <div class="body">
+      <h2>Data we store</h2>
+      <p>
+        The App stores a <strong>scan snapshot</strong> and its configuration in
+        <strong>Atlassian-hosted Forge storage</strong>, which lives inside your Atlassian cloud
+        environment and inherits its data-residency region. The snapshot contains only what the
+        report shows: the list of <strong>restricted</strong> pages (page id and title, not page
+        content), the users and groups named in those restrictions (account and group identifiers
+        and names), the direct-versus-inherited relationships, and the red-flag findings.
+      </p>
+      <p>
+        Only restricted pages are stored, not your whole page corpus. We do not copy this data
+        outside Atlassian.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">&sect; 04</div>
+    <div class="body">
+      <h2>Data we do not collect</h2>
+      <p>
+        We do not sell, rent, or share your data. We do not use it for advertising or to train
+        machine-learning models. We do not receive a copy of it &mdash; it never leaves your
+        Atlassian tenant. We do not read your page content, and we never modify your restrictions.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">&sect; 05</div>
+    <div class="body">
+      <h2>Sub-processors</h2>
+      <p>
+        None beyond Atlassian itself, the platform hosting the App. Because the App runs on Atlassian
+        with no egress, no additional sub-processors are involved.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">&sect; 06</div>
+    <div class="body">
+      <h2>Security</h2>
+      <p>
+        The App inherits Atlassian's platform security controls, including SOC 2 Type II and
+        ISO/IEC 27001, and Atlassian's data-residency options. The audit report is an administrative
+        surface, available to your Confluence site administrators.
+      </p>
+    </div>
+    <div class="seal">
+      <p>
+        <strong>Read-only is a fact, not a promise.</strong> There is no write scope in Warden's
+        Forge manifest, so the App <em>cannot</em> modify a page restriction even if it were asked
+        to &mdash; and any administrator can verify that on the install screen before approving it.
+        The manifest also declares no external permissions and no web triggers, so the restriction
+        data it reads has nowhere to go outside your tenant.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">&sect; 07</div>
+    <div class="body">
+      <h2>Data retention and deletion</h2>
+      <p>
+        The scan snapshot and configuration are stored only while the App is installed. Uninstalling
+        the App removes the App's stored data from your Atlassian environment.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">&sect; 08</div>
+    <div class="body">
+      <h2>Children</h2>
+      <p>The App is a business tool and is not directed to children under 16.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">&sect; 09</div>
+    <div class="body">
+      <h2>Changes</h2>
+      <p>We may update this policy; material changes will be reflected here with a new effective date.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">&sect; 10</div>
+    <div class="body">
+      <h2>Contact</h2>
+      <p>Questions or data requests: <a href="mailto:phuongdang12697@gmail.com">phuongdang12697@gmail.com</a></p>
+    </div>
+  </section>
+
+  <footer>
+    Slate &middot; Warden &mdash; Access Audit for Confluence &middot; Privacy policy effective 13 July 2026
+  </footer>
+</div>
+
+</body>
+</html>

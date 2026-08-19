@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Pact — User Guide — Slate, publisher of Atlassian Marketplace apps.">
+<title>Pact User Guide</title>
+<style>
+  /* Slate document system. The spine numbers a real sequence here: the order a
+     new install actually meets the app — it works, then you tune it, then you
+     report on it. Reference blocks drop the numbering; they are lookup, not steps. */
+  :root {
+    --ground: #F5F7F8;
+    --surface: #FFFFFF;
+    --ink: #14181C;
+    --ink-2: #59656E;
+    --ink-3: #8A959D;
+    --rule: #DDE3E7;
+    --accent: #34697A;
+    --accent-soft: #E3EDF0;
+    --measure: 64ch;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #101417; --surface: #161B1F; --ink: #E6ECEF; --ink-2: #97A4AD;
+      --ink-3: #6B777F; --rule: #262E34; --accent: #7FB3C4; --accent-soft: #1B282E;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #101417; --surface: #161B1F; --ink: #E6ECEF; --ink-2: #97A4AD;
+    --ink-3: #6B777F; --rule: #262E34; --accent: #7FB3C4; --accent-soft: #1B282E;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--ground); color: var(--ink);
+    font-family: Newsreader, Georgia, "Times New Roman", serif;
+    font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 62rem; margin: 0 auto; padding: clamp(2rem, 6vw, 5rem) clamp(1.25rem, 5vw, 3rem) 5rem; }
+  .masthead { border-bottom: 2px solid var(--ink); padding-bottom: 1.75rem; }
+  .vendor {
+    font-family: "Instrument Sans", system-ui, sans-serif; font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin: 0 0 1.25rem;
+  }
+  h1 {
+    font-family: "Instrument Sans", system-ui, sans-serif; font-weight: 600;
+    font-size: clamp(2rem, 5vw, 3rem); line-height: 1.08; letter-spacing: -0.02em;
+    text-wrap: balance; margin: 0 0 1rem;
+  }
+  .standfirst { max-width: var(--measure); color: var(--ink-2); font-size: 1.1rem; margin: 0 0 1.75rem; }
+  .stamps { display: flex; flex-wrap: wrap; gap: 0.5rem 2.5rem; font-family: "Instrument Sans", system-ui, sans-serif; font-size: 0.8rem; }
+  .stamp { display: flex; flex-direction: column; gap: 0.15rem; }
+  .stamp dt { color: var(--ink-3); letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.68rem; font-weight: 600; }
+  .stamp dd { margin: 0; color: var(--ink); font-weight: 500; }
+  section {
+    display: grid; grid-template-columns: 4.5rem minmax(0, 1fr); gap: 0 1.75rem;
+    padding: 2.25rem 0; border-bottom: 1px solid var(--rule);
+  }
+  section:last-of-type { border-bottom: 0; }
+  .num { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.78rem; color: var(--accent); padding-top: 0.45rem; font-variant-numeric: tabular-nums; }
+  .num.plain { color: var(--ink-3); }
+  h2 { font-family: "Instrument Sans", system-ui, sans-serif; font-size: 1.15rem; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 0.75rem; text-wrap: balance; }
+  .body > * { max-width: var(--measure); }
+  .body p { margin: 0 0 0.9rem; }
+  .body > :last-child { margin-bottom: 0; }
+  .body strong { font-weight: 600; }
+  .scopes { display: flex; flex-direction: column; gap: 0.85rem; margin: 0 0 1rem; }
+  .scope { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr); gap: 0.25rem 1.25rem; }
+  .scope code {
+    font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.8rem; color: var(--accent);
+    background: var(--accent-soft); padding: 0.15rem 0.45rem; border-radius: 3px; justify-self: start; word-break: break-all;
+  }
+  .scope span { color: var(--ink-2); font-size: 0.98rem; }
+  @media (max-width: 34rem) { .scope { grid-template-columns: 1fr; } }
+  .seal {
+    grid-column: 1 / -1; margin-top: 1.5rem; background: var(--surface); border: 1px solid var(--rule);
+    border-left: 3px solid var(--accent); padding: 1.15rem 1.35rem; max-width: none;
+  }
+  .seal p { margin: 0; color: var(--ink-2); font-size: 0.98rem; max-width: var(--measure); }
+  .seal strong { color: var(--ink); }
+  .note { background: var(--surface); border: 1px solid var(--rule); border-left: 3px solid var(--accent); padding: 1rem 1.2rem; margin: 0 0 1rem; }
+  .note p { margin: 0; color: var(--ink-2); font-size: 0.98rem; }
+  .note strong { color: var(--ink); }
+  dl.defs { margin: 0 0 0.9rem; display: flex; flex-direction: column; gap: 0.7rem; }
+  dl.defs dt { font-family: "Instrument Sans", system-ui, sans-serif; font-size: 0.9rem; font-weight: 600; margin-bottom: 0.1rem; }
+  dl.defs dd { margin: 0; color: var(--ink-2); font-size: 0.99rem; }
+  .surfaces { display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin: 2.25rem 0 0; }
+  .surface-row { background: var(--ground); display: grid; grid-template-columns: minmax(0, 11rem) minmax(0, 1fr) minmax(0, 15rem); gap: 0.35rem 1.5rem; padding: 1rem 1.25rem; }
+  .surface-row h3 { font-family: "Instrument Sans", system-ui, sans-serif; font-size: 0.95rem; font-weight: 600; margin: 0; }
+  .surface-row p { margin: 0; color: var(--ink-2); font-size: 0.98rem; }
+  .surface-row .where { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.76rem; color: var(--accent); line-height: 1.5; }
+  @media (max-width: 52rem) { .surface-row { grid-template-columns: 1fr; } }
+  .tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; max-width: none; }
+  .tier { background: var(--surface); border: 1px solid var(--rule); padding: 1.1rem 1.25rem; }
+  .tier h3 { font-family: "Instrument Sans", system-ui, sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin: 0 0 0.5rem; }
+  .tier p { margin: 0; color: var(--ink-2); font-size: 0.98rem; }
+  .states { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: 0.75rem; max-width: none; margin: 0 0 1rem; }
+  .state { border: 1px solid var(--rule); background: var(--surface); padding: 0.85rem 1rem; }
+  .state b { font-family: "Instrument Sans", system-ui, sans-serif; font-size: 0.82rem; display: block; margin-bottom: 0.25rem; }
+  .state span { color: var(--ink-2); font-size: 0.94rem; }
+  code { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.84em; color: var(--accent); background: var(--accent-soft); padding: 0.1rem 0.35rem; border-radius: 3px; }
+  a { color: var(--accent); text-underline-offset: 0.18em; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+  footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); font-family: "Instrument Sans", system-ui, sans-serif; font-size: 0.82rem; color: var(--ink-3); }
+  @media (max-width: 46rem) { section { grid-template-columns: 1fr; gap: 0.4rem; } .num { padding-top: 0; } }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+</head>
+<body>
+
+
+<div class="wrap">
+  <header class="masthead">
+    <p class="vendor">Slate</p>
+    <h1>Pact User Guide</h1>
+    <p class="standfirst">
+      Pact puts working-time SLAs on ordinary Jira Software issues &mdash; a live countdown per
+      issue, at-risk and breach emails, and a compliance report &mdash; without paying for Jira
+      Service Management. It runs entirely inside your Atlassian cloud.
+    </p>
+  </header>
+
+  <div class="surfaces">
+    <div class="surface-row">
+      <h3>Issue panel</h3>
+      <p>Live SLA state per policy: On track, At risk, Breached or Met, plus time remaining.</p>
+      <p class="where">Any issue &rarr; Apps &rarr; SLA</p>
+    </div>
+    <div class="surface-row">
+      <h3>Policy settings</h3>
+      <p>Define SLA policies for a project &mdash; scope, statuses, budgets, calendars, alerts &mdash; with warnings for silently misconfigured policies.</p>
+      <p class="where">Project settings &rarr; SLA</p>
+    </div>
+    <div class="surface-row">
+      <h3>At-risk / breach emails</h3>
+      <p>Notify the reporter and assignee when an issue nears or passes its SLA. Off until you switch it on.</p>
+      <p class="where">Per policy</p>
+    </div>
+    <div class="surface-row">
+      <h3>Compliance report</h3>
+      <p>Met, on track, at risk and breached per policy, met&nbsp;%, the list of breached issues, and CSV export.</p>
+      <p class="where">Project settings &rarr; SLA</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="num">01</div>
+    <div class="body">
+      <h2>It works out of the box</h2>
+      <p>
+        Open any issue, then click the <strong>Apps</strong> button in the issue view and choose
+        <strong>SLA</strong>. The panel already shows a sensible <strong>default SLA</strong> derived
+        from your project's own statuses, before you configure anything. That is the zero-config
+        default; customize it whenever you want.
+      </p>
+      <div class="note">
+        <p>
+          <strong>You only do this once per issue.</strong> Jira's newer issue view keeps app panels
+          behind the <strong>Apps</strong> button until you pick them; after that the panel stays put.
+          If an issue doesn't show SLA, that's where it is.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">02</div>
+    <div class="body">
+      <h2>Define your own policies</h2>
+      <p>
+        Go to <strong>Project settings &rarr; SLA</strong>. A starter policy is pre-filled from your
+        statuses &mdash; adjust it and <strong>Save</strong>, or <strong>Add policy</strong> for more.
+        For each policy:
+      </p>
+      <dl class="defs">
+        <div>
+          <dt>Name</dt>
+          <dd>What this SLA is called in the panel, the report and any emails.</dd>
+        </div>
+        <div>
+          <dt>Applies to</dt>
+          <dd>Optionally narrow the policy to certain <strong>issue types</strong> and <strong>priorities</strong>. Tick nothing and it covers every issue in the project. Ticking both narrows on both &mdash; type <em>Bug</em> plus priority <em>Highest</em> matches only high-priority bugs. This is how a tight SLA on incidents sits next to a loose one on everything else.</dd>
+        </div>
+        <div>
+          <dt>Clock runs while status is&hellip;</dt>
+          <dd>Tick the working statuses; the SLA clock ticks in these.</dd>
+        </div>
+        <div>
+          <dt>Stops (settles) when status becomes&hellip;</dt>
+          <dd>Tick the statuses that settle the SLA. Reaching one meets it.</dd>
+        </div>
+        <div>
+          <dt>Budget (working hours)</dt>
+          <dd>How long the issue may spend in the running statuses.</dd>
+        </div>
+        <div>
+          <dt>At-risk at (%)</dt>
+          <dd>When to flag &ldquo;At risk&rdquo; before breach. Default 80%.</dd>
+        </div>
+        <div>
+          <dt>Business calendar</dt>
+          <dd>Business hours (Mon&ndash;Fri 09:00&ndash;17:00 UTC) or 24/7 wall-clock.</dd>
+        </div>
+        <div>
+          <dt>Email reporter + assignee</dt>
+          <dd><strong>Off by default.</strong> Tick it once the thresholds look right &mdash; a new policy is a guess, and the sweep runs every five minutes, so it is deliberately opt-in.</dd>
+        </div>
+      </dl>
+      <p>
+        Policies apply <strong>retroactively</strong> to open issues, computed from history, so you
+        see states immediately &mdash; there is no backfill to wait for.
+      </p>
+      <div class="note">
+        <p>
+          <strong>Policy warnings.</strong> After you save, Pact checks each policy for the
+          misconfigurations Jira would happily accept but that make an SLA behave wrong: a status
+          ticked as <em>both</em> running and stop (the clock stops there, so that time is never
+          counted), a policy with <em>no</em> stop status (it can never settle, so every matching
+          issue runs until it breaches), and two policies sharing a name. These are warnings, not
+          blockers &mdash; fix them when an SLA isn't behaving as expected.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">03</div>
+    <div class="body">
+      <h2>Alerts</h2>
+      <p>
+        When an issue crosses <strong>at risk</strong> or <strong>breach</strong>, Pact emails the
+        reporter and assignee through Jira's own mail. Each state emails <strong>once</strong>, so
+        there is no repeat spam. A <strong>five-minute sweep</strong> also catches purely time-based
+        breaches &mdash; an issue that sits past its budget without any status change still triggers
+        the alert.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">04</div>
+    <div class="body">
+      <h2>Compliance report</h2>
+      <p>
+        In <strong>Project settings &rarr; SLA</strong>, click <strong>Run report</strong>. It scans
+        up to 300 recent issues <strong>in the background</strong>, so it keeps going after you leave
+        the page, and the result is stored &mdash; reopening the settings shows the last report
+        instantly, with the timestamp it was built.
+      </p>
+      <p>Every issue lands in exactly one bucket, and the four buckets add up to <em>Issues</em>:</p>
+      <div class="states">
+        <div class="state"><b>Met</b><span>The clock reached a stop status inside the budget.</span></div>
+        <div class="state"><b>On track</b><span>Still running, still inside the budget, not yet at risk.</span></div>
+        <div class="state"><b>At risk</b><span>Still running and past the at-risk percentage, but not breached.</span></div>
+        <div class="state"><b>Breached</b><span>The budget was exceeded.</span></div>
+      </div>
+      <p>
+        <strong>Met&nbsp;% (settled)</strong> is Met &divide; (Met + Breached). Work still in flight
+        is <strong>not</strong> counted as a miss, so the number reflects decided cases only.
+      </p>
+      <p>
+        Under the tally, <strong>Breached issues</strong> lists which issues actually breached &mdash;
+        key, summary, the policy they broke, how far past budget, and when. Click an issue key to
+        open it. <strong>Export CSV</strong> gives you the tally, <strong>Export breaches</strong> the
+        drill-down list.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num plain">&#9642;</div>
+    <div class="body">
+      <h2>Free vs paid</h2>
+      <div class="tiers">
+        <div class="tier">
+          <h3>Free forever</h3>
+          <p>The <strong>issue panel</strong>, <strong>policy configuration</strong> and <strong>at-risk / breach emails</strong> &mdash; on every project, any team size.</p>
+        </div>
+        <div class="tier">
+          <h3>Paid &mdash; free up to 10 users</h3>
+          <p>The <strong>compliance report</strong>, the <strong>breached-issue list</strong>, and both <strong>CSV exports</strong>. Above 10 users these need an active license; an admin can start a free trial under <strong>Settings &rarr; Apps &rarr; Manage apps</strong>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="num plain">&#9642;</div>
+    <div class="body">
+      <h2>Troubleshooting</h2>
+      <dl class="defs">
+        <div>
+          <dt>Panel shows &ldquo;Default SLA&rdquo;</dt>
+          <dd>No policy is set up yet, so it is using a sensible default derived from your statuses. Customize it in Project settings &rarr; SLA.</dd>
+        </div>
+        <div>
+          <dt>No emails</dt>
+          <dd>Email is <strong>off by default on a new policy</strong>. Check <strong>Email reporter + assignee</strong> is ticked and saved, and that the issue has a reporter and assignee. Emails send once per state by design.</dd>
+        </div>
+        <div>
+          <dt>Report shows a paywall</dt>
+          <dd>You are above the free tier without an active license. Start a trial as above; the panel, policies and emails keep working.</dd>
+        </div>
+        <div>
+          <dt>Wrong breach time</dt>
+          <dd>Check the policy's <strong>business calendar</strong> and which statuses count as running versus stop.</dd>
+        </div>
+        <div>
+          <dt>An issue never settles, or always breaches</dt>
+          <dd>Look for a <strong>policy warning</strong> on the settings page: a status that both runs and stops the clock, or a policy with no stop status, will do exactly this. Fix the flagged policy.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section>
+    <div class="num plain">&#9642;</div>
+    <div class="body">
+      <h2>Data &amp; privacy</h2>
+      <p>
+        Pact <strong>Runs on Atlassian</strong> &mdash; no external servers, no egress, no Slack or
+        webhooks. Emails go through Jira's own in-tenant notification system. It stores only your
+        policies and a small per-issue alert marker in Forge storage.
+      </p>
+      <p>Support: <a href="mailto:phuongdang12697@gmail.com">phuongdang12697@gmail.com</a></p>
+    </div>
+  </section>
+
+  <footer>Slate &middot; Pact &mdash; SLAs for Jira Software (no JSM)</footer>
+</div>
+
+</body>
+</html>

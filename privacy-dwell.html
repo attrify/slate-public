@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Dwell — Privacy Policy — Slate, publisher of Atlassian Marketplace apps.">
+<title>Dwell Privacy Policy</title>
+<style>
+  /* ── Slate document system ───────────────────────────────────────────────
+     Palette is mineral, not paper-warm: the vendor is called Slate, and slate
+     is literally a stone people kept records on. Cool neutrals + one wet-slate
+     teal. Serif body because policy text is read in long lines; grotesque for
+     headings and labels; mono for scope names, which are machine identifiers
+     and should look like it. Numbering is real — a privacy policy IS a
+     numbered instrument, so the spine rail carries §1–§10 rather than decor. */
+  :root {
+    --ground: #F5F7F8;
+    --surface: #FFFFFF;
+    --ink: #14181C;
+    --ink-2: #59656E;
+    --ink-3: #8A959D;
+    --rule: #DDE3E7;
+    --accent: #34697A;
+    --accent-soft: #E3EDF0;
+    --measure: 64ch;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #101417;
+      --surface: #161B1F;
+      --ink: #E6ECEF;
+      --ink-2: #97A4AD;
+      --ink-3: #6B777F;
+      --rule: #262E34;
+      --accent: #7FB3C4;
+      --accent-soft: #1B282E;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #101417;
+    --surface: #161B1F;
+    --ink: #E6ECEF;
+    --ink-2: #97A4AD;
+    --ink-3: #6B777F;
+    --rule: #262E34;
+    --accent: #7FB3C4;
+    --accent-soft: #1B282E;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: Newsreader, Georgia, "Times New Roman", serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 62rem;
+    margin: 0 auto;
+    padding: clamp(2rem, 6vw, 5rem) clamp(1.25rem, 5vw, 3rem) 5rem;
+  }
+
+  /* ── Masthead ── */
+  .masthead { border-bottom: 2px solid var(--ink); padding-bottom: 1.75rem; }
+
+  .vendor {
+    font-family: "Instrument Sans", system-ui, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 1.25rem;
+  }
+
+  h1 {
+    font-family: "Instrument Sans", system-ui, sans-serif;
+    font-weight: 600;
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    margin: 0 0 1rem;
+  }
+
+  .standfirst {
+    max-width: var(--measure);
+    color: var(--ink-2);
+    font-size: 1.1rem;
+    margin: 0 0 1.75rem;
+  }
+
+  .stamps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 2.5rem;
+    font-family: "Instrument Sans", system-ui, sans-serif;
+    font-size: 0.8rem;
+  }
+  .stamp { display: flex; flex-direction: column; gap: 0.15rem; }
+  .stamp dt {
+    color: var(--ink-3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 0.68rem;
+    font-weight: 600;
+  }
+  .stamp dd { margin: 0; color: var(--ink); font-weight: 500; }
+
+  /* ── Sections laid out against a numbered spine ── */
+  section {
+    display: grid;
+    grid-template-columns: 4.5rem minmax(0, 1fr);
+    gap: 0 1.75rem;
+    padding: 2.25rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  section:last-of-type { border-bottom: 0; }
+
+  .num {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.78rem;
+    color: var(--accent);
+    padding-top: 0.45rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  h2 {
+    font-family: "Instrument Sans", system-ui, sans-serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.75rem;
+    text-wrap: balance;
+  }
+
+  .body > * { max-width: var(--measure); }
+  .body p { margin: 0 0 0.9rem; }
+  .body p:last-child { margin-bottom: 0; }
+  .body strong { font-weight: 600; }
+
+  /* ── Scope table: machine identifiers get the mono face ── */
+  .scopes { display: flex; flex-direction: column; gap: 0.85rem; margin: 0 0 1rem; }
+  .scope { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr); gap: 0.25rem 1.25rem; }
+  .scope code {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 0.15rem 0.45rem;
+    border-radius: 3px;
+    justify-self: start;
+    word-break: break-all;
+  }
+  .scope span { color: var(--ink-2); font-size: 0.98rem; }
+  @media (max-width: 34rem) { .scope { grid-template-columns: 1fr; } }
+
+  /* ── The one claim the whole document turns on ── */
+  .seal {
+    grid-column: 1 / -1;
+    margin-top: 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--accent);
+    padding: 1.15rem 1.35rem;
+    max-width: none;
+  }
+  .seal p { margin: 0; color: var(--ink-2); font-size: 0.98rem; max-width: var(--measure); }
+  .seal strong { color: var(--ink); }
+
+  a { color: var(--accent); text-underline-offset: 0.18em; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    font-family: "Instrument Sans", system-ui, sans-serif;
+    font-size: 0.82rem;
+    color: var(--ink-3);
+  }
+
+  @media (max-width: 46rem) {
+    section { grid-template-columns: 1fr; gap: 0.4rem; }
+    .num { padding-top: 0; }
+  }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+</head>
+<body>
+
+
+<div class="wrap">
+  <header class="masthead">
+    <p class="vendor">Slate</p>
+    <h1>Dwell Privacy Policy</h1>
+    <p class="standfirst">
+      Dwell is an Atlassian Forge app that runs entirely inside your own Atlassian cloud
+      environment. This policy describes what it reads, what it stores, and what leaves your
+      tenant — which is nothing.
+    </p>
+    <dl class="stamps">
+      <div class="stamp"><dt>Effective</dt><dd>12 July 2026</dd></div>
+      <div class="stamp"><dt>Vendor</dt><dd>Slate</dd></div>
+      <div class="stamp"><dt>App</dt><dd>Dwell — Time in Status, Cycle &amp; Lead Time for Jira</dd></div>
+      <div class="stamp"><dt>Platform</dt><dd>Atlassian Forge · Runs on Atlassian</dd></div>
+    </dl>
+  </header>
+
+  <section>
+    <div class="num">§ 01</div>
+    <div class="body">
+      <h2>Summary</h2>
+      <p>
+        Dwell (“the App”) is an Atlassian Forge app that participates in Atlassian's
+        <strong>Runs on Atlassian</strong> program. It runs entirely inside your Atlassian cloud
+        environment. It does <strong>not</strong> send your data to Slate's servers or to any third
+        party — there are no external servers, no analytics calls, and no data egress.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">§ 02</div>
+    <div class="body">
+      <h2>Data we access</h2>
+      <p>The App reads only the data required for its features, using the granted Atlassian scopes:</p>
+      <div class="scopes">
+        <div class="scope">
+          <code>read:jira-work</code>
+          <span>Read your Jira issues and their change history — to compute time in status, cycle time and lead time.</span>
+        </div>
+        <div class="scope">
+          <code>read:jira-user</code>
+          <span>Read user display names — to populate the assignee filter with readable names.</span>
+        </div>
+        <div class="scope">
+          <code>storage:app</code>
+          <span>Store the computed index and your app settings.</span>
+        </div>
+      </div>
+      <p>
+        It accesses this data on your behalf, within your Atlassian tenant, and only to compute the
+        features you use.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">§ 03</div>
+    <div class="body">
+      <h2>Data we store</h2>
+      <p>
+        To make reports fast, the App stores derived, computed data — for example, per-issue
+        status-duration rollups, the issue's assignee reference (Atlassian account ID) for grouping,
+        and app configuration — in <strong>Atlassian-hosted Forge storage</strong>, which lives
+        inside your Atlassian cloud environment and inherits its data-residency region. We do not
+        copy your data outside Atlassian.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">§ 04</div>
+    <div class="body">
+      <h2>Data we do not collect</h2>
+      <p>
+        We do not sell, rent, or share your data. We do not use it for advertising or to train
+        machine-learning models. We do not receive a copy of it — it never leaves your Atlassian
+        tenant.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">§ 05</div>
+    <div class="body">
+      <h2>Sub-processors</h2>
+      <p>
+        None beyond Atlassian itself, the platform hosting the App. Because the App runs on Atlassian
+        with no egress, no additional sub-processors are involved.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">§ 06</div>
+    <div class="body">
+      <h2>Security</h2>
+      <p>
+        The App inherits Atlassian's platform security controls, including SOC 2 Type II and
+        ISO/IEC 27001, and Atlassian's data-residency options. Reports are resolved using the
+        requesting user's own permissions, so users only ever see data they are already authorized
+        to see in Atlassian.
+      </p>
+    </div>
+    <div class="seal">
+      <p>
+        <strong>No egress, by construction.</strong> Dwell's Forge manifest declares no external
+        permissions and no web triggers. There is no code path that can send your issue data
+        anywhere outside your Atlassian tenant — this is enforced by the platform, not by policy
+        alone.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">§ 07</div>
+    <div class="body">
+      <h2>Data retention and deletion</h2>
+      <p>
+        Derived and configuration data is stored only while the App is installed. Uninstalling the
+        App removes the App's stored data from your Atlassian environment.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">§ 08</div>
+    <div class="body">
+      <h2>Children</h2>
+      <p>The App is a business tool and is not directed to children under 16.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">§ 09</div>
+    <div class="body">
+      <h2>Changes</h2>
+      <p>
+        We may update this policy; material changes will be reflected here with a new effective date.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">§ 10</div>
+    <div class="body">
+      <h2>Contact</h2>
+      <p>
+        Questions or data requests:
+        <a href="mailto:phuongdang12697@gmail.com">phuongdang12697@gmail.com</a>
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    Slate · Dwell — Time in Status, Cycle &amp; Lead Time for Jira · Privacy policy effective 12 July 2026
+  </footer>
+</div>
+
+</body>
+</html>

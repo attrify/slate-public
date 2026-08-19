@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Warden — User Guide — Slate, publisher of Atlassian Marketplace apps.">
+<title>Warden User Guide</title>
+<style>
+  /* Slate document system. Warden's guide numbers three real steps — scan, read,
+     export — because that is the actual working order of an access review. The
+     red-flag list is a legend, so it is set as a definition list, not steps. */
+  :root {
+    --ground: #F5F7F8;
+    --surface: #FFFFFF;
+    --ink: #14181C;
+    --ink-2: #59656E;
+    --ink-3: #8A959D;
+    --rule: #DDE3E7;
+    --accent: #34697A;
+    --accent-soft: #E3EDF0;
+    --measure: 64ch;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #101417; --surface: #161B1F; --ink: #E6ECEF; --ink-2: #97A4AD;
+      --ink-3: #6B777F; --rule: #262E34; --accent: #7FB3C4; --accent-soft: #1B282E;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #101417; --surface: #161B1F; --ink: #E6ECEF; --ink-2: #97A4AD;
+    --ink-3: #6B777F; --rule: #262E34; --accent: #7FB3C4; --accent-soft: #1B282E;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--ground); color: var(--ink);
+    font-family: Newsreader, Georgia, "Times New Roman", serif;
+    font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 62rem; margin: 0 auto; padding: clamp(2rem, 6vw, 5rem) clamp(1.25rem, 5vw, 3rem) 5rem; }
+  .masthead { border-bottom: 2px solid var(--ink); padding-bottom: 1.75rem; }
+  .vendor {
+    font-family: "Instrument Sans", system-ui, sans-serif; font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin: 0 0 1.25rem;
+  }
+  h1 {
+    font-family: "Instrument Sans", system-ui, sans-serif; font-weight: 600;
+    font-size: clamp(2rem, 5vw, 3rem); line-height: 1.08; letter-spacing: -0.02em;
+    text-wrap: balance; margin: 0 0 1rem;
+  }
+  .standfirst { max-width: var(--measure); color: var(--ink-2); font-size: 1.1rem; margin: 0 0 1.75rem; }
+  .stamps { display: flex; flex-wrap: wrap; gap: 0.5rem 2.5rem; font-family: "Instrument Sans", system-ui, sans-serif; font-size: 0.8rem; }
+  .stamp { display: flex; flex-direction: column; gap: 0.15rem; }
+  .stamp dt { color: var(--ink-3); letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.68rem; font-weight: 600; }
+  .stamp dd { margin: 0; color: var(--ink); font-weight: 500; }
+  section {
+    display: grid; grid-template-columns: 4.5rem minmax(0, 1fr); gap: 0 1.75rem;
+    padding: 2.25rem 0; border-bottom: 1px solid var(--rule);
+  }
+  section:last-of-type { border-bottom: 0; }
+  .num { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.78rem; color: var(--accent); padding-top: 0.45rem; font-variant-numeric: tabular-nums; }
+  .num.plain { color: var(--ink-3); }
+  h2 { font-family: "Instrument Sans", system-ui, sans-serif; font-size: 1.15rem; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 0.75rem; text-wrap: balance; }
+  .body > * { max-width: var(--measure); }
+  .body p { margin: 0 0 0.9rem; }
+  .body > :last-child { margin-bottom: 0; }
+  .body strong { font-weight: 600; }
+  .scopes { display: flex; flex-direction: column; gap: 0.85rem; margin: 0 0 1rem; }
+  .scope { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr); gap: 0.25rem 1.25rem; }
+  .scope code {
+    font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.8rem; color: var(--accent);
+    background: var(--accent-soft); padding: 0.15rem 0.45rem; border-radius: 3px; justify-self: start; word-break: break-all;
+  }
+  .scope span { color: var(--ink-2); font-size: 0.98rem; }
+  @media (max-width: 34rem) { .scope { grid-template-columns: 1fr; } }
+  .seal {
+    grid-column: 1 / -1; margin-top: 1.5rem; background: var(--surface); border: 1px solid var(--rule);
+    border-left: 3px solid var(--accent); padding: 1.15rem 1.35rem; max-width: none;
+  }
+  .seal p { margin: 0; color: var(--ink-2); font-size: 0.98rem; max-width: var(--measure); }
+  .seal strong { color: var(--ink); }
+  .note { background: var(--surface); border: 1px solid var(--rule); border-left: 3px solid var(--accent); padding: 1rem 1.2rem; margin: 0 0 1rem; }
+  .note p { margin: 0; color: var(--ink-2); font-size: 0.98rem; }
+  .note strong { color: var(--ink); }
+  dl.defs { margin: 0 0 0.9rem; display: flex; flex-direction: column; gap: 0.7rem; }
+  dl.defs dt { font-family: "Instrument Sans", system-ui, sans-serif; font-size: 0.9rem; font-weight: 600; margin-bottom: 0.1rem; }
+  dl.defs dd { margin: 0; color: var(--ink-2); font-size: 0.99rem; }
+  .surfaces { display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin: 2.25rem 0 0; }
+  .surface-row { background: var(--ground); display: grid; grid-template-columns: minmax(0, 11rem) minmax(0, 1fr) minmax(0, 15rem); gap: 0.35rem 1.5rem; padding: 1rem 1.25rem; }
+  .surface-row h3 { font-family: "Instrument Sans", system-ui, sans-serif; font-size: 0.95rem; font-weight: 600; margin: 0; }
+  .surface-row p { margin: 0; color: var(--ink-2); font-size: 0.98rem; }
+  .surface-row .where { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.76rem; color: var(--accent); line-height: 1.5; }
+  @media (max-width: 52rem) { .surface-row { grid-template-columns: 1fr; } }
+  .tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; max-width: none; }
+  .tier { background: var(--surface); border: 1px solid var(--rule); padding: 1.1rem 1.25rem; }
+  .tier h3 { font-family: "Instrument Sans", system-ui, sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin: 0 0 0.5rem; }
+  .tier p { margin: 0; color: var(--ink-2); font-size: 0.98rem; }
+  .states { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: 0.75rem; max-width: none; margin: 0 0 1rem; }
+  .state { border: 1px solid var(--rule); background: var(--surface); padding: 0.85rem 1rem; }
+  .state b { font-family: "Instrument Sans", system-ui, sans-serif; font-size: 0.82rem; display: block; margin-bottom: 0.25rem; }
+  .state span { color: var(--ink-2); font-size: 0.94rem; }
+  code { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.84em; color: var(--accent); background: var(--accent-soft); padding: 0.1rem 0.35rem; border-radius: 3px; }
+  a { color: var(--accent); text-underline-offset: 0.18em; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+  footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); font-family: "Instrument Sans", system-ui, sans-serif; font-size: 0.82rem; color: var(--ink-3); }
+  @media (max-width: 46rem) { section { grid-template-columns: 1fr; gap: 0.4rem; } .num { padding-top: 0; } }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+</head>
+<body>
+
+
+<div class="wrap">
+  <header class="masthead">
+    <p class="vendor">Slate</p>
+    <h1>Warden User Guide</h1>
+    <p class="standfirst">
+      Confluence Cloud gives you no way to see, across every space, which pages are restricted and to
+      whom. Warden inventories every restricted page in one report and flags the risky restrictions
+      nobody else catches, then lets you export a compliance snapshot. It is <strong>read-only</strong>:
+      Warden never changes your restrictions.
+    </p>
+  </header>
+
+  <div class="surfaces">
+    <div class="surface-row">
+      <h3>Access Audit report</h3>
+      <p>Every view/edit-restricted page across the site, direct versus inherited, plus red flags &mdash; and what changed since the previous scan.</p>
+      <p class="where">Confluence Settings &rarr; Apps &rarr; Warden</p>
+    </div>
+    <div class="surface-row">
+      <h3>Red flags</h3>
+      <p>Restrictions that quietly break governance: deactivated user, empty group, orphaned principal &mdash; plus stranded pages whose entire audience is now dead.</p>
+      <p class="where">Top of the report</p>
+    </div>
+    <div class="surface-row">
+      <h3>CSV export</h3>
+      <p>A compliance snapshot for SOC&nbsp;2 and ISO access reviews.</p>
+      <p class="where">Bottom of the report</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="num">01</div>
+    <div class="body">
+      <h2>Run a scan</h2>
+      <p>
+        Go to <strong>Confluence Settings &rarr; Apps &rarr; Warden &mdash; Access Audit</strong> and
+        click <strong>Run scan</strong>. The scan runs in the background, off the request clock, so
+        large sites don't time out; the report refreshes automatically when it finishes. Warden also
+        <strong>re-scans daily</strong> to keep the snapshot fresh.
+      </p>
+      <p>
+        The scan walks every space, finds every view/edit-restricted page, and resolves the users and
+        groups those restrictions name.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">02</div>
+    <div class="body">
+      <h2>Read the report</h2>
+      <p><strong>Red flags</strong> come first &mdash; the restrictions that silently break access governance:</p>
+      <dl class="defs">
+        <div>
+          <dt>Deactivated user</dt>
+          <dd>A page restricted to a user who has been deactivated.</dd>
+        </div>
+        <div>
+          <dt>Empty group</dt>
+          <dd>A restriction pointing at a group with no members.</dd>
+        </div>
+        <div>
+          <dt>Orphaned principal</dt>
+          <dd>The user or group named in the restriction no longer exists.</dd>
+        </div>
+        <div>
+          <dt>No live viewer / No live editor</dt>
+          <dd>The page-level consequence: <em>every</em> user and group granted view (or edit) is deactivated, empty or deleted, so the page's intended audience is locked out and only site admins can still reach it. This is the one to fix first &mdash; a stranded view restriction also strands every page that inherits it.</dd>
+        </div>
+      </dl>
+      <p>
+        <strong>Since last scan</strong> &mdash; every scan is compared with the one before it. A
+        banner above the table says how many red flags are <strong>new</strong> and how many were
+        <strong>resolved</strong>, and each new finding carries a <strong>New</strong> marker. From
+        the second scan onwards you read a diff, not the whole inventory again.
+      </p>
+      <p>
+        <strong>Restricted pages</strong> lists every restricted page, who can view or edit it, and
+        whether the restriction is <strong>set directly</strong> on the page or
+        <strong>inherited</strong> from an ancestor, naming the ancestor it came from. Clicking a
+        page opens it in a new tab so you can fix the restriction in Confluence.
+      </p>
+      <div class="note">
+        <p>
+          <strong>Partial scan.</strong> Very large sites are scanned up to a page cap; if it is hit,
+          the report is flagged as partial &mdash; a snapshot of the first pages scanned.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">03</div>
+    <div class="body">
+      <h2>Export the compliance snapshot</h2>
+      <p>
+        Use <strong>Export inventory CSV</strong> for all restricted pages, or
+        <strong>Export red-flags CSV</strong> for just the findings, to get an auditor-ready
+        snapshot. The CSV is UTF-8 with a BOM, so it opens cleanly in Excel and Google Sheets.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num plain">&#9642;</div>
+    <div class="body">
+      <h2>Free vs paid</h2>
+      <div class="tiers">
+        <div class="tier">
+          <h3>Free forever</h3>
+          <p>The full <strong>Access Audit report</strong> &mdash; inventory and red flags &mdash; view-only, at any team size.</p>
+        </div>
+        <div class="tier">
+          <h3>Paid &mdash; free up to 10 users</h3>
+          <p><strong>CSV export</strong>, the compliance-snapshot deliverable &mdash; the red-flags export carries a <strong>New since last scan</strong> column, so a quarterly review can start from what changed. Above 10 users export needs an active license; an admin can start a free trial under <strong>Settings &rarr; Apps &rarr; Manage apps</strong>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="num plain">&#9642;</div>
+    <div class="body">
+      <h2>What Warden does not do, by design</h2>
+      <dl class="defs">
+        <div>
+          <dt>It is not a historical change-log</dt>
+          <dd>It is a point-in-time snapshot. A Forge app cannot reconstruct who changed a restriction and when.</dd>
+        </div>
+        <div>
+          <dt>It is not auto-remediation</dt>
+          <dd>It reports and flags; it never changes your restrictions and does not &ldquo;guarantee compliance&rdquo;. You act on the evidence.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section>
+    <div class="num plain">&#9642;</div>
+    <div class="body">
+      <h2>Troubleshooting</h2>
+      <dl class="defs">
+        <div>
+          <dt>Report is empty</dt>
+          <dd>Run a scan first, and remember Warden only lists <strong>restricted</strong> pages &mdash; a site with no restrictions has nothing to flag. Page restrictions are a Standard-and-above Confluence feature.</dd>
+        </div>
+        <div>
+          <dt>Export shows an upgrade prompt</dt>
+          <dd>You are above the free tier without an active license. Start a trial as above; viewing the report stays free.</dd>
+        </div>
+        <div>
+          <dt>A &ldquo;Partial&rdquo; badge appears</dt>
+          <dd>A very large site hit the page cap; the snapshot covers the first pages scanned.</dd>
+        </div>
+        <div>
+          <dt>A deactivated user isn't flagged</dt>
+          <dd>The deactivated-user signal is best-effort under Runs-on-Atlassian. The empty-group and orphan flags are exact.</dd>
+        </div>
+        <div>
+          <dt>A page shows atomic flags but no &ldquo;No live viewer&rdquo;</dt>
+          <dd>That is correct: at least one live user or group can still see it, so it is not stranded. &ldquo;No live viewer/editor&rdquo; fires only when <em>every</em> grantee is dead.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section>
+    <div class="num plain">&#9642;</div>
+    <div class="body">
+      <h2>Data &amp; privacy</h2>
+      <p>
+        Warden <strong>Runs on Atlassian</strong> &mdash; no external servers, no egress. Every scope
+        is read-only and in-tenant; there is no write scope in the manifest, so Warden
+        <em>cannot</em> modify a restriction. The snapshot lives in Forge storage inside your tenant.
+      </p>
+      <p>Support: <a href="mailto:phuongdang12697@gmail.com">phuongdang12697@gmail.com</a></p>
+    </div>
+  </section>
+
+  <footer>Slate &middot; Warden &mdash; Access Audit for Confluence</footer>
+</div>
+
+</body>
+</html>
