@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Comparing SaaSJet Time in Status with Dwell: both run on Atlassian, so the real differences are median &amp; p85, the free per-issue panel, and price at scale.">
+<link rel="canonical" href="https://attrify.github.io/slate-public/saasjet-time-in-status-alternative.html">
+<link rel="stylesheet" href="./slate-seo.css">
+<title>SaaSJet Time in Status Alternative for Jira | Dwell</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+</head>
+<body>
+
+
+<div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="./">Slate</a><span>›</span><a href="./">Dwell</a><span>›</span>SaaSJet Time in Status alternative
+  </nav>
+
+  <header class="masthead">
+    <p class="vendor">Slate</p>
+    <h1>Dwell compared with SaaSJet Time in Status</h1>
+    <p class="standfirst">
+      This is the honest version of a comparison page: SaaSJet's app runs on Atlassian just like ours,
+      and it is cheaper than Dwell at most sizes. The difference is what the reports are made of.
+    </p>
+  </header>
+
+  <div class="definition">
+    <p>
+      <strong>Time in Status</strong> (by SaaSJet) and <strong>Dwell</strong> (by Slate) both replay
+      the Jira changelog to report how long issues spend in each status, plus cycle and lead time.
+      Both are Forge apps that carry Atlassian's <strong>Runs on Atlassian</strong> badge, so on the
+      question of data egress there is nothing to choose between them — neither sends your issue data
+      outside Atlassian.
+    </p>
+    <p>
+      The differences that remain are statistical and commercial: Dwell leads with median and p85 and
+      keeps a per-issue panel free at any size; SaaSJet is larger, longer-established, and cheaper per
+      user from 250 users up.
+    </p>
+  </div>
+
+  <section>
+    <div class="num">01</div>
+    <div class="body">
+      <h2>The short version</h2>
+      <div class="verdict">
+        <dl>
+          <dt>Dwell is best for</dt>
+          <dd>
+            Teams who want the tail of the distribution rather than the average — median and p85,
+            aging work-in-progress measured against your own p85, flow efficiency and blocked time —
+            and who want the per-issue breakdown to stay free for everyone on the site.
+          </dd>
+          <dt>SaaSJet Time in Status is best for</dt>
+          <dd>
+            Teams who want a proven app with thousands of installs and a long review history, a wider
+            set of dashboard and sprint-oriented reports, Cloud Fortified status, and the lower
+            per-user price at 250 users and above.
+          </dd>
+          <dt>Bottom line</dt>
+          <dd>
+            Do not switch for data residency — both apps run on Atlassian. Switch only if median/p85
+            flow metrics or the free per-issue panel are worth more to you than a few cents per user
+            and a longer track record.
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">02</div>
+    <div class="body">
+      <h2>What is genuinely the same</h2>
+      <p>
+        Both apps read the same source of truth — the changelog Jira already keeps — and neither
+        modifies your issues. Both aggregate across a project, break results down by fields like
+        assignee or issue type, put a summary on a dashboard, and export to CSV.
+      </p>
+      <p>
+        And both run in-tenant. We checked SaaSJet's listing on the Marketplace in August 2026 and it
+        carries the <strong>Runs on Atlassian</strong> badge, the same as Dwell's. If you arrived here
+        looking for a no-egress alternative to something else, SaaSJet already qualifies, and we would
+        rather say so than let you buy Dwell for a reason that is not true.
+      </p>
+      <p>
+        For scale: roughly 5,400 active installs and 207 reviews averaging 4.54 out of 5 for SaaSJet
+        when this page was written. Dwell is new and has neither.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">03</div>
+    <div class="body">
+      <h2>Where Dwell differs</h2>
+
+      <h3>The statistic the report is built on</h3>
+      <p>
+        This is the substantive difference. Dwell's reports lead with the <strong>median</strong> and
+        <strong>p85</strong> rather than the average. An average cycle time is pulled around by
+        outliers — one issue that sat in the backlog for a year moves it more than fifty issues that
+        flowed normally. The median tells you what a typical issue takes; p85 tells you the number you
+        can commit to and be right about six times in seven. Every Dwell report, the weekly trend and
+        every group-by is built on those.
+      </p>
+
+      <h3>Aging work in progress</h3>
+      <p>
+        Dwell compares each open issue against your own finished-work p85 and lists the ones already
+        past it. It is the only report here that points forwards: those issues have not stalled yet,
+        and you can still do something about them.
+      </p>
+
+      <h3>Flow efficiency, blocked time, time between two statuses</h3>
+      <p>
+        Per-status totals tell you how long each step took. They do not tell you how much of that time
+        was queueing rather than work. Dwell reports flow efficiency (active time as a share of
+        elapsed time), how long issues sat flagged as blocked, and the time between any two
+        statuses you name — for example Backlog to In Progress, which is usually where the waiting
+        actually is.
+      </p>
+
+      <h3>A free surface that does not expire</h3>
+      <p>
+        Dwell's per-issue panel — the time in each status plus lead time — is free on every issue at
+        any team size, permanently. The licence covers the project reporting layer. That means anyone
+        on the site can answer “why has this ticket taken so long?” without a licence discussion.
+      </p>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="num">04</div>
+    <div class="body">
+      <h2>Where SaaSJet is the better fit</h2>
+      <ul>
+        <li>
+          <strong>Price from 250 users up.</strong> SaaSJet is cheaper at every tier above 100 users —
+          meaningfully so at 1,000, where it is roughly 30% less per user. See the table below.
+        </li>
+        <li>
+          <strong>Track record.</strong> Thousands of installs and 207 reviews. Dwell has no reviews
+          at all yet, and no amount of copy substitutes for that.
+        </li>
+        <li>
+          <strong>Cloud Fortified.</strong> SaaSJet holds it; Slate does not. It covers operational
+          maturity — reliability commitments, incident response, a bug bounty — and if your
+          procurement checklist includes it, that decides the matter.
+        </li>
+        <li>
+          <strong>Breadth of reporting.</strong> Its listing leads on sprint-oriented views and
+          dashboard “control centre” reports. Dwell deliberately ships a narrower set.
+        </li>
+        <li>
+          <strong>Support at scale.</strong> SaaSJet is a company with a support team. Slate is one
+          person who answers email.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">05</div>
+    <div class="body">
+      <h2>Pricing side by side</h2>
+      <p>
+        Both are sold through Atlassian with per-user monthly pricing, and both are free for sites of
+        10 users or fewer. Read from the Marketplace pricing API in August 2026; verify current prices
+        before buying.
+      </p>
+      <div class="scroll">
+        <table>
+          <caption>Per user, per month, monthly billing. Marketplace pricing API, August 2026.</caption>
+          <thead>
+            <tr><th>Up to</th><th class="num-cell">Dwell</th><th class="num-cell">SaaSJet</th><th>Which is cheaper</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>10 users</td><td class="num-cell">Free</td><td class="num-cell">Free</td><td>Both free at this size</td></tr>
+            <tr><td>100 users</td><td class="num-cell">$1.10</td><td class="num-cell">$1.15</td><td>Dwell, marginally</td></tr>
+            <tr><td>250 users</td><td class="num-cell">$0.80</td><td class="num-cell">$0.75</td><td>SaaSJet</td></tr>
+            <tr><td>1,000 users</td><td class="num-cell">$0.28</td><td class="num-cell">$0.20</td><td>SaaSJet, by about 30%</td></tr>
+            <tr><td>2,500 users</td><td class="num-cell">$0.17</td><td class="num-cell">$0.14</td><td>SaaSJet</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        If the decision comes down to cost per user, SaaSJet wins it from 250 users up and we are not
+        going to pretend otherwise. Dwell's argument is what the reports tell you, not what they
+        cost.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num plain">▪</div>
+    <div class="body">
+      <h2>Questions</h2>
+      <dl class="faq">
+        <dt>Does SaaSJet's Time in Status send my data outside Atlassian?</dt>
+        <dd>Not according to its Marketplace listing, which carried the Runs on Atlassian badge in August 2026 — the same badge Dwell carries. Data residency is not a reason to prefer one over the other.</dd>
+        <dt>Why would I switch if SaaSJet is cheaper?</dt>
+        <dd>Only for the reports. Median and p85 instead of averages, aging WIP measured against your own p85, flow efficiency and blocked time, and a per-issue panel that stays free for everyone. If those do not matter to you, the cheaper app is the right answer.</dd>
+        <dt>Can I trial both at the same time?</dt>
+        <dd>Yes. Both are read-only against your issues, so running them side by side changes nothing and lets you compare the same period in each.</dd>
+        <dt>Will the two apps report the same numbers?</dt>
+        <dd>Per-status totals should agree. Headline cycle time will differ where one reports an average and the other a median, and durations will differ if one counts weekends and the other does not.</dd>
+        <dt>Dwell has no reviews. Why would I trust it?</dt>
+        <dd>You should weigh that. What you can check without trusting us: the Runs on Atlassian badge on the listing, the free per-issue panel on your own issues, and the fact that uninstalling removes the app's index entirely because it never left your tenant.</dd>
+      </dl>
+      <p style="margin-top:1.4rem">
+        <a class="cta" href="https://marketplace.atlassian.com/apps/2551519494">See Dwell on the Atlassian Marketplace</a>
+      </p>
+      <p style="margin-top:0.9rem">
+        Also worth reading:
+        <a href="./timepiece-alternative.html">Dwell compared with Timepiece</a> ·
+        <a href="./jira-time-in-status-no-data-egress.html">what “no data egress” actually means</a> ·
+        <a href="./how-to-see-time-in-status-in-jira.html">how to see time in status in Jira</a>.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p>Slate · small, focused Atlassian apps that run on Atlassian.</p>
+    <p>SaaSJet and Time in Status are trademarks of their owner. Slate is not affiliated with SaaSJet. Install counts, ratings and prices were read from Atlassian Marketplace public data in August 2026.</p>
+    <p>Support: <a href="mailto:phuongdang12697@gmail.com">phuongdang12697@gmail.com</a> · <a href="./">All documentation</a></p>
+  </footer>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Dwell compared with SaaSJet Time in Status",
+      "author": { "@type": "Organization", "name": "Slate" },
+      "publisher": { "@type": "Organization", "name": "Slate" },
+      "datePublished": "2026-08-20"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does SaaSJet's Time in Status send my data outside Atlassian?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Not according to its Marketplace listing, which carried the Runs on Atlassian badge in August 2026 - the same badge Dwell carries. Data residency is not a reason to prefer one over the other." }
+        },
+        {
+          "@type": "Question",
+          "name": "Why would I switch if SaaSJet is cheaper?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Only for the reports: median and p85 instead of averages, aging work in progress measured against your own p85, flow efficiency and blocked time, and a per-issue panel that stays free for everyone." }
+        },
+        {
+          "@type": "Question",
+          "name": "Will the two apps report the same numbers?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Per-status totals should agree. Headline cycle time will differ where one reports an average and the other a median, and durations will differ if one counts weekends and the other does not." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+</body>
+</html>

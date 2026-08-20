@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Jira stores every status change but never adds them up. Here are the three ways to get time in status out of Jira, and what each one costs you.">
+<link rel="canonical" href="https://attrify.github.io/slate-public/how-to-see-time-in-status-in-jira.html">
+<link rel="stylesheet" href="./slate-seo.css">
+<title>How to See Time in Status in Jira | Dwell</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+</head>
+<body>
+
+
+<div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="./">Slate</a><span>›</span>Guides<span>›</span>Time in status in Jira
+  </nav>
+
+  <header class="masthead">
+    <p class="vendor">Slate</p>
+    <h1>How to measure time in status in Jira (and why the changelog isn't enough)</h1>
+    <p class="standfirst">
+      Jira knows exactly when every issue changed status. It just never adds it up. Here is what Jira
+      gives you, how to compute the numbers yourself if you want to, and what to look for if you
+      decide not to.
+    </p>
+  </header>
+
+  <div class="definition">
+    <p>
+      <strong>What is “time in status” in Jira?</strong> It is how long an issue spends in each
+      workflow status — three days In Progress, two days In Review, and so on. Jira stores every
+      status change in the issue's changelog but does not total them, so teams compute time in status
+      to find where work stalls. It is related to, but not the same as, <strong>cycle time</strong>
+      (work started to done) and <strong>lead time</strong> (created to done).
+    </p>
+  </div>
+
+  <section>
+    <div class="num">01</div>
+    <div class="body">
+      <h2>In one paragraph</h2>
+      <p>
+        Jira's changelog records each status change but never totals them. To see time in status,
+        cycle time and lead time you either compute the intervals yourself from the REST API — fiddly,
+        because of status renames, reopened issues and whether you count weekends — or you use an app.
+        If you use an app, prefer one that reports <strong>median and p85</strong> rather than
+        averages, because averages hide the slow tail that causes the complaints; and if data
+        residency matters to your organisation, prefer one that
+        <a href="./jira-time-in-status-no-data-egress.html">runs inside your own Atlassian cloud</a>.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">02</div>
+    <div class="body">
+      <h2>What Jira gives you natively</h2>
+      <p>
+        Open any issue, expand the <strong>History</strong> tab, and you will see entries like
+        <em>“Anna changed the status from In Progress to In Review · 12 August 2026, 14:31”</em>. That
+        is the changelog, and it is complete: every transition, timestamped, attributed.
+      </p>
+      <p>
+        What it is not is a report. Three things are missing, and no amount of clicking fixes them:
+      </p>
+      <ul>
+        <li><strong>No totals.</strong> The events are there; the durations between them are not. You are reading raw material, not an answer.</li>
+        <li><strong>No cross-issue view.</strong> The history is per issue. There is no native screen that says “across this project, issues sit in Code Review for a median of two days”.</li>
+        <li><strong>No handling of the awkward cases.</strong> Issues that bounce backwards, statuses that were renamed last quarter, tickets reopened after being closed — each needs a decision, and the changelog just lists what happened.</li>
+      </ul>
+      <p>
+        Jira's own reports do not close the gap either: the Control Chart and Cumulative Flow Diagram
+        show flow across a board, not how long a given status holds work, and neither exports the
+        per-status figures teams actually want to put in a review.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">03</div>
+    <div class="body">
+      <h2>The manual way, honestly described</h2>
+      <h3>Can I get time in status from the Jira changelog myself?</h3>
+      <p>
+        Yes, and for a one-off question it is often the right call. The shape of it:
+      </p>
+      <ul>
+        <li><strong>Pull the changelog.</strong> Find the issues with <code>POST /rest/api/3/search/jql</code> — the classic <code>startAt</code> search is deprecated — then read each issue's history from <code>GET /rest/api/3/issue/{key}/changelog</code>, which is paginated. The CSV export from the issue navigator does <em>not</em> include status history, which surprises people.</li>
+        <li><strong>Keep only status items.</strong> Each history entry has items; you want the ones where <code>field</code> is <code>status</code>, with their <code>fromString</code>, <code>toString</code> and the entry's <code>created</code> timestamp.</li>
+        <li><strong>Build intervals.</strong> Sort by timestamp and pair them up: the issue was in status A from transition <em>n</em> until transition <em>n+1</em>. Two edge cases decide whether your numbers are right — the <strong>first</strong> interval starts at issue creation in whatever status the workflow starts in (there is no transition into it), and the <strong>last</strong> interval is still open, so it runs to “now” for anything not yet done.</li>
+        <li><strong>Sum per status, then aggregate.</strong> Add the intervals per status per issue, then take the distribution across issues.</li>
+      </ul>
+      <div class="note">
+        <p>
+          <strong>Where hand-rolled numbers usually go wrong.</strong> Weekends and nights: an issue
+          that sat over a long weekend looks three days slower than one that did not, unless you
+          decide to subtract non-working hours — a real decision, not a detail. Status renames:
+          “In Review” became “Code Review” in March and your grouping silently splits in two.
+          Reopened issues: one issue can be In Progress three separate times, and if you keep only the
+          first or the last interval you will understate it. Zero-length transitions: bulk moves
+          produce several transitions in the same second, which can create nonsense intervals if you
+          do not drop them.
+        </p>
+      </div>
+      <p>
+        None of that is hard. It is just enough work that most teams do it once, get a number, and
+        never repeat it — which is the actual failure mode, because a flow metric is only useful as a
+        trend.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">04</div>
+    <div class="body">
+      <h2>Time in status, cycle time and lead time are three different things</h2>
+      <ul>
+        <li><strong>Time in status</strong> — how long an issue sat in one particular status. Diagnostic: it tells you <em>where</em> the time went.</li>
+        <li><strong>Cycle time</strong> — from when work actually started (typically the first move into In Progress) to done. This is the number teams commit against.</li>
+        <li><strong>Lead time</strong> — from creation to done, including all the time it waited in the backlog before anyone touched it. This is the number your stakeholders experience.</li>
+      </ul>
+      <p>
+        Lead time is almost always much larger than cycle time, and the gap between them is queue
+        time. If your team feels fast but the business feels slow, that gap is why.
+      </p>
+      <h3>Why averages mislead, and what to use instead</h3>
+      <p>
+        Cycle-time distributions have long tails: most issues finish quickly, a few take forever. An
+        average is dragged by those few, so it describes nothing in particular — not the typical
+        issue, and not the worst case.
+      </p>
+      <p>
+        Use two numbers instead. The <strong>median</strong> (p50) is the typical issue: half finish
+        faster, half slower. The <strong>85th percentile</strong> (p85) is the honest promise: 85% of
+        issues finish within it. “Usually about three days, and almost always within nine” is a
+        statement a team can actually stand behind. An average of five days is not.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">05</div>
+    <div class="body">
+      <h2>What a time-in-status app should give you</h2>
+      <p>
+        There are many on the Atlassian Marketplace and most compute the same base numbers correctly.
+        The things worth comparing:
+      </p>
+      <ul>
+        <li><strong>Median and p85, not just averages.</strong> If the headline number is a mean, the app is answering a less useful question.</li>
+        <li><strong>Something forward-looking.</strong> Historical reports tell you what already went wrong. A list of open issues already past your p85 tells you what is about to.</li>
+        <li><strong>Queue time as well as work time.</strong> Per-status totals say how long each step took; flow efficiency says how much of that was waiting.</li>
+        <li><strong>A free surface.</strong> Whether an ordinary team member can answer “why has this ticket taken so long?” without a licence conversation.</li>
+        <li><strong>Where it runs.</strong> Reporting apps read every issue's full history. Some run on the vendor's servers; some run inside your Atlassian cloud. Both are legitimate — check which, because it decides whether you are adding a data processor.</li>
+        <li><strong>Export.</strong> The number always ends up in a slide eventually. CSV export saves the retyping.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">06</div>
+    <div class="body">
+      <h2>Doing it with Dwell</h2>
+      <p>
+        Dwell is our answer to the above, and the part most people use costs nothing: open any issue,
+        go to <strong>Apps → Time in Status</strong>, and the panel shows time in each status plus lead
+        time for that issue. That panel is free on every issue at any team size, so the diagnostic
+        question — “where did this ticket's three weeks actually go?” — is answered for everyone.
+      </p>
+      <p>
+        The licensed part is the project layer: a report over any JQL with median and p85, a weekly
+        cycle-time trend, aging work-in-progress measured against your own p85, a cycle-time
+        histogram, group-by assignee or type or priority, a dashboard gadget, and CSV export. Reports
+        resolve as the viewing user, so issue-level security still applies.
+      </p>
+      <p>
+        Dwell carries Atlassian's <strong>Runs on Atlassian</strong> badge: it builds its index inside
+        your own Atlassian cloud and sends nothing outside. One caveat worth stating plainly — in this
+        version durations are wall-clock, so an issue that sat over a weekend counts those days; a
+        per-status working-hours calendar is not shipped yet.
+      </p>
+      <p style="margin-top:1.2rem">
+        <a class="cta" href="https://marketplace.atlassian.com/apps/2551519494">See Dwell on the Atlassian Marketplace</a>
+      </p>
+      <p style="margin-top:0.9rem">
+        Comparing options? <a href="./timepiece-alternative.html">Dwell and Timepiece</a> ·
+        <a href="./saasjet-time-in-status-alternative.html">Dwell and SaaSJet Time in Status</a>.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num plain">▪</div>
+    <div class="body">
+      <h2>Questions</h2>
+      <dl class="faq">
+        <dt>How is time in status calculated?</dt>
+        <dd>By replaying the issue's changelog. Each status transition starts one interval and ends the previous one; the first interval starts at issue creation, the last runs to now for an unfinished issue. Summing the intervals per status gives time in status.</dd>
+        <dt>Does time in status count weekends and nights?</dt>
+        <dd>It depends on the tool. A wall-clock calculation counts all elapsed time, including weekends; a working-hours calculation subtracts non-working periods. Dwell's current version is wall-clock. Whichever you use, be consistent — mixing the two makes trends meaningless.</dd>
+        <dt>What is a good cycle time?</dt>
+        <dd>There is no universal number, and any tool quoting one is guessing about your context. What is meaningful is your own trend and the spread between median and p85: a widening gap means predictability is getting worse even if the typical issue is unchanged.</dd>
+        <dt>Can I see time in status without installing an app?</dt>
+        <dd>Yes — pull the changelog through the REST API and compute the intervals yourself. It works well for a one-off question and poorly as a habit, which is the reason most teams end up with an app.</dd>
+        <dt>What is the difference between cycle time and lead time in Jira?</dt>
+        <dd>Cycle time measures from when work started (usually the first transition into In Progress) to done. Lead time measures from issue creation to done, so it includes backlog waiting time. The difference between them is queue time.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <footer>
+    <p>Slate · small, focused Atlassian apps that run on Atlassian.</p>
+    <p>Support: <a href="mailto:phuongdang12697@gmail.com">phuongdang12697@gmail.com</a> · <a href="./">All documentation</a></p>
+  </footer>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "How to measure time in status in Jira (and why the changelog isn't enough)",
+      "author": { "@type": "Organization", "name": "Slate" },
+      "publisher": { "@type": "Organization", "name": "Slate" },
+      "datePublished": "2026-08-20"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How is time in status calculated?",
+          "acceptedAnswer": { "@type": "Answer", "text": "By replaying the issue's changelog. Each status transition starts one interval and ends the previous one; the first interval starts at issue creation, the last runs to now for an unfinished issue. Summing the intervals per status gives time in status." }
+        },
+        {
+          "@type": "Question",
+          "name": "Does time in status count weekends and nights?",
+          "acceptedAnswer": { "@type": "Answer", "text": "It depends on the tool. A wall-clock calculation counts all elapsed time including weekends; a working-hours calculation subtracts non-working periods. Dwell's current version is wall-clock." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a good cycle time in Jira?",
+          "acceptedAnswer": { "@type": "Answer", "text": "There is no universal number. What is meaningful is your own trend and the spread between median and p85: a widening gap means predictability is getting worse even if the typical issue is unchanged." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between cycle time and lead time in Jira?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Cycle time measures from when work started to done. Lead time measures from issue creation to done, so it includes backlog waiting time. The difference between them is queue time." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+</body>
+</html>

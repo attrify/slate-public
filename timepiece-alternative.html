@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Looking for a Timepiece alternative? Dwell reports time in status with median &amp; p85 cycle time and a free per-issue panel, and it Runs on Atlassian.">
+<link rel="canonical" href="https://attrify.github.io/slate-public/timepiece-alternative.html">
+<link rel="stylesheet" href="./slate-seo.css">
+<title>Timepiece Alternative for Jira Time in Status | Dwell</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+</head>
+<body>
+
+
+<div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="./">Slate</a><span>›</span><a href="./">Dwell</a><span>›</span>Timepiece alternative
+  </nav>
+
+  <header class="masthead">
+    <p class="vendor">Slate</p>
+    <h1>A Runs-on-Atlassian alternative to Timepiece for time in status</h1>
+    <p class="standfirst">
+      Timepiece is a mature, well-reviewed app with a large installed base. This page is not an
+      argument that it is bad — it is an honest account of where Dwell differs, including the places
+      Timepiece is the better choice.
+    </p>
+  </header>
+
+  <div class="definition">
+    <p>
+      <strong>Timepiece</strong> (by OBSS, formerly listed as “Time in Status”) and <strong>Dwell</strong>
+      (by Slate) both report how long Jira issues spend in each status, plus cycle and lead time. The
+      practical differences for most teams are three: the hosting model, whether the report leads with
+      averages or with median and p85, and what stays free.
+    </p>
+  </div>
+
+  <section>
+    <div class="num">01</div>
+    <div class="body">
+      <h2>The short version</h2>
+      <div class="verdict">
+        <dl>
+          <dt>Dwell is best for</dt>
+          <dd>
+            Teams who want time in status alongside median and p85 cycle time, aging work-in-progress
+            and flow efficiency, who want a per-issue panel that stays free at any team size, and who
+            need the app to run inside their own Atlassian cloud with no data egress.
+          </dd>
+          <dt>Timepiece is best for</dt>
+          <dd>
+            Teams who want a proven, heavily reviewed app with a wider report and gadget catalogue,
+            AI-assisted and automation features Dwell has not shipped, an online demo before
+            installing, Cloud Fortified status for procurement — and a lower per-user price once you
+            are past about a thousand users.
+          </dd>
+          <dt>Bottom line</dt>
+          <dd>
+            If no data egress or median/p85 flow metrics are your priority, try Dwell — the per-issue
+            panel is free on every issue, so evaluating it costs nothing. If you depend on a
+            Timepiece feature or need a long review history behind the app, stay put.
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">02</div>
+    <div class="body">
+      <h2>What both do well</h2>
+      <p>
+        Both apps solve the same underlying gap: Jira records every status transition but never adds
+        them up for you, so “how long did this sit in review?” has no native answer. Both replay the
+        changelog to produce per-status durations, both aggregate across a project, both export to
+        CSV, and both put a summary on a dashboard.
+      </p>
+      <p>
+        Timepiece has been doing it far longer, and the numbers show it: roughly 4,500 active installs
+        and 269 reviews averaging 4.79 out of 5 when this page was written (August 2026). That is a
+        strong record, and a brand-new app cannot claim anything comparable.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">03</div>
+    <div class="body">
+      <h2>Where Dwell differs</h2>
+
+      <h3>Median and p85, not averages</h3>
+      <p>
+        An average cycle time is dragged around by whatever sat in the backlog for six months, and it
+        tells you nothing about the tail your stakeholders actually notice. Dwell leads with the
+        <strong>median</strong> (the typical issue) and <strong>p85</strong> (the promise you can
+        nearly always keep). Every report, trend and group-by is built on those two numbers rather
+        than a mean.
+      </p>
+
+      <h3>Aging work in progress, flagged against your own p85</h3>
+      <p>
+        Dwell lists the open issues that have already been in progress longer than 85% of your
+        finished work took. It is the one report that is about the future rather than the past: those
+        are the issues about to become a problem, and you can still act on them.
+      </p>
+
+      <h3>Flow efficiency, blocked time, and time between any two statuses</h3>
+      <p>
+        Beyond per-status totals, Dwell reports what fraction of elapsed time was spent actively
+        worked versus waiting in a queue, how long issues sit flagged as blocked, and the time
+        between any two statuses you choose — Backlog to In Progress, say. These answer “where is the
+        waste?” rather than “how long did each step take?”
+      </p>
+
+      <h3>The per-issue panel is free at any size</h3>
+      <p>
+        Dwell's freemium split is functional, not just seat-based: the time-in-status breakdown on an
+        individual issue stays free no matter how large your site is. The paid part is the project
+        reporting layer — the JQL reports, the trend, aging WIP, the histogram, group-by, the gadget
+        and CSV. So a team can adopt the panel first and decide about reports later.
+      </p>
+
+      <h3>Runs on Atlassian</h3>
+      <p>
+        Dwell carries Atlassian's <strong>Runs on Atlassian</strong> badge: it runs and stores its
+        index entirely inside your Atlassian cloud, with no external servers and no egress. Checked on
+        the Marketplace in August 2026, <strong>Timepiece's listing does not carry that badge</strong>.
+        That is a statement about where processing happens, not an accusation — plenty of excellent
+        apps are hosted by their vendor, and it only matters if it matters to your security review.
+        Verify it yourself on either listing before you decide; the method is in
+        <a href="./jira-time-in-status-no-data-egress.html">our page on data egress</a>.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">04</div>
+    <div class="body">
+      <h2>Where Timepiece is the better fit</h2>
+      <p>
+        Written plainly, because a comparison page that only flatters its own product is worth
+        nothing to you.
+      </p>
+      <ul>
+        <li>
+          <strong>Track record.</strong> 269 reviews at 4.79 stars, and thousands of teams already
+          running it. Dwell is new and has none of that yet. If “has this been proven at scale?” is
+          the question your organisation asks, Timepiece answers it and Dwell does not.
+        </li>
+        <li>
+          <strong>Cloud Fortified.</strong> Timepiece holds Atlassian's Cloud Fortified status, which
+          covers operational maturity — reliability commitments, incident management, a bug bounty.
+          Slate does not hold it. If procurement asks for it, that is a genuine gap on our side.
+        </li>
+        <li>
+          <strong>Breadth.</strong> Its listing advertises a wider catalogue of report types and
+          dashboard gadgets, plus AI assistance and automation actions. Dwell ships one gadget and no
+          automation actions.
+        </li>
+        <li>
+          <strong>Try before installing.</strong> OBSS offers an online demo you can click through
+          without touching your site. With Dwell you install it and look at the free panel.
+        </li>
+        <li>
+          <strong>Price at scale.</strong> Above roughly a thousand users Timepiece is cheaper per
+          user — see the table below.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">05</div>
+    <div class="body">
+      <h2>Pricing and the free tier</h2>
+      <p>
+        Both are sold through Atlassian with per-user monthly pricing, and both are free for sites of
+        10 users or fewer. Figures below were read from the Marketplace pricing API in August 2026;
+        check current prices before you buy.
+      </p>
+      <div class="scroll">
+        <table>
+          <caption>Per user, per month, monthly billing. Marketplace pricing API, August 2026.</caption>
+          <thead>
+            <tr><th>Up to</th><th class="num-cell">Dwell</th><th class="num-cell">Timepiece</th><th>Which is cheaper</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>10 users</td><td class="num-cell">Free</td><td class="num-cell">Free</td><td>Both free at this size</td></tr>
+            <tr><td>100 users</td><td class="num-cell">$1.10</td><td class="num-cell">$1.20</td><td>Dwell, by about 8%</td></tr>
+            <tr><td>250 users</td><td class="num-cell">$0.80</td><td class="num-cell">$0.80</td><td>Level</td></tr>
+            <tr><td>1,000 users</td><td class="num-cell">$0.28</td><td class="num-cell">$0.22</td><td>Timepiece</td></tr>
+            <tr><td>2,500 users</td><td class="num-cell">$0.17</td><td class="num-cell">$0.17</td><td>Level</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        So price is not the reason to switch. Dwell is slightly cheaper for small and mid-sized teams
+        and slightly dearer in one large band. Anyone arguing that a few cents per user should decide
+        which reporting tool you run is selling you on the wrong axis.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">06</div>
+    <div class="body">
+      <h2>Trying Dwell without leaving Timepiece</h2>
+      <p>
+        You do not have to choose to evaluate. Both apps read the same Jira changelog and neither
+        writes to your issues, so running them side by side changes nothing about your data.
+      </p>
+      <ul>
+        <li>Install Dwell from the Marketplace. On first open of a project report it builds an index of your issue history, which takes a few minutes on a large project.</li>
+        <li>Open any issue and check the free panel — that is the whole free surface, at any team size.</li>
+        <li>Compare a project report against the same period in Timepiece. Expect the numbers to agree on per-status totals and to differ where one shows an average and the other a median: that difference is the point, not an error.</li>
+        <li>If you keep Dwell, uninstall Timepiece at your next billing boundary. If you do not, uninstall Dwell — nothing of yours left your tenant either way.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="num plain">▪</div>
+    <div class="body">
+      <h2>Questions</h2>
+      <dl class="faq">
+        <dt>Is Dwell a drop-in replacement for Timepiece?</dt>
+        <dd>For per-status durations, cycle and lead time, group-by and CSV export, yes. For Timepiece's wider gadget catalogue, AI assistance and automation actions, no — Dwell does not have equivalents.</dd>
+        <dt>Will the numbers match what Timepiece shows?</dt>
+        <dd>Per-status totals should agree, since both replay the same changelog. Headline cycle time will differ if you compare Dwell's median or p85 against an average — those are different statistics, not different measurements.</dd>
+        <dt>Does Timepiece send data outside Atlassian?</dt>
+        <dd>We do not assert that. What is checkable is that its listing did not carry the Runs on Atlassian badge in August 2026, while Dwell's does. Where a vendor processes data is a question for that vendor's listing and documentation.</dd>
+        <dt>Can I run both at once?</dt>
+        <dd>Yes. Both are read-only with respect to your issues, so they do not interfere.</dd>
+        <dt>What happens to my data if I uninstall Dwell?</dt>
+        <dd>The index Dwell built is deleted with the app. It lived in Atlassian-hosted storage in your own tenant, and no copy exists anywhere else.</dd>
+      </dl>
+      <p style="margin-top:1.4rem">
+        <a class="cta" href="https://marketplace.atlassian.com/apps/2551519494">See Dwell on the Atlassian Marketplace</a>
+      </p>
+      <p style="margin-top:0.9rem">
+        Also worth reading:
+        <a href="./saasjet-time-in-status-alternative.html">Dwell compared with SaaSJet Time in Status</a> ·
+        <a href="./how-to-see-time-in-status-in-jira.html">how to see time in status in Jira</a> ·
+        <a href="./user-guide-dwell.html">the Dwell user guide</a>.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p>Slate · small, focused Atlassian apps that run on Atlassian.</p>
+    <p>Timepiece is a trademark of OBSS. Slate is not affiliated with OBSS. Install counts, ratings and prices were read from Atlassian Marketplace public data in August 2026.</p>
+    <p>Support: <a href="mailto:phuongdang12697@gmail.com">phuongdang12697@gmail.com</a> · <a href="./">All documentation</a></p>
+  </footer>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "A Runs-on-Atlassian alternative to Timepiece for time in status",
+      "author": { "@type": "Organization", "name": "Slate" },
+      "publisher": { "@type": "Organization", "name": "Slate" },
+      "datePublished": "2026-08-20"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is Dwell a drop-in replacement for Timepiece?",
+          "acceptedAnswer": { "@type": "Answer", "text": "For per-status durations, cycle and lead time, group-by and CSV export, yes. For Timepiece's wider gadget catalogue, AI assistance and automation actions, no - Dwell does not have equivalents." }
+        },
+        {
+          "@type": "Question",
+          "name": "Will the numbers match what Timepiece shows?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Per-status totals should agree, since both replay the same changelog. Headline cycle time will differ if you compare Dwell's median or p85 against an average - those are different statistics, not different measurements." }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Timepiece send data outside Atlassian?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Slate does not assert that. What is checkable is that its listing did not carry the Runs on Atlassian badge in August 2026, while Dwell's does." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I run both at once?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Both are read-only with respect to your issues, so they do not interfere." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+</body>
+</html>

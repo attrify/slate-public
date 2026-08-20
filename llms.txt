@@ -1,0 +1,26 @@
+# Slate
+
+> Slate publishes small, focused Atlassian Marketplace apps that run entirely inside the
+> customer's own Atlassian cloud. Every app carries the "Runs on Atlassian" badge: no external
+> servers, no data egress, inheriting Atlassian's SOC 2 / ISO 27001 and data residency.
+
+## Apps
+- Dwell — time in status, cycle & lead time for Jira, with median and p85 rather than averages. The per-issue panel is free on every issue.
+- Pact — working-time SLAs on ordinary Jira Software issues, without Jira Service Management.
+- Warden — an access audit for Confluence: every restricted page, and the restrictions that quietly broke.
+
+## Pages
+- [Dwell — Privacy Policy](https://attrify.github.io/slate-public/privacy-dwell.html)
+- [Dwell — User Guide](https://attrify.github.io/slate-public/user-guide-dwell.html)
+- [Pact — Privacy Policy](https://attrify.github.io/slate-public/privacy-pact.html)
+- [Pact — User Guide](https://attrify.github.io/slate-public/user-guide-pact.html)
+- [Warden — Privacy Policy](https://attrify.github.io/slate-public/privacy-warden.html)
+- [Warden — User Guide](https://attrify.github.io/slate-public/user-guide-warden.html)
+- [Provider-Specific Terms](https://attrify.github.io/slate-public/terms.html)
+- [Dwell — Time in Status with no data egress](https://attrify.github.io/slate-public/jira-time-in-status-no-data-egress.html)
+- [Dwell — a Timepiece alternative](https://attrify.github.io/slate-public/timepiece-alternative.html)
+- [Dwell — a SaaSJet Time in Status alternative](https://attrify.github.io/slate-public/saasjet-time-in-status-alternative.html)
+- [How to see time in status in Jira](https://attrify.github.io/slate-public/how-to-see-time-in-status-in-jira.html)
+
+## Contact
+support: phuongdang12697@gmail.com

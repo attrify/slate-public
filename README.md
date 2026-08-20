@@ -1,7 +1,8 @@
 # Slate — public documentation site
 
-Static HTML for the seven documents the Atlassian Marketplace links to. Generated from the
-sources in the main repo by `node scripts/build-site.mjs` — **edit the sources, not these files**.
+Static HTML for the documents the Atlassian Marketplace links to, plus the commercial pages
+buyers arrive on from search. Generated from sources in the main repo by
+`node scripts/build-site.mjs` — **edit the sources, not these files**.
 
 ## Why a separate public repo
 
@@ -23,24 +24,25 @@ These pages return the text in the first response, so a checker can read them.
 
 ## Publish
 
-Create an **empty public** repo on GitHub (e.g. `slate-docs`), then from this folder:
+The repo already exists at `github.com/attrify/slate-public`, checked out separately at
+`/home/bee/sln/slate-public`. From the main repo:
 
 ```bash
-git init && git add . && git commit -m "Slate public documentation"
-git branch -M main
-git remote add origin https://github.com/<you>/slate-docs.git
-git push -u origin main
+node scripts/build-site.mjs                       # regenerate site/
+cp site/*.html site/*.css site/*.txt site/*.xml site/README.md site/.nojekyll ../slate-public/
+cd ../slate-public && git add -A && git commit -m "..." && git push
 ```
 
-Then GitHub → repo → **Settings → Pages** → Source: **Deploy from a branch** → branch `main`,
-folder `/ (root)` → Save. Live at `https://<you>.github.io/slate-docs/` in a minute or two.
+⚠️ **Pages fails silently.** On 2026-08-20 three consecutive deploys failed and the privacy page
+the listing points at served a stale copy for 40 minutes. Always check
+`github.com/attrify/slate-public/actions` is green **before** trusting the URLs.
 
 ## Verify before pasting any URL into the listing
 
 This is the step that was missing last time:
 
 ```bash
-curl -sL https://<you>.github.io/slate-docs/privacy-dwell.html | grep -i "runs on atlassian"
+curl -sL https://attrify.github.io/slate-public/privacy-dwell.html | grep -i "runs on atlassian"
 ```
 
 A match means the checker can see the content. No match means do not use the URL.

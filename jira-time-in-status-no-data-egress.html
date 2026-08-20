@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Measure time in status, cycle &amp; lead time in Jira without sending issue data outside your tenant. Dwell Runs on Atlassian — no egress. Free on every issue.">
+<link rel="canonical" href="https://attrify.github.io/slate-public/jira-time-in-status-no-data-egress.html">
+<link rel="stylesheet" href="./slate-seo.css">
+<title>Time in Status for Jira — No Data Egress | Dwell</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+</head>
+<body>
+
+
+<div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="./">Slate</a><span>›</span><a href="./">Dwell</a><span>›</span>Time in status without data egress
+  </nav>
+
+  <header class="masthead">
+    <p class="vendor">Slate</p>
+    <h1>Jira time in status, with your data never leaving your tenant</h1>
+    <p class="standfirst">
+      Flow metrics require reading every issue's full change history — assignees, comments, the lot.
+      Where that reading happens decides whether adding a reporting app means adding a data
+      processor. Dwell does it inside your own Atlassian cloud.
+    </p>
+  </header>
+
+  <div class="definition">
+    <p>
+      <strong>What is “no data egress”?</strong> It means the app never sends your Jira issue data to
+      any server outside Atlassian's cloud. Dwell runs entirely inside your Atlassian tenant — it is a
+      Forge app carrying Atlassian's <strong>Runs on Atlassian</strong> badge — so your issue history,
+      assignees and comments never leave. It inherits Atlassian's SOC 2 / ISO 27001 and data residency
+      because the processing happens on Atlassian's own infrastructure.
+    </p>
+    <p>
+      Teams in regulated industries choose no-egress apps for a structural reason: a vendor breach
+      cannot expose project data the vendor never held.
+    </p>
+  </div>
+
+  <section>
+    <div class="num">01</div>
+    <div class="body">
+      <h2>Why hosting matters more for flow metrics than for most apps</h2>
+      <p>
+        A time-in-status report is not computed from a summary. To know how long an issue sat in
+        <em>Code Review</em>, something has to replay that issue's changelog — every transition, with
+        timestamps and the account that made it. To do it across a project, that replay runs over
+        thousands of issues.
+      </p>
+      <h3>Does a time-in-status app see my issue data?</h3>
+      <p>
+        Yes. Any app that reports on status durations reads your issues, and reading is not the
+        question worth asking — the question is <strong>where the reading happens</strong>, and
+        whether a copy is kept somewhere you do not control.
+      </p>
+      <p>
+        There are two shapes on Atlassian Cloud. An app can run on the vendor's own servers, pulling
+        your data across the internet and usually caching it there so reports are fast. Or it can run
+        on Atlassian's infrastructure, where the compute and the storage both sit inside the same
+        cloud your Jira is already in. Both shapes ship good products. Only the second one leaves your
+        procurement paperwork unchanged.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">02</div>
+    <div class="body">
+      <h2>How Dwell runs on Atlassian</h2>
+      <p>
+        Dwell is built on Forge, Atlassian's app platform, and it declares no external permissions at
+        all. Its resolvers execute in Atlassian's runtime; the index it builds from your changelog is
+        stored in Atlassian-hosted storage, pinned to your site's data residency region. There is no
+        Slate server in the path, because there is no Slate server.
+      </p>
+      <p>
+        Practically, this means three things for a security review. There is no new data processor to
+        contract with, because no data reaches Slate. There is no vendor-side breach surface holding
+        your issue history. And the certifications that apply are Atlassian's own, since Atlassian's
+        infrastructure is doing the work.
+      </p>
+      <div class="note">
+        <p>
+          <strong>What it does not mean.</strong> Runs on Atlassian is not a compliance certificate
+          for your organisation, and Slate does not claim your deployment becomes SOC 2 compliant by
+          installing an app. It means the processing stays inside a boundary you have already
+          assessed.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">03</div>
+    <div class="body">
+      <h2>What you get, without a trade-off for it</h2>
+      <p>
+        In-tenant apps used to mean fewer features. That constraint has largely gone: Dwell computes
+        the same flow metrics you would expect from a hosted reporting tool.
+      </p>
+      <ul>
+        <li><strong>Per-issue panel</strong> — time in each status plus lead time, on every issue. Free on every issue, at any team size.</li>
+        <li><strong>Median and p85</strong>, not just averages — because the average cycle time hides the tail that actually hurts.</li>
+        <li><strong>Aging work in progress</strong> — the open issues already past your p85, flagged before they stall.</li>
+        <li><strong>Cycle-time trend</strong> by week, so you can see whether flow is improving rather than guessing.</li>
+        <li><strong>Cycle-time histogram</strong> and a dashboard gadget.</li>
+        <li><strong>Group by</strong> assignee, type, priority or status; export any report to CSV.</li>
+        <li><strong>Reports resolve as the viewing user</strong>, so issue-level security is respected — people only see issues they are already allowed to see.</li>
+      </ul>
+      <p>
+        Full detail of every surface is in the <a href="./user-guide-dwell.html">Dwell user guide</a>,
+        and what is stored is set out in the <a href="./privacy-dwell.html">privacy policy</a>.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">04</div>
+    <div class="body">
+      <h2>How to check any Jira app's hosting model yourself</h2>
+      <p>
+        Do not take a vendor's word for this — including ours. It is visible on the Marketplace, and it
+        takes under a minute per app.
+      </p>
+      <ul>
+        <li>Open the app's Marketplace listing and look for the <strong>Runs on Atlassian</strong> badge near the top. Present means in-tenant; absent means it is not making that claim.</li>
+        <li>Check the listing's <strong>Data residency</strong> and security sections, which state where data is stored and processed.</li>
+        <li>Browse Atlassian's own <em>Runs on Atlassian</em> collection, which lists apps that qualify.</li>
+      </ul>
+      <h3>Runs on Atlassian vs Connect — what is the difference?</h3>
+      <p>
+        <strong>Runs on Atlassian</strong> describes a Forge app that stores and processes data only
+        on Atlassian's infrastructure, with no external egress. <strong>Connect</strong> is the older
+        model, where the app is a service the vendor hosts and Atlassian calls out to it — so the data
+        travels to the vendor. Many good apps are Connect apps, and plenty of Forge apps deliberately
+        open egress to integrate with something outside Atlassian. The badge is not a quality
+        judgement; it is a statement about where your data goes.
+      </p>
+      <div class="note">
+        <p>
+          Being fair about it: several established time-in-status apps carry the badge too, and some
+          of them carry <strong>Cloud Fortified</strong>, which Slate does not yet. If a vendor's
+          operational maturity programme is what your procurement asks for, weigh that honestly — see
+          the <a href="./timepiece-alternative.html">Timepiece comparison</a> and the
+          <a href="./saasjet-time-in-status-alternative.html">SaaSJet comparison</a>, which say where
+          each of them is the better pick.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="num plain">▪</div>
+    <div class="body">
+      <h2>Questions</h2>
+      <dl class="faq">
+        <dt>Does Dwell send my Jira data to an external server?</dt>
+        <dd>No. Dwell Runs on Atlassian — there is no egress, and no Slate-operated server in the path. Your issue data stays in your tenant.</dd>
+        <dt>Is Dwell SOC 2 compliant?</dt>
+        <dd>Dwell runs on Atlassian's infrastructure and inherits Atlassian's SOC 2 / ISO 27001 for the processing it does there. Slate itself does not hold a separate SOC 2 report, and nothing is processed off-platform.</dd>
+        <dt>Can I get time in status without signing a data-processing agreement with a new vendor?</dt>
+        <dd>With a Runs-on-Atlassian app there is no external data processor to contract with, because your data never leaves Atlassian. Your existing agreement with Atlassian already covers where it sits.</dd>
+        <dt>Where is the data stored, and does data residency apply?</dt>
+        <dd>In Forge's Atlassian-hosted storage. Apps that use only Forge storage follow your site's data residency setting, so a site pinned to a region keeps the app's index in that region too.</dd>
+        <dt>What does Dwell store about people?</dt>
+        <dd>Its index stores the Atlassian account ID of an issue's assignee, so reports can be grouped by person. Display names are read from Jira live when you use the assignee filter and are not kept. The full detail is in the <a href="./privacy-dwell.html">privacy policy</a>.</dd>
+      </dl>
+      <p style="margin-top:1.4rem">
+        <a class="cta" href="https://marketplace.atlassian.com/apps/2551519494">See Dwell on the Atlassian Marketplace</a>
+      </p>
+      <p style="margin-top:0.9rem">
+        New to this measurement entirely? Start with
+        <a href="./how-to-see-time-in-status-in-jira.html">how to see time in status in Jira</a>.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p>Slate · small, focused Atlassian apps that run on Atlassian.</p>
+    <p>Support: <a href="mailto:phuongdang12697@gmail.com">phuongdang12697@gmail.com</a> · <a href="./">All documentation</a></p>
+  </footer>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Dwell — Time in Status, Cycle & Lead Time for Jira",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Atlassian Jira Cloud",
+      "url": "https://marketplace.atlassian.com/apps/2551519494",
+      "publisher": { "@type": "Organization", "name": "Slate" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does Dwell send my Jira data to an external server?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. Dwell Runs on Atlassian - there is no egress, and no Slate-operated server in the path. Your issue data stays in your tenant." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Dwell SOC 2 compliant?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Dwell runs on Atlassian's infrastructure and inherits Atlassian's SOC 2 / ISO 27001 for the processing it does there. Slate itself does not hold a separate SOC 2 report, and nothing is processed off-platform." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I get time in status without signing a data-processing agreement with a new vendor?",
+          "acceptedAnswer": { "@type": "Answer", "text": "With a Runs-on-Atlassian app there is no external data processor to contract with, because your data never leaves Atlassian." }
+        },
+        {
+          "@type": "Question",
+          "name": "Where is the data stored, and does data residency apply?",
+          "acceptedAnswer": { "@type": "Answer", "text": "In Forge's Atlassian-hosted storage. Apps that use only Forge storage follow your site's data residency setting." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+</body>
+</html>
