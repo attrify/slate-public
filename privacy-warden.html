@@ -255,6 +255,16 @@
         The scan snapshot and configuration are stored only while the App is installed. Uninstalling
         the App removes the App's stored data from your Atlassian environment.
       </p>
+      <p>
+        Because the snapshot caches display names for the accounts named in restrictions, the App
+        reports those accounts to Atlassian <strong>every week</strong> using Atlassian's personal
+        data reporting API. The report goes to Atlassian, in-tenant &mdash; nothing is sent to Slate
+        or to any third party. When Atlassian reports that an account has been <strong>closed</strong>
+        (erased) or <strong>updated</strong>, the App immediately discards its cached copy of that
+        person's display name; the row then shows the account identifier alone until the next scan
+        resolves a current name. This is how a right-to-erasure request reaches the App's stored data
+        without you having to ask us.
+      </p>
     </div>
   </section>
 
