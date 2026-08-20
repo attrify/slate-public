@@ -4,6 +4,35 @@ Static HTML for the documents the Atlassian Marketplace links to, plus the comme
 buyers arrive on from search. Generated from sources in the main repo by
 `node scripts/build-site.mjs` — **edit the sources, not these files**.
 
+## Layout
+
+Pages live in a folder per app, so adding the fourth and fifth app does not turn the root
+into a list of thirty files:
+
+```
+/                     index
+/terms.html           Provider-Specific Terms (portfolio-wide, so it stays at the root)
+/dwell/               privacy · user-guide · no-data-egress · timepiece-alternative
+                      saasjet-alternative · how-to-see-time-in-status
+/pact/                privacy · user-guide
+/warden/              privacy · user-guide
+```
+
+### The flat filenames at the root are aliases, and they must stay for now
+
+`privacy-dwell.html`, `timepiece-alternative.html` and nine others still exist at the root.
+They are **full copies of the same page**, not redirects, because three Marketplace listings
+are pending approval right now and point at those exact URLs.
+
+GitHub Pages has no server-side redirects. The only client-side option is a meta-refresh
+shell — precisely the thin-content shape that got Dwell auto-rejected for *"Invalid Links"*,
+since the Marketplace link checker reads the raw HTML. So both copies are real pages, and
+both carry a `rel=canonical` pointing at the folder path so search engines consolidate there
+rather than seeing duplicates. The sitemap lists only the folder paths.
+
+**Remove an alias only after that listing's URLs have been updated post-approval** — delete
+the page's `legacy` field in `scripts/build-site.mjs` and rebuild.
+
 ## Why a separate public repo
 
 ⛔ **Do not make the main repo public.** Its `docs/` holds the portfolio strategy, competitor

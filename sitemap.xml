@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://attrify.github.io/slate-public/</loc><priority>0.6</priority></url>
-  <url><loc>https://attrify.github.io/slate-public/privacy-dwell.html</loc><priority>0.5</priority></url>
-  <url><loc>https://attrify.github.io/slate-public/user-guide-dwell.html</loc><priority>0.5</priority></url>
-  <url><loc>https://attrify.github.io/slate-public/privacy-pact.html</loc><priority>0.5</priority></url>
-  <url><loc>https://attrify.github.io/slate-public/user-guide-pact.html</loc><priority>0.5</priority></url>
-  <url><loc>https://attrify.github.io/slate-public/privacy-warden.html</loc><priority>0.5</priority></url>
-  <url><loc>https://attrify.github.io/slate-public/user-guide-warden.html</loc><priority>0.5</priority></url>
+  <url><loc>https://attrify.github.io/slate-public/dwell/privacy.html</loc><priority>0.5</priority></url>
+  <url><loc>https://attrify.github.io/slate-public/dwell/user-guide.html</loc><priority>0.5</priority></url>
+  <url><loc>https://attrify.github.io/slate-public/pact/privacy.html</loc><priority>0.5</priority></url>
+  <url><loc>https://attrify.github.io/slate-public/pact/user-guide.html</loc><priority>0.5</priority></url>
+  <url><loc>https://attrify.github.io/slate-public/warden/privacy.html</loc><priority>0.5</priority></url>
+  <url><loc>https://attrify.github.io/slate-public/warden/user-guide.html</loc><priority>0.5</priority></url>
   <url><loc>https://attrify.github.io/slate-public/terms.html</loc><priority>0.5</priority></url>
-  <url><loc>https://attrify.github.io/slate-public/jira-time-in-status-no-data-egress.html</loc><priority>1.0</priority></url>
-  <url><loc>https://attrify.github.io/slate-public/timepiece-alternative.html</loc><priority>1.0</priority></url>
-  <url><loc>https://attrify.github.io/slate-public/saasjet-time-in-status-alternative.html</loc><priority>1.0</priority></url>
-  <url><loc>https://attrify.github.io/slate-public/how-to-see-time-in-status-in-jira.html</loc><priority>1.0</priority></url>
+  <url><loc>https://attrify.github.io/slate-public/dwell/no-data-egress.html</loc><priority>1.0</priority></url>
+  <url><loc>https://attrify.github.io/slate-public/dwell/timepiece-alternative.html</loc><priority>1.0</priority></url>
+  <url><loc>https://attrify.github.io/slate-public/dwell/saasjet-alternative.html</loc><priority>1.0</priority></url>
+  <url><loc>https://attrify.github.io/slate-public/dwell/how-to-see-time-in-status.html</loc><priority>1.0</priority></url>
 </urlset>
