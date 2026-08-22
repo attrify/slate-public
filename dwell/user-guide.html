@@ -192,7 +192,8 @@
     <div class="body">
       <h2>Project report</h2>
       <p>Open your project → <strong>Apps</strong> → <strong>Time in Status</strong>.</p>
-      <dl class="defs">
+              <p class="note"><strong>Every duration on this page is wall-clock</strong>, not working hours. A ticket that sits in review over a weekend counts the weekend. There is no business-hours calendar in this version — if you compare these numbers against a tool that subtracts nights and weekends they will not agree, and neither is wrong. Pick one and be consistent.</p>
+<dl class="defs">
         <div>
           <dt>Quick filters (default)</dt>
           <dd>Pick a date range, issue types, statuses and assignees, then the report runs. Or switch to <strong>Advanced (JQL)</strong> to paste any JQL.</dd>
@@ -223,7 +224,7 @@
         </div>
         <div>
           <dt>Time between statuses</dt>
-          <dd>Pick a <strong>From</strong> and a <strong>To</strong> status; Dwell measures the working time from the first entry into one to the first entry into the other — Backlog → In Progress “reaction time”, or In Review → Done — with median, p85 and a distribution. Only issues that reached <strong>both</strong> statuses, in order, are counted.</dd>
+          <dd>Pick a <strong>From</strong> and a <strong>To</strong> status; Dwell measures the elapsed time from the first entry into one to the first entry into the other — Backlog → In Progress “reaction time”, or In Review → Done — with median, p85 and a distribution. Only issues that reached <strong>both</strong> statuses, in order, are counted.</dd>
         </div>
         <div>
           <dt>Blocked time</dt>
