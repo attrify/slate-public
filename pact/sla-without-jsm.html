@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Jira Software has no native SLAs. See what an SLA really needs, when JSM is worth buying, and how to add working-hour SLA clocks instead. Free on every issue.">
+<link rel="canonical" href="https://attrify.github.io/slate-public/pact/sla-without-jsm.html">
+<link rel="stylesheet" href="../slate-seo.css">
+<title>Jira Software SLA Without Jira Service Management | Pact</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+</head>
+<body>
+
+
+<div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="../">Slate</a><span>›</span><a href="../">Pact</a><span>›</span>SLAs without JSM
+  </nav>
+
+  <header class="masthead">
+    <p class="vendor">Slate</p>
+    <h1>SLAs on Jira Software, without buying Jira Service Management</h1>
+    <p class="standfirst">
+      Jira Software has no service-level agreements. The standard answer is “upgrade to JSM” — but
+      that is a licensing decision, not a reporting one, and for a team that does not run a service
+      desk it is usually the wrong shape. This page explains what an SLA actually requires, when JSM
+      really is the right answer, and what the app route looks like instead.
+    </p>
+  </header>
+
+  <div class="definition">
+    <p>
+      <strong>What is an SLA clock in Jira?</strong> It is a timer attached to an issue that runs
+      while the issue sits in certain statuses, pauses or stops in others, counts only working hours,
+      and is measured against a budget — for example “four working hours from Selected for Development
+      to In Progress”. When the elapsed working time passes the budget, the issue has
+      <strong>breached</strong>; when it reaches a stop status inside the budget, the SLA is
+      <strong>met</strong>.
+    </p>
+    <p>
+      Jira Software records every status transition in the issue changelog but never adds them up
+      against a target, so it has no native notion of met, at-risk or breached. Jira Service
+      Management does, because SLAs are part of what a service desk is. Adding SLAs to Jira Software
+      therefore means either changing which product the team is licensed for, or adding a
+      Marketplace app that computes the clock from the changelog.
+    </p>
+  </div>
+
+  <section>
+    <div class="num">01</div>
+    <div class="body">
+      <h2>The short version</h2>
+      <div class="verdict">
+        <dl>
+          <dt>Pact is best for</dt>
+          <dd>
+            Teams already on Jira Software who need working-hour SLAs on ordinary issues — a live
+            countdown, alerts before and at breach, and a met/breach report — without moving anyone
+            onto a service-desk licence, and who want the app to run inside their own Atlassian cloud
+            with no data egress.
+          </dd>
+          <dt>Jira Service Management is best for</dt>
+          <dd>
+            Teams who actually need a service desk: a customer-facing portal, request types, queues,
+            approvals, a knowledge base, and SLAs as one native part of that. If people outside your
+            Jira licence need to raise and track requests, an SLA app is not a substitute for JSM and
+            this page will not pretend otherwise.
+          </dd>
+          <dt>Bottom line</dt>
+          <dd>
+            Ask whether you need <em>a service desk</em> or <em>a deadline on existing issues</em>. If
+            it is the second, an SLA app is the cheaper and smaller change. Pact is new and does not
+            hold Atlassian’s Cloud Fortified status, which the established SLA apps do — if
+            procurement requires it, that is a real gap on our side.
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">02</div>
+    <div class="body">
+      <h2>Why Jira Software has no SLAs</h2>
+      <p>
+        This is a product boundary rather than an oversight. SLAs are a commitment made to somebody
+        outside the delivery team — a customer, an internal requester, a contract — and the machinery
+        for managing that relationship is what Jira Service Management is. So Atlassian put the SLA
+        engine there: goals, calendars, pause conditions and SLA-based queues are all JSM features.
+      </p>
+      <p>
+        Jira Software teams keep hitting the same wall anyway, because plenty of work has a deadline
+        without having a service desk around it. A security team promising triage of reported
+        vulnerabilities within one working day. A platform team promising to pick up blocked builds
+        within four hours. A QA team promising a verdict on a release candidate before end of day.
+        None of those needs a portal. All of them need a clock.
+      </p>
+      <p>
+        JSM is licensed per <strong>agent</strong> and bought separately from Jira Software, so the
+        upgrade is not a toggle — it changes who is licensed for what. Check Atlassian’s current
+        pricing for the numbers; they change, and this page deliberately does not quote them. The
+        point is structural: you are being asked to buy a service-desk product to obtain a timer.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">03</div>
+    <div class="body">
+      <h2>What an SLA actually requires</h2>
+      <p>
+        Before comparing routes it helps to be precise about the job, because most homemade attempts
+        fail on one of these five points rather than on all of them.
+      </p>
+      <ul>
+        <li>
+          <strong>A clock that follows status, not the calendar.</strong> The timer must run while an
+          issue is in the statuses you consider “being worked”, and stop when it reaches one you
+          consider done. Time parked in a waiting status should not count against you unless you say
+          it should.
+        </li>
+        <li>
+          <strong>Working hours.</strong> A four-hour SLA on a ticket raised at 16:30 on a Friday is
+          not breached by Monday morning. Without a business calendar every out-of-hours issue is
+          reported as a failure, and the report becomes something nobody trusts.
+        </li>
+        <li>
+          <strong>An at-risk threshold.</strong> A breach alert is a post-mortem. The alert that
+          changes an outcome fires <em>before</em> the deadline — commonly at 80% of budget.
+        </li>
+        <li>
+          <strong>Breach detection that does not depend on an event.</strong> The dangerous issue is
+          the one nobody touches. If your alerting is triggered only by status changes or edits, an
+          issue that quietly sits past its deadline generates nothing at all.
+        </li>
+        <li>
+          <strong>Evidence.</strong> Someone will eventually ask “did we hold to it?”, and the honest
+          answer needs a report: how many met, how many breached, which ones, and by how much.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">04</div>
+    <div class="body">
+      <h2>The three routes, honestly</h2>
+
+      <h3>Native Jira Software</h3>
+      <p>
+        You can get part of the way. Jira Automation can send a reminder a fixed time after an issue
+        is created or transitioned, and JQL can filter on dates, so a rule like “email the assignee 24
+        hours after this was raised if it is still open” is entirely doable and costs nothing. That
+        covers a simple deadline reasonably well.
+      </p>
+      <p>
+        What native tooling cannot do is accumulate time across statuses, subtract non-working hours,
+        or report met and breached counts. There is no field holding “working hours spent in In
+        Progress”, so there is nothing to filter, sort or chart on. If a simple elapsed-time reminder
+        is genuinely all you need, use Automation and stop reading — it is free and it works.
+      </p>
+
+      <h3>Jira Service Management</h3>
+      <p>
+        The complete answer, if you need the rest of the product with it. JSM’s SLA engine is mature,
+        supports pause conditions and multiple calendars, and drives queues so agents work in
+        deadline order. Buy it when the portal, request types, approvals and knowledge base are things
+        you want — not merely as a way to obtain a timer.
+      </p>
+
+      <h3>An SLA app on Jira Software</h3>
+      <p>
+        A Marketplace app reads the same changelog Jira already keeps and computes the clock from it.
+        Nothing about your projects, workflows or licences changes; the app adds a panel, some
+        configuration, and a report. This is the smallest change that produces a real SLA, and it is
+        what Pact does.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">05</div>
+    <div class="body">
+      <h2>How Pact does it</h2>
+
+      <h3>There is a working SLA before you configure anything</h3>
+      <p>
+        Open any issue, choose <strong>Apps → SLA</strong>, and the panel already shows a sensible
+        default SLA derived from that project’s own statuses. Most SLA tooling starts with a blank
+        configuration screen, which is where evaluations quietly die. Pact starts with something on
+        the screen and lets you correct it.
+      </p>
+
+      <h3>Policies, scoped to the work they belong to</h3>
+      <p>
+        In <strong>Project settings → SLA</strong> a policy names the statuses where the clock runs,
+        the statuses that settle it, a budget in working hours, an at-risk percentage (80% by
+        default), and a calendar — business hours or 24/7. A policy can be narrowed with
+        <strong>Applies to</strong> to particular issue types and priorities, so a tight SLA on
+        high-priority bugs sits alongside a loose one on everything else. Tick nothing and it covers
+        the whole project.
+      </p>
+      <p>
+        Policies apply <strong>retroactively</strong> to issues that are already open, computed from
+        their history, so you see real states the moment you save rather than waiting for new work.
+      </p>
+
+      <h3>Warnings for the policies that break silently</h3>
+      <p>
+        Three misconfigurations are easy to make and produce no error — a status ticked as both
+        running and stopping the clock (the stop wins, so that time is never counted), a policy with
+        no stop status at all (nothing can ever be met, so everything eventually breaches), and two
+        policies sharing a name. Pact lists these on the settings page after you save. They are
+        warnings, not blockers.
+      </p>
+
+      <h3>Alerts that are opt-in, and that fire without an event</h3>
+      <p>
+        Each policy can email the reporter and assignee when an issue goes at-risk and again when it
+        breaches, once per state. The checkbox is <strong>off by default on a new policy</strong>, on
+        purpose: a policy you have just written is a guess, and the sweep runs every five minutes, so
+        turning alerting on is a decision you make once the thresholds look right. That five-minute
+        sweep is also what catches the purely time-based breach — the issue nobody touched, which
+        generates no event for anything else to react to.
+      </p>
+      <p>
+        Mail goes through Jira’s own in-tenant notification system. There is no Slack integration and
+        no outbound webhook, which is a deliberate constraint rather than a missing feature: both
+        would send your data to a server outside Atlassian and forfeit the Runs on Atlassian badge.
+      </p>
+
+      <h3>A report that adds up</h3>
+      <p>
+        <strong>Run report</strong> scans in the background and stores the result, so reopening
+        settings shows the last report instantly with the timestamp it was built. Every issue lands in
+        exactly one of four buckets — Met, On track, At risk, Breached — and the four add up to the
+        issue count. The headline figure is <strong>Met % (settled)</strong>, which is Met ÷ (Met +
+        Breached): work still in flight is not counted as a miss, so starting a piece of work cannot
+        make your compliance number drop.
+      </p>
+      <div class="note">
+        <p>
+          <strong>A limit worth knowing before you install:</strong> the report scans up to the 300
+          most recent issues in the project. That is the right size for a team’s weekly or monthly
+          review and the wrong size for a full-history audit of a very large project. The per-issue
+          panel has no such cap — it computes live from that issue’s own changelog.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">06</div>
+    <div class="body">
+      <h2>What is free, and what is not</h2>
+      <p>
+        Pact’s split is functional rather than purely seat-based. <strong>Free on every project at any
+        team size:</strong> the issue panel with its live countdown, the full policy configuration,
+        and the at-risk and breach emails. The alerting — the part most teams actually adopt an SLA
+        tool for — is in the free surface.
+      </p>
+      <p>
+        <strong>Paid, and free for sites of 10 users or fewer:</strong> the compliance report, the
+        breached-issue drill-down, and both CSV exports. Above ten users those need an active licence,
+        and an admin can start a free trial from <strong>Settings → Apps → Manage apps</strong>. From
+        $1.20 per user per month at the first paid tier, tapering with size.
+      </p>
+      <p>
+        Pact carries Atlassian’s <strong>Runs on Atlassian</strong> badge, meaning it runs and stores
+        its configuration entirely inside your own Atlassian cloud with no external servers. Worth
+        saying plainly: roughly a third of the Marketplace carries that badge, so it is hygiene rather
+        than a differentiator — it helps you pass a security filter, not win a category.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num plain">▪</div>
+    <div class="body">
+      <h2>Questions</h2>
+      <dl class="faq">
+        <dt>Can I put an SLA on Jira Software without Jira Service Management?</dt>
+        <dd>Yes, with a Marketplace app. Jira Software has no native SLA feature, but the changelog it already keeps contains everything needed to compute one, so an app can add working-hour SLA clocks, alerts and reporting without changing anyone’s licence.</dd>
+        <dt>Can Jira Automation do this instead?</dt>
+        <dd>Partly, and for free. Automation can send a reminder a fixed period after creation or a transition. It cannot accumulate working time across statuses, exclude out-of-hours time, or report met and breached counts, because Jira stores no field holding that elapsed time.</dd>
+        <dt>Does an SLA app change my workflows or projects?</dt>
+        <dd>Pact does not. It reads the issue changelog and stores its own policies; it adds no fields, no statuses and no workflow transitions, and it does not write to your issues.</dd>
+        <dt>What happens to issues that are already open when I create a policy?</dt>
+        <dd>They are evaluated retroactively from their history, so states appear immediately. There is no backfill step to wait for.</dd>
+        <dt>Will it email people as soon as I save a policy?</dt>
+        <dd>No. Email is off by default on a new policy. You turn it on once the thresholds look right, and each issue is emailed once per state — once at at-risk, once at breach.</dd>
+        <dt>Does Pact send my Jira data anywhere?</dt>
+        <dd>No. It runs inside your Atlassian cloud under the Runs on Atlassian badge, and alerts are sent through Jira’s own notification system rather than an external mail service. There is no Slack integration or outbound webhook, deliberately.</dd>
+        <dt>Is Pact a replacement for JSM?</dt>
+        <dd>No. It replaces the SLA part for teams on Jira Software. It has no customer portal, request types, queues, approvals or knowledge base, and it is not trying to.</dd>
+      </dl>
+      <p style="margin-top:1.4rem">
+        <a class="cta" href="https://marketplace.atlassian.com/apps/1609771216">See Pact on the Atlassian Marketplace</a>
+      </p>
+      <p style="margin-top:0.9rem">
+        Also worth reading:
+        <a href="../pact/jira-sla-guide.html">how to track SLAs in Jira</a> ·
+        <a href="../pact/time-to-sla-alternative.html">Pact compared with Time to SLA</a> ·
+        <a href="../pact/user-guide.html">the Pact user guide</a>.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p>Slate · small, focused Atlassian apps that run on Atlassian.</p>
+    <p>Jira, Jira Software and Jira Service Management are trademarks of Atlassian. Slate is not affiliated with Atlassian beyond being a Marketplace partner. Prices and product behaviour described here were correct in August 2026; check the current listing before you buy.</p>
+    <p>Support: <a href="mailto:phuongdang12697@gmail.com">phuongdang12697@gmail.com</a> · <a href="../">All documentation</a></p>
+  </footer>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "SLAs on Jira Software, without buying Jira Service Management",
+      "author": { "@type": "Organization", "name": "Slate" },
+      "publisher": { "@type": "Organization", "name": "Slate" },
+      "datePublished": "2026-08-21"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Can I put an SLA on Jira Software without Jira Service Management?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, with a Marketplace app. Jira Software has no native SLA feature, but the changelog it already keeps contains everything needed to compute one, so an app can add working-hour SLA clocks, alerts and reporting without changing anyone's licence." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can Jira Automation do this instead?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Partly, and for free. Automation can send a reminder a fixed period after creation or a transition. It cannot accumulate working time across statuses, exclude out-of-hours time, or report met and breached counts, because Jira stores no field holding that elapsed time." }
+        },
+        {
+          "@type": "Question",
+          "name": "Does an SLA app change my workflows or projects?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Pact does not. It reads the issue changelog and stores its own policies; it adds no fields, no statuses and no workflow transitions, and it does not write to your issues." }
+        },
+        {
+          "@type": "Question",
+          "name": "Will it email people as soon as I save a policy?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. Email is off by default on a new policy. You turn it on once the thresholds look right, and each issue is emailed once per state - once at at-risk, once at breach." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Pact a replacement for Jira Service Management?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. It replaces the SLA part for teams on Jira Software. It has no customer portal, request types, queues, approvals or knowledge base." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+</body>
+</html>

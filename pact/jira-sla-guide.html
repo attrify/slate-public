@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="How to track SLAs in Jira Software: what an SLA needs, how far Automation gets you, and the five mistakes that make a compliance report untrustworthy. Read on.">
+<link rel="canonical" href="https://attrify.github.io/slate-public/pact/jira-sla-guide.html">
+<link rel="stylesheet" href="../slate-seo.css">
+<title>How to Track SLAs in Jira: A Practical Guide | Pact</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+</head>
+<body>
+
+
+<div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="../">Slate</a><span>›</span><a href="../">Pact</a><span>›</span>How to track SLAs in Jira
+  </nav>
+
+  <header class="masthead">
+    <p class="vendor">Slate</p>
+    <h1>How to track SLAs in Jira</h1>
+    <p class="standfirst">
+      What a service-level agreement actually requires from a tracking tool, how far Jira’s own
+      features get you, and the five mistakes that make an SLA report something nobody trusts. Written
+      for teams on Jira Software, where there is no native SLA engine at all.
+    </p>
+  </header>
+
+  <div class="definition">
+    <p>
+      <strong>An SLA in Jira</strong> is a timer attached to an issue. It runs while the issue sits in
+      statuses you have designated as “being worked”, stops when the issue reaches a status you have
+      designated as done, counts only the hours in a business calendar, and is measured against a
+      budget expressed in working hours. If the elapsed working time exceeds the budget the SLA is
+      <strong>breached</strong>; if the issue settles inside the budget it is <strong>met</strong>.
+    </p>
+    <p>
+      Jira Service Management has this engine natively. <strong>Jira Software does not</strong> — it
+      records every status transition in the issue changelog, but never accumulates that history
+      against a target, so there is no native concept of met, at-risk or breached, and no field you
+      can filter or chart on.
+    </p>
+  </div>
+
+  <section>
+    <div class="num">01</div>
+    <div class="body">
+      <h2>The four things an SLA needs</h2>
+      <p>
+        It is worth being precise about the job before choosing a tool, because most attempts fail on
+        one of these rather than on all of them.
+      </p>
+      <div class="scroll">
+        <table>
+          <caption>What separates an SLA from a due date.</caption>
+          <thead>
+            <tr><th>Requirement</th><th>Why a due date is not enough</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>A clock that follows status</strong></td>
+              <td>The commitment is usually about active handling, not wall-clock elapsed time. Time an issue spends waiting on the customer, or parked in a backlog you have not promised to work yet, should not count against you unless you decide it should.</td>
+            </tr>
+            <tr>
+              <td><strong>Working hours</strong></td>
+              <td>A four-hour target on a request raised at 16:30 on Friday is not missed by Monday morning. Without a business calendar every out-of-hours issue reports as a failure and the whole report loses credibility.</td>
+            </tr>
+            <tr>
+              <td><strong>An at-risk threshold</strong></td>
+              <td>An alert at breach is a post-mortem. The alert that changes the outcome fires before the deadline — commonly at 80% of budget, while there is still time to act.</td>
+            </tr>
+            <tr>
+              <td><strong>Evidence</strong></td>
+              <td>Somebody will ask whether you held to the commitment. Answering needs a report: how many met, how many breached, which ones, and by how much.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">02</div>
+    <div class="body">
+      <h2>What you can do with native Jira, honestly</h2>
+      <p>
+        More than people assume, and less than an SLA needs. It is worth knowing exactly where the
+        line falls, because if your requirement sits on the near side of it you should not buy
+        anything.
+      </p>
+
+      <h3>What works</h3>
+      <ul>
+        <li><strong>Jira Automation can send time-based reminders.</strong> A rule like “if this issue was created more than 24 hours ago and is still not resolved, email the assignee” is straightforward, free, and genuinely useful for simple deadlines.</li>
+        <li><strong>A due-date field with a JQL filter and a board.</strong> If your commitment really is “finish by this calendar date”, Jira already models that properly, and a saved filter plus a dashboard covers it.</li>
+        <li><strong>Automation can set a due date on creation</strong> — for example, three days out for a high-priority bug — which gives you something to sort and filter on.</li>
+      </ul>
+
+      <h3>What does not work</h3>
+      <ul>
+        <li><strong>Accumulating time across statuses.</strong> Jira stores no field holding “working hours spent in In Progress”. The information exists in the changelog, but nothing sums it, so there is nothing to filter, sort, chart or report on.</li>
+        <li><strong>Excluding non-working hours.</strong> Automation’s time comparisons are wall-clock. Nights and weekends count, so an overnight issue looks like a failure.</li>
+        <li><strong>Pausing and resuming.</strong> There is no way to express “stop the clock while this is Waiting for Customer and restart it when it comes back”.</li>
+        <li><strong>Compliance reporting.</strong> Because no elapsed-time field exists, there is no met percentage, no breach count and no list of what breached.</li>
+      </ul>
+      <p>
+        The short version: native Jira can remind you about a deadline. It cannot measure a
+        service-level agreement.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">03</div>
+    <div class="body">
+      <h2>The two real routes</h2>
+
+      <h3>Jira Service Management</h3>
+      <p>
+        JSM has a mature native SLA engine — goals, calendars, pause conditions, and queues ordered by
+        remaining time. It is the complete answer if you need the rest of the product with it: a
+        customer-facing portal, request types, approvals, a knowledge base. JSM is licensed per
+        <strong>agent</strong> and bought separately from Jira Software, so it is a licensing decision
+        rather than a setting. Check Atlassian’s current pricing for the numbers.
+      </p>
+      <p>
+        Buy JSM when you need a service desk. Buying a service desk in order to obtain a timer is the
+        expensive way round, and it changes who is licensed for what.
+      </p>
+
+      <h3>A Marketplace app on Jira Software</h3>
+      <p>
+        An SLA app reads the changelog Jira already keeps and computes the clock from it. Your
+        projects, workflows and licences do not change; the app adds a panel, some configuration and a
+        report. When you evaluate one, the questions worth asking are narrow:
+      </p>
+      <ul>
+        <li>Does it support a business calendar, and can you set different ones per policy?</li>
+        <li>Can a policy be scoped to specific issue types and priorities, so a tight incident target can coexist with a loose default?</li>
+        <li>Does it apply retroactively to issues that are already open, or only to new work?</li>
+        <li>Does alerting depend on an event, or does it also sweep on a timer? (See mistake five below.)</li>
+        <li>Where does it run — inside your Atlassian cloud, or on the vendor’s servers? Check the listing for the Runs on Atlassian badge if that matters to your security review.</li>
+        <li>What does the report actually divide by when it calculates compliance? (See mistake two.)</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">04</div>
+    <div class="body">
+      <h2>Five mistakes that make an SLA report untrustworthy</h2>
+      <p>
+        These are the ones we see turn a working setup into a number nobody believes. All five are
+        configuration problems rather than tooling problems, so they follow you between products.
+      </p>
+
+      <h3>1. Measuring wall-clock time instead of working hours</h3>
+      <p>
+        The single most common cause of an SLA report that everyone ignores. Without a business
+        calendar, every issue raised on a Friday afternoon breaches by Monday, the breach list fills
+        with false failures, and the team correctly concludes the report is meaningless. Fix it by
+        setting a calendar on the policy before you look at any numbers.
+      </p>
+
+      <h3>2. Counting work still in flight as a miss</h3>
+      <p>
+        If compliance is calculated as met ÷ all issues, then an issue that has only just been created —
+        and is nowhere near its deadline — counts against you. The number drops when the team starts
+        work, which is exactly backwards, and it can never reach 100% on a healthy project.
+      </p>
+      <p>
+        The correct denominator is settled work: <strong>met ÷ (met + breached)</strong>. In-flight
+        issues are excluded because their outcome is not yet decided. Check which one a tool uses
+        before you compare its output with anything else.
+      </p>
+
+      <h3>3. A status that both runs and stops the clock</h3>
+      <p>
+        Easy to do when a status is listed in both configuration boxes, and it produces no error. In
+        practice the stop wins, so time spent in that status is never counted — your figures come out
+        flatteringly good, and nobody notices until someone checks a specific issue by hand.
+      </p>
+
+      <h3>4. A policy with no stop status</h3>
+      <p>
+        If nothing settles the clock, nothing can ever be met. Every matching issue runs until it
+        breaches, and the report shows a wall of failures that has nothing to do with the team’s
+        actual performance. This is the mirror image of mistake three: one makes you look too good,
+        the other makes you look terrible, and both come from the same configuration screen.
+      </p>
+
+      <h3>5. Alerting that only reacts to events</h3>
+      <p>
+        This is the subtle one, and the most costly. If alerts fire on status changes, comments and
+        edits, then the issue that generates alerts is the issue somebody is working on. The issue
+        nobody has touched for a week produces no events at all — so it crosses its at-risk threshold
+        and then breaches in complete silence.
+      </p>
+      <p>
+        The dangerous issue is precisely the untouched one. Alerting therefore has to include something
+        that re-evaluates on a timer rather than in response to activity, or it systematically misses
+        the cases you most wanted it to catch.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">05</div>
+    <div class="body">
+      <h2>How Pact handles these</h2>
+      <p>
+        Pact is Slate’s SLA app for Jira Software. It is one answer among several and this guide has
+        tried to be useful whichever you pick, but it is worth being concrete about how the five
+        mistakes above map onto a real product.
+      </p>
+      <ul>
+        <li><strong>Working hours</strong> are a per-policy setting — business hours (Monday to Friday, 09:00–17:00 UTC) or 24/7.</li>
+        <li><strong>Compliance</strong> is reported as Met % (settled), meaning met ÷ (met + breached). Every issue lands in exactly one of four buckets — Met, On track, At risk, Breached — and the four add up to the issue count, so nothing goes missing.</li>
+        <li><strong>Mistakes three and four are detected for you.</strong> After you save a policy, Pact flags a status that both runs and stops the clock, a policy with no stop status, and two policies sharing a name, right on the settings page.</li>
+        <li><strong>Alerting sweeps on a timer.</strong> A background sweep runs every five minutes and catches purely time-based breaches on issues with no recent activity. Email is off by default on a new policy and each issue is emailed once per state.</li>
+        <li><strong>Nothing leaves your tenant.</strong> Alerts go through Jira’s own notification system; there is no Slack integration and no outbound webhook, and the app carries the Runs on Atlassian badge.</li>
+      </ul>
+      <p>
+        Two limits worth knowing. The compliance report scans up to the <strong>300 most recent
+        issues</strong> in a project, which suits a regular team review rather than a full-history
+        audit. And the report is per-project — there is no cross-portfolio dashboard.
+      </p>
+      <p>
+        The issue panel, the policy configuration and the alerting are free on every project at any
+        team size; the report and the CSV exports need a licence above ten users.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num plain">▪</div>
+    <div class="body">
+      <h2>Questions</h2>
+      <dl class="faq">
+        <dt>Does Jira Software have SLAs?</dt>
+        <dd>No. SLAs are a Jira Service Management feature. Jira Software records every status transition in the issue changelog but never measures it against a target, so it has no native met, at-risk or breached state.</dd>
+        <dt>Can I build an SLA with Jira Automation?</dt>
+        <dd>You can build a time-based reminder — “email the assignee 24 hours after creation if this is still open”. You cannot build an SLA, because Automation compares wall-clock time and Jira stores no field holding working hours accumulated per status, so there is nothing to exclude non-working hours from, pause, or report on.</dd>
+        <dt>How should SLA compliance be calculated?</dt>
+        <dd>As met ÷ (met + breached), so that work still in flight is excluded. Dividing by all issues means starting a new piece of work lowers your compliance figure, which is the opposite of what the number should mean.</dd>
+        <dt>Why did my SLA report show almost everything as breached?</dt>
+        <dd>The two usual causes are a policy with no stop status, so nothing can ever settle, and a missing business calendar, so nights and weekends count against every target. Check the stop statuses first.</dd>
+        <dt>Why did an issue breach without anybody being notified?</dt>
+        <dd>Almost always because alerting was driven only by events. An issue nobody touches generates no status change and no comment, so an event-driven rule never fires. Alerting needs a periodic sweep to catch untouched issues.</dd>
+        <dt>Do I need JSM to have SLAs in Jira?</dt>
+        <dd>Only if you need the rest of the service desk. For a deadline on ordinary Jira Software issues, a Marketplace app computes the same clock from the changelog without changing anyone’s licence.</dd>
+      </dl>
+      <p style="margin-top:1.4rem">
+        <a class="cta" href="https://marketplace.atlassian.com/apps/1609771216">See Pact on the Atlassian Marketplace</a>
+      </p>
+      <p style="margin-top:0.9rem">
+        Also worth reading:
+        <a href="../pact/sla-without-jsm.html">SLAs on Jira Software without JSM</a> ·
+        <a href="../pact/time-to-sla-alternative.html">Pact compared with Time to SLA</a> ·
+        <a href="../pact/user-guide.html">the Pact user guide</a>.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p>Slate · small, focused Atlassian apps that run on Atlassian.</p>
+    <p>Jira, Jira Software and Jira Service Management are trademarks of Atlassian. Slate is not affiliated with Atlassian beyond being a Marketplace partner. Product behaviour described here was correct in August 2026.</p>
+    <p>Support: <a href="mailto:phuongdang12697@gmail.com">phuongdang12697@gmail.com</a> · <a href="../">All documentation</a></p>
+  </footer>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "How to track SLAs in Jira",
+      "author": { "@type": "Organization", "name": "Slate" },
+      "publisher": { "@type": "Organization", "name": "Slate" },
+      "datePublished": "2026-08-21"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does Jira Software have SLAs?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. SLAs are a Jira Service Management feature. Jira Software records every status transition in the issue changelog but never measures it against a target, so it has no native met, at-risk or breached state." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I build an SLA with Jira Automation?",
+          "acceptedAnswer": { "@type": "Answer", "text": "You can build a time-based reminder. You cannot build an SLA, because Automation compares wall-clock time and Jira stores no field holding working hours accumulated per status, so there is nothing to exclude non-working hours from, pause, or report on." }
+        },
+        {
+          "@type": "Question",
+          "name": "How should SLA compliance be calculated?",
+          "acceptedAnswer": { "@type": "Answer", "text": "As met divided by (met + breached), so that work still in flight is excluded. Dividing by all issues means starting a new piece of work lowers your compliance figure." }
+        },
+        {
+          "@type": "Question",
+          "name": "Why did my SLA report show almost everything as breached?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The two usual causes are a policy with no stop status, so nothing can ever settle, and a missing business calendar, so nights and weekends count against every target." }
+        },
+        {
+          "@type": "Question",
+          "name": "Why did an issue breach without anybody being notified?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Almost always because alerting was driven only by events. An issue nobody touches generates no status change and no comment, so an event-driven rule never fires. Alerting needs a periodic sweep to catch untouched issues." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+</body>
+</html>

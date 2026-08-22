@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Three different jobs get called a Confluence permission audit. Compare what each tool really does, with real install counts and prices. See the comparison.">
+<link rel="canonical" href="https://attrify.github.io/slate-public/warden/confluence-permission-audit.html">
+<link rel="stylesheet" href="../slate-seo.css">
+<title>Confluence Permission Audit Tools Compared | Warden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+</head>
+<body>
+
+
+<div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="../">Slate</a><span>›</span><a href="../">Warden</a><span>›</span>Permission audit tools
+  </nav>
+
+  <header class="masthead">
+    <p class="vendor">Slate</p>
+    <h1>Confluence permission audit: what the options actually do</h1>
+    <p class="standfirst">
+      Three quite different jobs all get called a “Confluence permission audit”, and buyers routinely
+      shop for one while needing another. This page separates them, puts the real apps side by side
+      with their install counts and prices, and says plainly where Warden is the wrong choice.
+    </p>
+  </header>
+
+  <div class="definition">
+    <p>
+      <strong>A Confluence permission audit</strong> can mean three unrelated things: <strong>reporting
+      the current state</strong> of who can access what so a human can review it;
+      <strong>managing</strong> permissions and restrictions in bulk from one screen; or
+      <strong>logging activity</strong> — who viewed or did what, over time. The tools that serve these
+      three jobs are different products, and one will not substitute for another.
+    </p>
+  </div>
+
+  <section>
+    <div class="num">01</div>
+    <div class="body">
+      <h2>The three jobs</h2>
+      <div class="scroll">
+        <table>
+          <caption>Work out which sentence is yours before comparing anything.</caption>
+          <thead>
+            <tr><th>If you are saying…</th><th>The job is</th><th>What you want</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>“I need to know what our current access actually is, and prove I checked.”</td>
+              <td><strong>Reporting</strong></td>
+              <td>A read-only inventory across the whole site, a list of what is broken, and an export you can file</td>
+            </tr>
+            <tr>
+              <td>“I need to change permissions for a person or group across many spaces without clicking through each one.”</td>
+              <td><strong>Management</strong></td>
+              <td>A central screen that writes — bulk grant, revoke, and restriction editing</td>
+            </tr>
+            <tr>
+              <td>“I need to know who looked at this, and when.”</td>
+              <td><strong>Activity logging</strong></td>
+              <td>An audit log of user actions over time, which is a fundamentally different data source</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        Warden does the first job only. If your sentence is the second or third, the rest of this page
+        will tell you where to look instead — that is more useful to you than a pitch, and more useful
+        to us than a refund.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">02</div>
+    <div class="body">
+      <h2>The apps, side by side</h2>
+      <p>
+        Install counts, ratings, badges and prices below were read from Atlassian Marketplace public
+        data in August 2026. Check current figures before deciding — all of them move.
+      </p>
+      <div class="scroll">
+        <table>
+          <caption>Confluence permission and access tools. Marketplace public data, August 2026.</caption>
+          <thead>
+            <tr>
+              <th>App</th><th class="num-cell">Installs</th><th class="num-cell">Rating</th>
+              <th>Reads or writes</th><th>Runs on Atlassian</th>
+              <th class="num-cell">≤100</th><th class="num-cell">≤250</th><th class="num-cell">≤1,000</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Warden</strong> (Slate)</td><td class="num-cell">new</td><td class="num-cell">—</td>
+              <td><strong>Read-only</strong></td><td>Yes</td>
+              <td class="num-cell">$1.10</td><td class="num-cell">$0.80</td><td class="num-cell">$0.35</td>
+            </tr>
+            <tr>
+              <td>Permission Management for Confluence</td><td class="num-cell">131</td><td class="num-cell">5.00 (2)</td>
+              <td>Reads and writes</td><td>No</td>
+              <td class="num-cell">$1.35</td><td class="num-cell">$0.50</td><td class="num-cell">$0.10</td>
+            </tr>
+            <tr>
+              <td>Edit Permission Inheritance</td><td class="num-cell">364</td><td class="num-cell">3.33 (3)</td>
+              <td>Writes</td><td>No</td>
+              <td class="num-cell">$0.22</td><td class="num-cell">$0.16</td><td class="num-cell">$0.11</td>
+            </tr>
+            <tr>
+              <td>User Activity Audit Log</td><td class="num-cell">228</td><td class="num-cell">5.00 (5)</td>
+              <td>Activity log — <strong>Jira, not Confluence</strong></td><td>No</td>
+              <td class="num-cell">—</td><td class="num-cell">—</td><td class="num-cell">—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        Two things in that table deserve to be said out loud rather than left for you to spot.
+      </p>
+      <p>
+        <strong>Warden is not the cheap option.</strong> Edit Permission Inheritance costs a fraction
+        of it at every tier, and Permission Management is far cheaper from 250 users upward. If price
+        per user is your deciding criterion, Warden loses, and we would rather tell you that here than
+        have you work it out after installing.
+      </p>
+      <p>
+        <strong>Warden is also the only one of the four that cannot change anything.</strong> Its
+        manifest declares no write scope for Confluence content. Depending on your situation that is
+        either the entire point — a tool that inspects access control while being incapable of altering
+        it — or a disqualifying limitation.
+      </p>
+      <div class="note">
+        <p>
+          <strong>On ratings:</strong> these apps have between two and five reviews each. That is far
+          too small a sample to draw conclusions from, in any direction, and we are not going to
+          pretend a 3.33 average across three reviews means something. Warden has none at all, which
+          is worse. Read the individual reviews rather than the averages.
+        </p>
+        <p>
+          <strong>On the Runs on Atlassian column:</strong> “No” means the listing did not carry the
+          badge when checked in August 2026. It does <em>not</em> mean an app sends your data
+          anywhere — many perfectly good apps are hosted by their vendors. It is a checkable fact
+          about where processing happens, nothing more.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">03</div>
+    <div class="body">
+      <h2>Which one to pick</h2>
+      <div class="verdict">
+        <dl>
+          <dt>Choose Permission Management for Confluence if</dt>
+          <dd>
+            You need to <em>change</em> things. Its own listing describes viewing and managing multiple
+            space permissions and page restrictions for a user or group from a central place — the bulk
+            editing job. If your actual problem is “this person changed team and I need to move their
+            access across fifteen spaces”, that is a management task and Warden will not do it. It is
+            also considerably cheaper at scale.
+          </dd>
+          <dt>Choose Edit Permission Inheritance if</dt>
+          <dd>
+            Your problem is specifically edit-permission inheritance behaviour. Its listing describes
+            allowing edit permission to inherit to all child pages when enabled on the parent,
+            including pages added or moved in later. That is a behavioural change to how Confluence
+            works, not an audit tool, and it is the cheapest app on this page by a wide margin.
+          </dd>
+          <dt>Look elsewhere entirely if</dt>
+          <dd>
+            You want to know who <em>viewed</em> something. User Activity Audit Log is a well-rated
+            app, but its own listing describes tracking user activity in Jira, Jira Service Management
+            and Jira Product Discovery — it is a Jira product and is not an alternative for Confluence
+            page restrictions. Activity logging and access reporting answer different questions from
+            different data.
+          </dd>
+          <dt>Choose Warden if</dt>
+          <dd>
+            You need to see and evidence the current state of page restrictions across the whole site —
+            which pages are restricted, to whom, directly or by inheritance — and to find the
+            restrictions that have quietly broken. Particularly if the tool being read-only, and running
+            inside your own Atlassian cloud, is a requirement rather than a preference.
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">04</div>
+    <div class="body">
+      <h2>What Warden does, precisely</h2>
+      <p>
+        One report, run from <strong>Confluence Settings → Apps → Warden — Access Audit</strong>.
+      </p>
+      <ul>
+        <li><strong>Inventory.</strong> Every view- or edit-restricted page across every space, who can view and edit it, and whether the restriction is set directly on the page or inherited from an ancestor — naming the ancestor.</li>
+        <li><strong>Red flags.</strong> Restrictions naming a deactivated user, an empty group, or an orphaned principal that no longer exists; plus <strong>no live viewer</strong> and <strong>no live editor</strong>, where every grantee is dead so the page is stranded and only site admins can reach it. Through inheritance, one stranded parent strands its whole subtree.</li>
+        <li><strong>The diff.</strong> From the second scan onwards, how many red flags are new and how many were resolved, with new findings marked — so a quarterly review starts from what changed.</li>
+        <li><strong>Scanning.</strong> Background scans so large sites do not time out, on demand plus a daily automatic re-scan. Very large sites hit a page cap and the report says <em>partial</em> rather than implying it saw everything.</li>
+        <li><strong>Export.</strong> Inventory CSV and red-flags CSV, the latter carrying a New since last scan column. UTF-8 with a byte-order mark, so Excel and Google Sheets open them cleanly.</li>
+      </ul>
+
+      <h3>And what it deliberately does not do</h3>
+      <ul>
+        <li><strong>No remediation.</strong> No write scope exists in the manifest; it cannot alter a restriction.</li>
+        <li><strong>No historical change log.</strong> A Forge app cannot reconstruct who changed a restriction before installation. The diff begins at your second scan.</li>
+        <li><strong>No compliance guarantee.</strong> It produces evidence; a human still reviews and decides.</li>
+        <li><strong>Deactivated-user detection is best-effort</strong>; empty-group and orphaned-principal flags are exact.</li>
+        <li><strong>Not Cloud Fortified.</strong> If procurement requires it, Warden does not qualify today.</li>
+      </ul>
+      <p>
+        The whole report is free at any team size. CSV export is the paid part — free for sites of 10
+        users or fewer, from $1.10 per user per month above that, tapering with size.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num plain">▪</div>
+    <div class="body">
+      <h2>Questions</h2>
+      <dl class="faq">
+        <dt>What is a Confluence permission audit?</dt>
+        <dd>Usually it means reviewing who currently has access to what, so that inappropriate access can be removed and the review can be evidenced. In practice the phrase also gets used for bulk permission management and for user activity logging, which are different jobs needing different tools.</dd>
+        <dt>Can Confluence do this natively?</dt>
+        <dd>Partly. Space permissions are visible per space, and each space has a restricted-pages view. There is no site-wide view of page restrictions; requests for one have been open on Atlassian’s public issue tracker since 2013.</dd>
+        <dt>Is Warden the cheapest option?</dt>
+        <dd>No. Edit Permission Inheritance is far cheaper at every tier, and Permission Management for Confluence is cheaper from 250 users upward. Warden does a different job from both, and price is not where it competes.</dd>
+        <dt>What is the difference between Warden and Permission Management for Confluence?</dt>
+        <dd>Permission Management writes — its listing describes viewing and managing space permissions and page restrictions centrally. Warden only reads: it inventories restrictions across the site and flags the broken ones, and its manifest carries no write scope at all.</dd>
+        <dt>Is User Activity Audit Log an alternative to Warden?</dt>
+        <dd>No. Its own listing describes a Jira app covering Jira, Jira Service Management and Jira Product Discovery. It answers who did what over time, which is a different question from who can access what right now, on a different product.</dd>
+        <dt>Do any of these send my data outside Atlassian?</dt>
+        <dd>Warden does not — it carries the Runs on Atlassian badge and runs inside your own tenant. For the others we can only report the checkable fact that their listings did not carry that badge in August 2026, which is not the same as saying they transmit data anywhere. Check each listing’s own security documentation.</dd>
+      </dl>
+      <p style="margin-top:1.4rem">
+        <a class="cta" href="https://marketplace.atlassian.com/apps/2132771964">See Warden on the Atlassian Marketplace</a>
+      </p>
+      <p style="margin-top:0.9rem">
+        Also worth reading:
+        <a href="../warden/find-restricted-pages-confluence.html">finding every restricted page in Confluence</a> ·
+        <a href="../warden/confluence-access-review-soc2.html">access review evidence for Confluence</a> ·
+        <a href="../warden/user-guide.html">the Warden user guide</a>.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p>Slate · small, focused Atlassian apps that run on Atlassian.</p>
+    <p>Confluence and Jira are trademarks of Atlassian. Permission Management for Confluence, Edit Permission Inheritance and User Activity Audit Log are the products of their respective vendors, and Slate is not affiliated with any of them. Install counts, ratings, badge status and prices were read from Atlassian Marketplace public data in August 2026 and change over time.</p>
+    <p>Support: <a href="mailto:phuongdang12697@gmail.com">phuongdang12697@gmail.com</a> · <a href="../">All documentation</a></p>
+  </footer>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Confluence permission audit: what the options actually do",
+      "author": { "@type": "Organization", "name": "Slate" },
+      "publisher": { "@type": "Organization", "name": "Slate" },
+      "datePublished": "2026-08-21"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is a Confluence permission audit?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Usually it means reviewing who currently has access to what, so that inappropriate access can be removed and the review can be evidenced. The phrase also gets used for bulk permission management and for user activity logging, which are different jobs needing different tools." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can Confluence audit page restrictions natively?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Partly. Space permissions are visible per space, and each space has a restricted-pages view. There is no site-wide view of page restrictions; requests for one have been open on Atlassian's public issue tracker since 2013." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Warden the cheapest option?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. Edit Permission Inheritance is far cheaper at every tier, and Permission Management for Confluence is cheaper from 250 users upward. Warden does a different job from both, and price is not where it competes." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between Warden and Permission Management for Confluence?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Permission Management writes - its listing describes viewing and managing space permissions and page restrictions centrally. Warden only reads: it inventories restrictions across the site and flags the broken ones, and its manifest carries no write scope at all." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is User Activity Audit Log an alternative to Warden?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. Its own listing describes a Jira app covering Jira, Jira Service Management and Jira Product Discovery. It answers who did what over time, which is a different question from who can access what right now, on a different product." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+</body>
+</html>

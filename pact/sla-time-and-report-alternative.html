@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Pact vs SaaSJet SLA Time and Report, priced side by side and honest about who is cheaper. Zero-config SLAs that run inside your Atlassian cloud. Compare them.">
+<link rel="canonical" href="https://attrify.github.io/slate-public/pact/sla-time-and-report-alternative.html">
+<link rel="stylesheet" href="../slate-seo.css">
+<title>SLA Time and Report Alternative for Jira Software | Pact</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+</head>
+<body>
+
+
+<div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="../">Slate</a><span>›</span><a href="../">Pact</a><span>›</span>SLA Time and Report alternative
+  </nav>
+
+  <header class="masthead">
+    <p class="vendor">Slate</p>
+    <h1>A zero-configuration alternative to SLA Time and Report</h1>
+    <p class="standfirst">
+      SLA Time and Report is a well-rated SLA app from SaaSJet with a real installed base. This page
+      sets out where Pact differs — and it opens by conceding the axis most comparison pages would
+      quietly skip, because SaaSJet is cheaper than Pact at three of the four tiers we measured.
+    </p>
+  </header>
+
+  <div class="definition">
+    <p>
+      <strong>SLA Time and Report</strong> (by SaaSJet) and <strong>Pact</strong> (by Slate) both add
+      service-level agreements to Jira issues: a clock that runs while an issue sits in chosen
+      statuses, alerts before and at breach, and reporting on how often targets were met. Neither
+      requires Jira Service Management. The differences are how much you configure before anything
+      works, where the app runs, and how broad the reporting is.
+    </p>
+  </div>
+
+  <section>
+    <div class="num">01</div>
+    <div class="body">
+      <h2>The short version</h2>
+      <div class="verdict">
+        <dl>
+          <dt>Pact is best for</dt>
+          <dd>
+            Jira Software teams who want an SLA that works before it is configured, who want alerting
+            that cannot fire by accident and that catches issues nobody has touched, and who need the
+            app to run entirely inside their own Atlassian cloud with no external servers.
+          </dd>
+          <dt>SLA Time and Report is best for</dt>
+          <dd>
+            Teams who want cross-project SLA monitoring and dashboards, who want Cloud Fortified status
+            for procurement, who value 99 reviews at 4.56 out of 5 and roughly 740 active installs
+            behind the product — and teams above 250 users, where it is slightly cheaper per user than
+            Pact.
+          </dd>
+          <dt>Bottom line</dt>
+          <dd>
+            Price is not the reason to choose between these two: they are within a few cents of each
+            other, and SaaSJet is marginally ahead at most sizes. Choose on setup effort, on how you
+            want alerting to behave, and on whether processing inside your own Atlassian tenant
+            matters to you. Pact’s panel, policies and alerts are free at any team size, so the
+            comparison costs nothing to run.
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">02</div>
+    <div class="body">
+      <h2>Price first, because it does not favour us</h2>
+      <p>
+        Most comparison pages bury pricing near the bottom and present it in whatever framing flatters
+        the author. Here it goes first, because a reader can check these numbers in about thirty
+        seconds and a page that shades them has burned its credibility for everything that follows.
+      </p>
+      <div class="scroll">
+        <table>
+          <caption>Per user, per month, monthly billing. Marketplace pricing API, August 2026.</caption>
+          <thead>
+            <tr><th>Up to</th><th class="num-cell">Pact</th><th class="num-cell">SLA Time and Report</th><th>Cheaper</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>10 users</td><td class="num-cell">Free</td><td class="num-cell">Free</td><td>Both free at this size</td></tr>
+            <tr><td>100 users</td><td class="num-cell">$1.20</td><td class="num-cell">$1.25</td><td>Pact, by 4%</td></tr>
+            <tr><td>250 users</td><td class="num-cell">$0.87</td><td class="num-cell">$0.85</td><td>SLA Time and Report</td></tr>
+            <tr><td>1,000 users</td><td class="num-cell">$0.38</td><td class="num-cell">$0.35</td><td>SLA Time and Report</td></tr>
+            <tr><td>2,500 users</td><td class="num-cell">$0.22</td><td class="num-cell">$0.20</td><td>SLA Time and Report, by 9%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        So: SaaSJet is cheaper at three of the four paid tiers, by a few cents per user. Pact is
+        cheaper at the smallest paid tier, also by a few cents. Anyone arguing that this decides which
+        SLA tool you run is selling you on the wrong axis, and we are not going to be the ones doing
+        it. The rest of this page is about the axes that actually differ.
+      </p>
+      <div class="note">
+        <p>
+          <strong>One pricing difference that is not about the per-user rate:</strong> what sits behind
+          the paywall. In Pact the issue panel, the full policy configuration and the at-risk and
+          breach emails are free on every project at any team size — the paid surface is the compliance
+          report, the breached-issue drill-down and the CSV exports. Compare that against what each
+          product’s free tier gives you, rather than against the headline rate.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">03</div>
+    <div class="body">
+      <h2>What both apps do</h2>
+      <p>
+        Jira Software has no native SLAs; that engine belongs to Jira Service Management. Both apps
+        therefore compute a clock from the change history Jira already records, show its state on the
+        issue, and notify people as a deadline approaches.
+      </p>
+      <p>
+        SLA Time and Report describes itself on its listing as an app that measures time to SLA,
+        prevents breaches, and delivers compliance reports and dashboards, summarising the workflow as
+        “set SLA goals, track time to SLA, and get automated breach alerts”, with monitoring across
+        projects for service desk and ITSM teams. Pact does the same core job with a narrower scope
+        and a different starting point.
+      </p>
+      <p>
+        On scale: read from Marketplace public data in August 2026, SLA Time and Report had roughly 740
+        active installs, 99 reviews and a 4.56 average rating. Pact is new and has none of that
+        history. If a track record is the requirement, that is the answer.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">04</div>
+    <div class="body">
+      <h2>Where Pact differs</h2>
+
+      <h3>It starts configured</h3>
+      <p>
+        The listed workflow for SLA Time and Report begins with setting SLA goals — a reasonable design,
+        and the one nearly every SLA tool uses. Pact inverts it. Open an issue, choose
+        <strong>Apps → SLA</strong>, and a default SLA derived from that project’s own statuses is
+        already on screen before you have configured anything.
+      </p>
+      <p>
+        The reason to care is what happens during an evaluation. A blank policy editor asks you to make
+        five decisions — which statuses run the clock, which settle it, what the budget is, what the
+        at-risk threshold is, which calendar applies — before you can see whether the app is any good.
+        Plenty of trials end there. Correcting a wrong default is a much smaller task than authoring a
+        first policy, and it puts real numbers on real issues in front of you within a minute.
+      </p>
+
+      <h3>Alerting that will not surprise you</h3>
+      <p>
+        The email checkbox on a new Pact policy is <strong>off by default</strong>. That is unusual and
+        deliberate: a freshly written policy is a guess about thresholds, and a background sweep runs
+        every five minutes across every configured project. Turning alerting on is therefore something
+        you do after watching the states settle, not something that happens when you click Save.
+      </p>
+      <p>
+        The same sweep is what catches the breach that produces no event. Alerting driven purely by
+        status changes and edits misses the most dangerous issue on the board — the one nobody has
+        touched, which slides past its deadline generating nothing for a rule to react to. Pact
+        re-checks on a timer specifically so untouched issues still raise an alert. Each issue is
+        emailed once per state: once at at-risk, once at breach.
+      </p>
+
+      <h3>Policy warnings</h3>
+      <p>
+        Three misconfigurations produce no error and no obviously broken behaviour. A status ticked as
+        both running and stopping the clock — the stop wins, so that time is never counted and the
+        numbers are quietly flattering. A policy with no stop status — nothing can settle, so
+        everything eventually breaches. Two policies with the same name — the report and the alert
+        emails become ambiguous. Pact detects all three after you save and lists them on the settings
+        page, while you are still looking at the policy rather than weeks later.
+      </p>
+
+      <h3>Scoping without duplicating policies</h3>
+      <p>
+        A policy can be narrowed with <strong>Applies to</strong> — particular issue types, particular
+        priorities, or both. Ticking type <em>Bug</em> and priority <em>Highest</em> matches only
+        high-priority bugs, so a tight incident SLA can sit next to a loose default in the same project.
+        Tick nothing and the policy covers everything, which is the default.
+      </p>
+      <p>
+        Policies also apply <strong>retroactively</strong> to issues that are already open, computed
+        from their history. You see genuine states immediately rather than waiting for the next batch
+        of work to flow through.
+      </p>
+
+      <h3>Runs on Atlassian</h3>
+      <p>
+        Pact carries Atlassian’s <strong>Runs on Atlassian</strong> badge: it runs and stores its
+        configuration inside your own Atlassian cloud, with no external servers. Its alerts are sent
+        through Jira’s own in-tenant notification system rather than an external mail provider, and it
+        has no Slack integration and no outbound webhooks — both were left out precisely because they
+        would send data outside Atlassian.
+      </p>
+      <p>
+        Checked on the Marketplace in August 2026, <strong>SLA Time and Report’s listing does not carry
+        that badge</strong>. That is a statement about where processing happens and nothing more; it is
+        not a claim about what SaaSJet does with data, and the absence of a badge does not by itself
+        establish that an app sends anything anywhere. Verify on either listing if it matters to your
+        security review. And keep it in proportion — around a third of the Marketplace has the badge,
+        so it is a filter to pass rather than a reason to buy.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">05</div>
+    <div class="body">
+      <h2>Where SLA Time and Report is the better fit</h2>
+      <ul>
+        <li>
+          <strong>Cross-project monitoring and dashboards.</strong> Its listing advertises SLA
+          performance monitoring across projects plus compliance dashboards. Pact’s report is
+          per-project and there is no dashboard gadget. If you need one view across a portfolio of
+          projects, that is a real capability gap on our side.
+        </li>
+        <li>
+          <strong>Cloud Fortified.</strong> SLA Time and Report holds it; Slate does not. It covers
+          operational maturity — reliability commitments, incident management, a bug bounty — and it is
+          earned through operating history, not shipped as a feature. If procurement requires it, Pact
+          does not qualify today.
+        </li>
+        <li>
+          <strong>Track record.</strong> 99 reviews at 4.56 stars and several hundred teams in
+          production. Pact has none of that.
+        </li>
+        <li>
+          <strong>Price above 250 users.</strong> A few cents per user, in SaaSJet’s favour, as shown
+          above.
+        </li>
+        <li>
+          <strong>Service desk and ITSM framing.</strong> Its own summary aims at service desk and ITSM
+          teams. Pact is built for Jira Software teams who are not running a service desk.
+        </li>
+        <li>
+          <strong>Report depth.</strong> Pact’s compliance report scans up to the 300 most recent
+          issues in a project — sized for a regular team review, not a full-history audit.
+        </li>
+      </ul>
+      <p>
+        We have deliberately not enumerated SaaSJet’s feature list beyond what its own listing states.
+        We have not audited the product, and describing a competitor’s software from guesswork is how
+        comparison pages become useless.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">06</div>
+    <div class="body">
+      <h2>Running both side by side</h2>
+      <p>
+        Both apps read the same Jira change history and neither writes to your issues, so evaluating
+        them together for a fortnight changes nothing about your data or your workflows.
+      </p>
+      <ul>
+        <li>Install Pact, open an issue via <strong>Apps → SLA</strong>, and check the default SLA against a workflow you know well. Either the inference is sensible on your statuses or it is not — that is the fastest signal this page can offer.</li>
+        <li>Adjust the starter policy in <strong>Project settings → SLA</strong> to a target you genuinely promise someone, and save. Read the policy warnings; a status that both runs and stops the clock is the common one.</li>
+        <li>Leave email switched off at first. Watch the panel states on live issues until they match your intuition.</li>
+        <li>Compare compliance figures carefully. Pact reports Met ÷ (Met + Breached), so in-flight work is excluded and starting a piece of work cannot lower the number. If the other tool divides by all issues, the two figures are answering different questions rather than disagreeing.</li>
+        <li>Keep one, uninstall the other at a billing boundary. Pact’s policies and alert markers are deleted with the app, and nothing of yours left your tenant.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="num plain">▪</div>
+    <div class="body">
+      <h2>Questions</h2>
+      <dl class="faq">
+        <dt>Is Pact cheaper than SLA Time and Report?</dt>
+        <dd>Only at the smallest paid tier, and only by about 4%. At 250, 1,000 and 2,500 users SLA Time and Report is marginally cheaper. Price is not a reason to switch in either direction here.</dd>
+        <dt>Do either of them need Jira Service Management?</dt>
+        <dd>No. Both add SLAs to ordinary Jira Software issues without a JSM licence.</dd>
+        <dt>What is actually free in Pact?</dt>
+        <dd>The issue panel with its live countdown, the full policy configuration, and the at-risk and breach emails — on every project at any team size. The compliance report, the breached-issue list and the CSV exports need a licence above ten users.</dd>
+        <dt>Does SLA Time and Report send data outside Atlassian?</dt>
+        <dd>Slate does not assert that and has no basis to. What is checkable is that its listing did not carry the Runs on Atlassian badge in August 2026, while Pact’s does. Where a vendor processes data is a question for that vendor’s listing and documentation.</dd>
+        <dt>Can I report across several projects with Pact?</dt>
+        <dd>Not today. Pact’s compliance report is per-project and there is no dashboard gadget. Cross-project monitoring is something SLA Time and Report advertises and Pact does not have.</dd>
+        <dt>Can I run both at once?</dt>
+        <dd>Yes. Both are read-only with respect to your issues, so they do not interfere.</dd>
+      </dl>
+      <p style="margin-top:1.4rem">
+        <a class="cta" href="https://marketplace.atlassian.com/apps/1609771216">See Pact on the Atlassian Marketplace</a>
+      </p>
+      <p style="margin-top:0.9rem">
+        Also worth reading:
+        <a href="../pact/time-to-sla-alternative.html">Pact compared with Time to SLA</a> ·
+        <a href="../pact/sla-without-jsm.html">SLAs on Jira Software without JSM</a> ·
+        <a href="../pact/jira-sla-guide.html">how to track SLAs in Jira</a>.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p>Slate · small, focused Atlassian apps that run on Atlassian.</p>
+    <p>SLA Time and Report is a product of SaaSJet. Jira is a trademark of Atlassian. Slate is not affiliated with SaaSJet. Install counts, ratings and prices were read from Atlassian Marketplace public data in August 2026.</p>
+    <p>Support: <a href="mailto:phuongdang12697@gmail.com">phuongdang12697@gmail.com</a> · <a href="../">All documentation</a></p>
+  </footer>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "A zero-configuration alternative to SLA Time and Report",
+      "author": { "@type": "Organization", "name": "Slate" },
+      "publisher": { "@type": "Organization", "name": "Slate" },
+      "datePublished": "2026-08-21"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is Pact cheaper than SLA Time and Report?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Only at the smallest paid tier, and only by about 4%. At 250, 1,000 and 2,500 users SLA Time and Report is marginally cheaper. Price is not a reason to switch in either direction here." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do either of them need Jira Service Management?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. Both add SLAs to ordinary Jira Software issues without a JSM licence." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is actually free in Pact?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The issue panel with its live countdown, the full policy configuration, and the at-risk and breach emails - on every project at any team size. The compliance report, the breached-issue list and the CSV exports need a licence above ten users." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I report across several projects with Pact?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Not today. Pact's compliance report is per-project and there is no dashboard gadget. Cross-project monitoring is something SLA Time and Report advertises and Pact does not have." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Confluence Cloud has no site-wide list of restricted pages. Here is what admins can and cannot see natively, and how to inventory every one of them. Read on.">
+<link rel="canonical" href="https://attrify.github.io/slate-public/warden/find-restricted-pages-confluence.html">
+<link rel="stylesheet" href="../slate-seo.css">
+<title>Find All Restricted Pages in Confluence Cloud | Warden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+</head>
+<body>
+
+
+<div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="../">Slate</a><span>›</span><a href="../">Warden</a><span>›</span>Find restricted pages
+  </nav>
+
+  <header class="masthead">
+    <p class="vendor">Slate</p>
+    <h1>How to find every restricted page in Confluence Cloud</h1>
+    <p class="standfirst">
+      Confluence Cloud has no site-wide list of restricted pages. Admins have been asking for one
+      since 2013 and the requests are still open. This page sets out exactly what you can see
+      natively, what you cannot, what Atlassian is currently building, and how to inventory the lot.
+    </p>
+  </header>
+
+  <div class="definition">
+    <p>
+      <strong>A page restriction</strong> in Confluence narrows who may view or edit a single page,
+      inside whatever the space already permits. Restrictions can be set directly on a page or
+      <strong>inherited</strong> from an ancestor, so a page can be restricted without carrying any
+      restriction of its own.
+    </p>
+    <p>
+      Confluence Cloud shows you a page’s restrictions <strong>one page at a time</strong>, and offers
+      a per-space list. It provides no view across the whole site — there is no admin screen that
+      answers “which pages on this site are restricted, and to whom?”. That gap is what this page is
+      about.
+    </p>
+  </div>
+
+  <section>
+    <div class="num">01</div>
+    <div class="body">
+      <h2>What you can see natively</h2>
+
+      <h3>One page at a time</h3>
+      <p>
+        Open a page, click the restrictions (padlock) control, and you see who can view and edit it,
+        including whether the restriction came from an ancestor. This is accurate and complete for
+        that page. It does not scale: answering “are we exposed anywhere?” by opening pages one by one
+        is not an audit, it is a sampling exercise you will abandon.
+      </p>
+
+      <h3>Per space</h3>
+      <p>
+        Space settings include a restricted-pages view scoped to that space. Useful, and the closest
+        native equivalent to what people want — but you must know which space to look in, and you must
+        repeat it for every space on the site. On a Confluence instance with a few dozen spaces this
+        is a morning’s work that is out of date by the afternoon.
+      </p>
+
+      <h3>Space permissions are a different thing</h3>
+      <p>
+        Worth separating clearly, because it is the most common confusion. Space permissions decide
+        who can get into a space at all. Page restrictions <em>narrow</em> that set for individual
+        pages. Reviewing space permissions tells you nothing about which pages inside are restricted,
+        and vice versa. A complete access picture needs both.
+      </p>
+
+      <div class="note">
+        <p>
+          <strong>The thing that surprises people:</strong> a site administrator cannot necessarily
+          read a page restricted away from them. Restrictions are not an admin-override permission —
+          which is exactly why the ability to at least <em>see</em> which pages are restricted has
+          been requested for so long.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">02</div>
+    <div class="body">
+      <h2>The requests, and what Atlassian is doing</h2>
+      <p>
+        This is not a niche complaint. Read from Atlassian’s public issue tracker in August 2026, four
+        open requests describe it directly:
+      </p>
+      <div class="scroll">
+        <table>
+          <caption>Atlassian public issue tracker (jira.atlassian.com), read August 2026.</caption>
+          <thead>
+            <tr><th>Issue</th><th class="num-cell">Votes</th><th>Status</th><th>Opened</th><th>Asks for</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>CONFCLOUD-74405</td><td class="num-cell">122</td><td>Gathering Interest</td><td>2022</td><td>List which spaces and restricted pages a group can access</td></tr>
+            <tr><td>CONFCLOUD-76815</td><td class="num-cell">57</td><td><strong>In Progress</strong></td><td>2023</td><td>A REST API to get a list of restricted pages</td></tr>
+            <tr><td>CONFCLOUD-31974</td><td class="num-cell">37</td><td>Gathering Interest</td><td><strong>2013</strong></td><td>Let site administrators see all restricted pages</td></tr>
+            <tr><td>CONFCLOUD-73066</td><td class="num-cell">31</td><td>Gathering Interest</td><td>2021</td><td>Ability to list all restricted pages in Confluence</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>The one that is In Progress deserves a straight answer</h3>
+      <p>
+        CONFCLOUD-76815 — a REST API returning a list of restricted pages — is marked In Progress.
+        That is worth knowing before you buy anything, so here is the honest reading of it.
+      </p>
+      <p>
+        It is a <strong>building block for developers</strong>, not a report for administrators. An
+        endpoint returning restricted pages does not tell you that a restriction points at a
+        deactivated user, does not tell you what changed since your last review, and does not produce
+        a CSV your auditor will accept. It is the raw material.
+      </p>
+      <p>
+        <strong>If you are comfortable writing a script</strong>, and all you need is the raw list,
+        that API may well be enough for you once it ships — and you should not buy an app to get
+        something the platform is about to hand you. That is the genuine case for waiting.
+      </p>
+      <p>
+        If you need the interpretation rather than the data — which restrictions are broken, what
+        changed since last quarter, an export somebody else will read — that is a different job, and
+        the API landing makes tools that do it more accurate rather than redundant.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">03</div>
+    <div class="body">
+      <h2>Why the answer drifts even when nobody edits a page</h2>
+      <p>
+        The reason a one-off audit does not stay true: restrictions name users and groups, and users
+        and groups change underneath them. A restriction set correctly two years ago can be wrong
+        today without anyone touching the page.
+      </p>
+      <ul>
+        <li><strong>Someone was deactivated.</strong> The restriction still names them. They cannot read the page, but they are still listed as though they can — and if they were the only person granted access, nobody can now read it.</li>
+        <li><strong>A group was emptied.</strong> The restriction points at a group that no longer has members. It looks like a valid restriction and grants access to nobody.</li>
+        <li><strong>A user or group was deleted.</strong> The restriction now names a principal that does not exist at all.</li>
+        <li><strong>Inheritance carried it further than intended.</strong> A restriction placed on one parent page silently applies to every page created beneath it afterwards, including pages the original author never saw.</li>
+      </ul>
+      <p>
+        The compounding case is the worst one: if the page that everyone inherits from ends up with no
+        live viewer, every descendant is stranded too — content that exists, that people expect to
+        find, and that only a site admin can now reach.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">04</div>
+    <div class="body">
+      <h2>Inventorying the lot with Warden</h2>
+      <p>
+        Warden is Slate’s access audit app for Confluence. It does one job: it inventories every
+        view- or edit-restricted page across the whole site and flags the restrictions that have gone
+        wrong. It is <strong>read-only</strong> — there is no write scope in its manifest at all, so it
+        cannot change a restriction even if you asked it to.
+      </p>
+      <ul>
+        <li><strong>The inventory.</strong> Every restricted page on the site, who can view and edit it, and whether the restriction is set <strong>directly</strong> on the page or <strong>inherited</strong> — with the ancestor it came from.</li>
+        <li><strong>Red flags.</strong> Restrictions naming a deactivated user, an empty group, or an orphaned principal that no longer exists — plus the page-level consequence, <strong>no live viewer</strong> or <strong>no live editor</strong>, where every grantee is dead and the page is stranded.</li>
+        <li><strong>What changed since last time.</strong> From the second scan onwards, a banner reports how many red flags are new and how many were resolved, and each new finding carries a New marker. A quarterly review starts from the diff rather than re-reading the whole inventory.</li>
+        <li><strong>A daily re-scan</strong>, plus scanning on demand. Scans run in the background so large sites do not time out.</li>
+        <li><strong>CSV export</strong> of the inventory and of the red flags, UTF-8 with a byte-order mark so it opens cleanly in Excel and Google Sheets.</li>
+      </ul>
+      <p>
+        Run it from <strong>Confluence Settings → Apps → Warden — Access Audit</strong>.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">05</div>
+    <div class="body">
+      <h2>What it will not do</h2>
+      <p>
+        Stated plainly, because these are the things people assume and then feel misled about.
+      </p>
+      <ul>
+        <li><strong>It is not a historical change log.</strong> A Forge app cannot reconstruct who changed a restriction before it was installed. The “since last scan” diff begins at your second scan — there is nothing to compare against before that.</li>
+        <li><strong>It does not fix anything.</strong> No remediation, no bulk edit, no “clean up” button. The manifest carries no write scope. You act on the evidence.</li>
+        <li><strong>It does not make you compliant.</strong> It produces evidence for a review that a human still performs and signs off.</li>
+        <li><strong>Deactivated-user detection is best-effort</strong> under the Runs on Atlassian constraints. Empty-group and orphaned-principal flags are exact.</li>
+        <li><strong>Very large sites hit a page cap</strong>, and the report says so with a partial badge rather than pretending it saw everything.</li>
+        <li><strong>Slate is not Cloud Fortified.</strong> If your procurement process requires it, Warden does not qualify today.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">06</div>
+    <div class="body">
+      <h2>What it costs</h2>
+      <p>
+        <strong>The whole report is free, at any team size</strong> — the inventory, the red flags and
+        the daily re-scan, view-only. That is unusually broad and it is deliberate: the report is the
+        thing you need in order to know whether you have a problem at all.
+      </p>
+      <p>
+        <strong>CSV export</strong> is the paid part — the deliverable you hand to somebody else. Free
+        for sites of 10 users or fewer, and from $1.10 per user per month above that, tapering with
+        size. An admin can start a free trial from <strong>Settings → Apps → Manage apps</strong>.
+      </p>
+      <p>
+        Warden carries Atlassian’s <strong>Runs on Atlassian</strong> badge, so it runs and stores its
+        snapshot entirely inside your own Atlassian cloud with no external servers — worth noting for
+        an app whose whole subject is who can see what. Keep it in proportion, though: around a third
+        of the Marketplace carries that badge. It is hygiene, not a reason on its own to choose a tool.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num plain">▪</div>
+    <div class="body">
+      <h2>Questions</h2>
+      <dl class="faq">
+        <dt>Can I see all restricted pages in Confluence Cloud natively?</dt>
+        <dd>Not across the site. You can view restrictions on one page at a time, and there is a restricted-pages view per space, but Confluence Cloud provides no site-wide list. Requests for one have been open on Atlassian’s public tracker since 2013.</dd>
+        <dt>Can a site admin see pages that are restricted away from them?</dt>
+        <dd>Not necessarily — page restrictions are not overridden by site administration. This is precisely why the ability to at least enumerate restricted pages has been requested for so long.</dd>
+        <dt>Is Atlassian building this?</dt>
+        <dd>Partly. CONFCLOUD-76815, a REST API returning a list of restricted pages, is marked In Progress. That is a developer building block rather than an admin report — it returns data, not an interpretation of it. If you can write a script and only need the raw list, it may be all you need.</dd>
+        <dt>What is the difference between space permissions and page restrictions?</dt>
+        <dd>Space permissions decide who can enter a space. Page restrictions narrow that set for individual pages, and can be inherited by child pages. Reviewing one tells you nothing about the other.</dd>
+        <dt>Why would a restriction be wrong if nobody edited the page?</dt>
+        <dd>Because restrictions name users and groups, and those change. Someone is deactivated, a group is emptied, a principal is deleted — the restriction is untouched but no longer means what it did.</dd>
+        <dt>Does Warden change my restrictions?</dt>
+        <dd>No, and it could not. Its manifest declares no write scope for Confluence content, so modifying a restriction is not something it is capable of. It reports and flags only.</dd>
+        <dt>Does my page content leave Atlassian?</dt>
+        <dd>No. Warden carries the Runs on Atlassian badge — it runs inside your own Atlassian cloud with no external servers, and the snapshot it builds is stored in Atlassian-hosted storage in your tenant.</dd>
+      </dl>
+      <p style="margin-top:1.4rem">
+        <a class="cta" href="https://marketplace.atlassian.com/apps/2132771964">See Warden on the Atlassian Marketplace</a>
+      </p>
+      <p style="margin-top:0.9rem">
+        Also worth reading:
+        <a href="../warden/who-can-see-this-confluence-page.html">who can actually see this Confluence page</a> ·
+        <a href="../warden/confluence-access-review-soc2.html">access review evidence for Confluence</a> ·
+        <a href="../warden/user-guide.html">the Warden user guide</a>.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p>Slate · small, focused Atlassian apps that run on Atlassian.</p>
+    <p>Confluence and Jira are trademarks of Atlassian. Slate is not affiliated with Atlassian beyond being a Marketplace partner. Issue vote counts and statuses were read from Atlassian’s public issue tracker in August 2026 and change over time.</p>
+    <p>Support: <a href="mailto:phuongdang12697@gmail.com">phuongdang12697@gmail.com</a> · <a href="../">All documentation</a></p>
+  </footer>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "How to find every restricted page in Confluence Cloud",
+      "author": { "@type": "Organization", "name": "Slate" },
+      "publisher": { "@type": "Organization", "name": "Slate" },
+      "datePublished": "2026-08-21"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Can I see all restricted pages in Confluence Cloud natively?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Not across the site. You can view restrictions on one page at a time, and there is a restricted-pages view per space, but Confluence Cloud provides no site-wide list. Requests for one have been open on Atlassian's public tracker since 2013." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can a site admin see pages that are restricted away from them?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Not necessarily - page restrictions are not overridden by site administration. This is why the ability to enumerate restricted pages has been requested for so long." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between space permissions and page restrictions?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Space permissions decide who can enter a space. Page restrictions narrow that set for individual pages, and can be inherited by child pages. Reviewing one tells you nothing about the other." }
+        },
+        {
+          "@type": "Question",
+          "name": "Why would a restriction be wrong if nobody edited the page?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Because restrictions name users and groups, and those change. Someone is deactivated, a group is emptied, a principal is deleted - the restriction is untouched but no longer means what it did." }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Warden change my restrictions?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No, and it could not. Its manifest declares no write scope for Confluence content, so modifying a restriction is not something it is capable of. It reports and flags only." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+</body>
+</html>

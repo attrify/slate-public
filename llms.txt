@@ -21,6 +21,14 @@
 - [Dwell — a Timepiece alternative](https://attrify.github.io/slate-public/dwell/timepiece-alternative.html)
 - [Dwell — a SaaSJet Time in Status alternative](https://attrify.github.io/slate-public/dwell/saasjet-alternative.html)
 - [How to see time in status in Jira](https://attrify.github.io/slate-public/dwell/how-to-see-time-in-status.html)
+- [Pact — SLAs without Jira Service Management](https://attrify.github.io/slate-public/pact/sla-without-jsm.html)
+- [Pact — a Time to SLA alternative](https://attrify.github.io/slate-public/pact/time-to-sla-alternative.html)
+- [Pact — an SLA Time and Report alternative](https://attrify.github.io/slate-public/pact/sla-time-and-report-alternative.html)
+- [How to track SLAs in Jira](https://attrify.github.io/slate-public/pact/jira-sla-guide.html)
+- [Warden — find every restricted page in Confluence](https://attrify.github.io/slate-public/warden/find-restricted-pages-confluence.html)
+- [Who can see this Confluence page?](https://attrify.github.io/slate-public/warden/who-can-see-this-confluence-page.html)
+- [Warden — Confluence access review evidence](https://attrify.github.io/slate-public/warden/confluence-access-review-soc2.html)
+- [Confluence permission audit tools compared](https://attrify.github.io/slate-public/warden/confluence-permission-audit.html)
 
 ## Contact
 support: phuongdang12697@gmail.com

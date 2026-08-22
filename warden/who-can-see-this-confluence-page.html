@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Page visibility in Confluence is a chain: space permissions, restrictions, inheritance, groups, user status. Here is how to answer it properly. Find out how.">
+<link rel="canonical" href="https://attrify.github.io/slate-public/warden/who-can-see-this-confluence-page.html">
+<link rel="stylesheet" href="../slate-seo.css">
+<title>Who Can See This Confluence Page? Explained | Warden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+</head>
+<body>
+
+
+<div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="../">Slate</a><span>›</span><a href="../">Warden</a><span>›</span>Who can see this page
+  </nav>
+
+  <header class="masthead">
+    <p class="vendor">Slate</p>
+    <h1>Who can actually see this Confluence page?</h1>
+    <p class="standfirst">
+      It sounds like a question with a list for an answer. It is not — it is a chain of five things,
+      any of which can change without anyone touching the page. This explains the chain, how to check
+      one page properly, and why the answer you gave last quarter may already be wrong.
+    </p>
+  </header>
+
+  <div class="definition">
+    <p>
+      <strong>Who can see a Confluence page</strong> is determined by two layers, not one. First,
+      <strong>space permissions</strong> decide who can enter the space at all — usually granted
+      through groups. Second, if the page carries a <strong>view restriction</strong>, either set
+      directly on it or <strong>inherited</strong> from an ancestor, that restriction narrows the set
+      further. A restriction can only take access away; it never grants access to someone the space
+      excludes.
+    </p>
+    <p>
+      So the answer is: everyone who has space access, minus anyone excluded by a restriction on the
+      page or on any page above it — and then only those of them who are still active users and still
+      members of the groups the restriction names.
+    </p>
+  </div>
+
+  <section>
+    <div class="num">01</div>
+    <div class="body">
+      <h2>The chain, link by link</h2>
+      <div class="scroll">
+        <table>
+          <caption>Every link must hold for someone to read the page.</caption>
+          <thead>
+            <tr><th class="num-cell">#</th><th>Link</th><th>What it decides</th><th>How it goes wrong</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="num-cell">1</td><td><strong>Space permission</strong></td><td>Whether a person can enter the space at all, usually via a group</td><td>Broad group grants nobody reviews; a space opened up “temporarily”</td></tr>
+            <tr><td class="num-cell">2</td><td><strong>Page restriction</strong></td><td>Whether the page narrows that set for viewing or editing</td><td>Set once for one reason, never revisited</td></tr>
+            <tr><td class="num-cell">3</td><td><strong>Inheritance</strong></td><td>Whether a restriction on an ancestor applies here too</td><td>A parent restriction silently covers pages created under it later</td></tr>
+            <tr><td class="num-cell">4</td><td><strong>Group membership</strong></td><td>Who is actually in the groups the restriction names</td><td>The group is emptied, or renamed, or deleted</td></tr>
+            <tr><td class="num-cell">5</td><td><strong>User state</strong></td><td>Whether the named people are still active accounts</td><td>Someone leaves; the restriction still names them</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        Links 4 and 5 are the ones that catch people out, because they change on a completely
+        different schedule from the page. Somebody leaves the company on a Friday. Nobody edits any
+        page. The set of humans who can read a particular document is now different.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">02</div>
+    <div class="body">
+      <h2>Checking one page properly</h2>
+      <p>
+        For a single page, Confluence answers this well. Open the page, click the restrictions
+        (padlock) control, and you will see who can view and who can edit, and whether the restriction
+        applies because it was set here or because it was inherited from a page above.
+      </p>
+      <p>
+        Two things that view will not tell you, and both matter:
+      </p>
+      <ul>
+        <li><strong>Whether the named people and groups are still real.</strong> A deactivated user or an emptied group still appears in the list, looking exactly like a working grant.</li>
+        <li><strong>Whether this page is unusual.</strong> One page in isolation carries no context. Is this the only restricted page in the space, or one of four hundred? You cannot tell from here.</li>
+      </ul>
+      <p>
+        And to be clear about a common assumption: <strong>being a site administrator does not
+        override a page restriction</strong>. Admin rights let you manage the site; they do not
+        silently grant reading rights to content someone has restricted away from you.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">03</div>
+    <div class="body">
+      <h2>Four ways the answer is already wrong</h2>
+      <p>
+        These are not hypotheticals; they are the states a restriction settles into over a couple of
+        years of ordinary staff turnover. Each looks entirely normal in the restrictions dialog.
+      </p>
+
+      <h3>It names someone who has been deactivated</h3>
+      <p>
+        The person appears in the view list. They cannot read the page. If they were the only person
+        granted access, then the honest answer to “who can see this page?” is <em>nobody</em> — while
+        the interface shows a name.
+      </p>
+
+      <h3>It names a group with no members</h3>
+      <p>
+        A group is a promise that someone is in it. When the last member is removed, the restriction
+        remains, well-formed and pointing at an empty set. This is the quietest of the four, because
+        group membership is managed somewhere else entirely by somebody else.
+      </p>
+
+      <h3>It names a principal that no longer exists</h3>
+      <p>
+        The user or group has been deleted outright. The restriction still references it. Nothing in
+        the page suggests anything is wrong.
+      </p>
+
+      <h3>Every grantee is dead, so the page is stranded</h3>
+      <p>
+        The compounding case, and the one worth finding first. When every user and group granted view
+        access is deactivated, empty or deleted, the page’s intended audience is locked out
+        completely. The content exists, people expect to find it, and only a site admin can now reach
+        it — assuming one thinks to look.
+      </p>
+      <p>
+        It gets worse through inheritance: a stranded view restriction on a parent strands every page
+        beneath it too. One dead group can quietly remove an entire documentation tree from the people
+        who need it, without a single error message anywhere.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">04</div>
+    <div class="body">
+      <h2>Answering it across the whole site</h2>
+      <p>
+        For one page, the padlock is enough. For “are we exposed anywhere?” or “did anything break
+        since last quarter?”, you need the same check run everywhere at once — and Confluence Cloud
+        has no site-wide view of restrictions to run it against.
+      </p>
+      <p>
+        Warden is Slate’s access audit app for Confluence, and this is the job it does. It inventories
+        every view- or edit-restricted page across the site, records who can view and edit each one and
+        whether the restriction is direct or inherited, and flags exactly the four states above:
+        deactivated user, empty group, orphaned principal, and the page-level consequence of
+        <strong>no live viewer</strong> or <strong>no live editor</strong>.
+      </p>
+      <p>
+        From the second scan onwards you read a difference rather than a list: a banner says how many
+        red flags are new and how many were resolved since last time, and each new finding is marked.
+        That is what makes a quarterly review a short task instead of a re-reading of everything.
+      </p>
+      <p>
+        Warden is <strong>read-only</strong> — its manifest declares no write scope for Confluence
+        content, so it cannot alter a restriction. It shows you the state and you decide what to do
+        about it. The report is free at any team size; CSV export is the paid part.
+      </p>
+      <div class="note">
+        <p>
+          <strong>Two limits, stated up front.</strong> Warden reports the current state — it cannot
+          reconstruct who changed a restriction before it was installed, because no Forge app can see
+          that history. And deactivated-user detection is best-effort under Runs on Atlassian, while
+          the empty-group and orphaned-principal flags are exact.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="num plain">▪</div>
+    <div class="body">
+      <h2>Questions</h2>
+      <dl class="faq">
+        <dt>How do I check who can see a Confluence page?</dt>
+        <dd>Open the page and click the restrictions (padlock) control. It lists who can view and edit, and shows whether the restriction is set on this page or inherited from an ancestor. What it does not show is whether those users and groups are still active and populated.</dd>
+        <dt>Can a site administrator see every page?</dt>
+        <dd>No. Page restrictions are not overridden by site administration. An administrator can manage the site without being able to read a page that has been restricted away from them.</dd>
+        <dt>Do page restrictions override space permissions?</dt>
+        <dd>They only narrow. A restriction can take view or edit access away from people the space allows; it can never grant access to someone the space excludes.</dd>
+        <dt>What happens to a restriction when the user leaves?</dt>
+        <dd>Nothing — that is the problem. Deactivating an account does not update the restrictions that name it. The name stays in the list, looking like a working grant, and if it was the only grant the page becomes unreachable.</dd>
+        <dt>What is an inherited restriction?</dt>
+        <dd>A restriction set on an ancestor page that also applies to its descendants. A page can therefore be restricted without carrying any restriction of its own, including pages created under that ancestor long afterwards.</dd>
+        <dt>Can a page end up with nobody able to see it?</dt>
+        <dd>Yes. If every user and group granted view access has been deactivated, emptied or deleted, the page is stranded — the intended audience is locked out and only site admins can still reach it. Through inheritance, one stranded parent strands everything beneath it.</dd>
+        <dt>Is there a way to see this for the whole site at once?</dt>
+        <dd>Not natively. Confluence Cloud shows restrictions per page and per space, with no site-wide list; requests for one have been open on Atlassian’s public tracker since 2013. A Marketplace app such as Warden inventories them across every space.</dd>
+      </dl>
+      <p style="margin-top:1.4rem">
+        <a class="cta" href="https://marketplace.atlassian.com/apps/2132771964">See Warden on the Atlassian Marketplace</a>
+      </p>
+      <p style="margin-top:0.9rem">
+        Also worth reading:
+        <a href="../warden/find-restricted-pages-confluence.html">finding every restricted page in Confluence</a> ·
+        <a href="../warden/confluence-permission-audit.html">what a Confluence permission audit actually means</a> ·
+        <a href="../warden/user-guide.html">the Warden user guide</a>.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p>Slate · small, focused Atlassian apps that run on Atlassian.</p>
+    <p>Confluence is a trademark of Atlassian. Slate is not affiliated with Atlassian beyond being a Marketplace partner. Product behaviour described here was correct in August 2026.</p>
+    <p>Support: <a href="mailto:phuongdang12697@gmail.com">phuongdang12697@gmail.com</a> · <a href="../">All documentation</a></p>
+  </footer>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Who can actually see this Confluence page?",
+      "author": { "@type": "Organization", "name": "Slate" },
+      "publisher": { "@type": "Organization", "name": "Slate" },
+      "datePublished": "2026-08-21"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I check who can see a Confluence page?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Open the page and click the restrictions (padlock) control. It lists who can view and edit, and shows whether the restriction is set on this page or inherited from an ancestor. It does not show whether those users and groups are still active and populated." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can a site administrator see every Confluence page?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. Page restrictions are not overridden by site administration. An administrator can manage the site without being able to read a page that has been restricted away from them." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do page restrictions override space permissions?",
+          "acceptedAnswer": { "@type": "Answer", "text": "They only narrow. A restriction can take view or edit access away from people the space allows; it can never grant access to someone the space excludes." }
+        },
+        {
+          "@type": "Question",
+          "name": "What happens to a page restriction when the user leaves?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Nothing. Deactivating an account does not update the restrictions that name it. The name stays in the list, looking like a working grant, and if it was the only grant the page becomes unreachable." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can a Confluence page end up with nobody able to see it?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. If every user and group granted view access has been deactivated, emptied or deleted, the page is stranded - the intended audience is locked out and only site admins can still reach it. Through inheritance, one stranded parent strands everything beneath it." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+</body>
+</html>

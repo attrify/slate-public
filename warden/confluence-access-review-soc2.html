@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="What an auditor actually wants from a Confluence access review, what evidence looks like, and how to export a point-in-time snapshot. No compliance theatre.">
+<link rel="canonical" href="https://attrify.github.io/slate-public/warden/confluence-access-review-soc2.html">
+<link rel="stylesheet" href="../slate-seo.css">
+<title>Confluence Access Review Evidence for SOC 2 and ISO | Warden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+</head>
+<body>
+
+
+<div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="../">Slate</a><span>›</span><a href="../">Warden</a><span>›</span>Access review evidence
+  </nav>
+
+  <header class="masthead">
+    <p class="vendor">Slate</p>
+    <h1>Access review evidence for Confluence, without leaving Atlassian</h1>
+    <p class="standfirst">
+      A periodic access review is one of the most commonly requested controls in a SOC 2 or ISO 27001
+      audit, and Confluence page restrictions are one of the hardest parts of it to evidence — because
+      Confluence Cloud will not show them to you across the site. This page is about what the evidence
+      actually needs to be, and what a tool can and cannot do for you.
+    </p>
+  </header>
+
+  <div class="definition">
+    <p>
+      <strong>A user access review</strong> is a periodic exercise in which somebody responsible looks
+      at who currently has access to a system, decides whether each of those grants is still
+      appropriate, removes the ones that are not, and keeps a record showing that this happened. The
+      record is what an auditor examines — a review with no artefact is, for audit purposes, a review
+      that did not occur.
+    </p>
+    <p>
+      For Confluence specifically the awkward part is <strong>page restrictions</strong>. Product and
+      space access are visible in admin. Restrictions are set per page, can be inherited from
+      ancestors, and have no site-wide view — so the layer that actually decides who reads a sensitive
+      document is the layer hardest to produce evidence for.
+    </p>
+  </div>
+
+  <section>
+    <div class="num">01</div>
+    <div class="body">
+      <h2>Scope, before anything else</h2>
+      <div class="note">
+        <p>
+          <strong>Warden covers page restrictions in Confluence. That is all it covers.</strong> It
+          does not review space permissions, product access, group provisioning, Jira permission
+          schemes, or anything outside Confluence. A complete access review is broader than this app,
+          and any page telling you otherwise is selling you something.
+        </p>
+        <p>
+          What it does is close the one gap in that review that the product itself will not let you
+          see. If your reviews already handle space permissions and product access but go quiet on
+          “which pages are restricted, and are those restrictions still valid?”, that is the hole this
+          fills.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">02</div>
+    <div class="body">
+      <h2>What an auditor actually asks for</h2>
+      <p>
+        Auditors vary, but the requests converge on four things. It is worth knowing them before
+        evaluating any tool, because most tools address one or two and leave the rest to you.
+      </p>
+      <ul>
+        <li><strong>A point-in-time snapshot.</strong> Who had access to what, as of a specific date. Not a live dashboard — a dated artefact that can be filed and re-read a year later.</li>
+        <li><strong>Completeness.</strong> Evidence that the snapshot covers the whole population, not a convenient sample. If part of the estate was not examined, that has to be visible rather than silently omitted.</li>
+        <li><strong>What changed since the last review.</strong> The interesting content of the second and every subsequent review is the difference — new grants, removed grants, and anything that broke in between.</li>
+        <li><strong>Evidence of human judgement.</strong> Someone looked, decided, and acted. No tool supplies this part, and any product claiming to is misrepresenting how audits work.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">03</div>
+    <div class="body">
+      <h2>What Confluence gives you natively</h2>
+      <p>
+        Space permissions are visible per space in admin, and there is a restricted-pages view within
+        each space. So a determined administrator can assemble a picture space by space.
+      </p>
+      <p>
+        What is missing is the site-wide view. There is no screen and no export that answers “which
+        pages across this site are restricted, and to whom?”. Requests for exactly that have been open
+        on Atlassian’s public issue tracker since 2013 — CONFCLOUD-31974 and CONFCLOUD-73066 among
+        them — and remain in Gathering Interest. A REST API returning the list, CONFCLOUD-76815, is
+        marked In Progress, which will help developers who can script against it.
+      </p>
+      <p>
+        In practice this means the restriction layer either gets excluded from the review scope, or
+        gets sampled, or gets assembled by hand into a spreadsheet that is stale before it is signed.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">04</div>
+    <div class="body">
+      <h2>What Warden produces</h2>
+      <p>
+        Warden inventories every view- or edit-restricted page across the whole site and exports it.
+        Mapped onto the four requirements above:
+      </p>
+      <ul>
+        <li><strong>The snapshot.</strong> Every restricted page, who can view and edit it, and whether the restriction is set directly or inherited — with the ancestor it came from. Exported as CSV, UTF-8 with a byte-order mark so it opens correctly in Excel and Google Sheets. The report carries the timestamp it was built.</li>
+        <li><strong>Completeness, honestly reported.</strong> The scan walks every space. Very large sites hit a page cap, and when that happens the report is badged <strong>partial</strong> rather than presenting itself as exhaustive. An auditor would rather see a stated limit than an unstated one.</li>
+        <li><strong>The difference since last time.</strong> Every scan is compared with the previous one. A banner reports how many red flags are new and how many were resolved, each new finding is marked, and the red-flags CSV carries a <strong>New since last scan</strong> column — so a quarterly review can begin from what changed.</li>
+        <li><strong>The findings worth acting on.</strong> Restrictions naming a deactivated user, an empty group, or a principal that no longer exists — plus pages where every grantee is dead, so the intended audience is locked out entirely. These are the items a reviewer should be spending their judgement on.</li>
+      </ul>
+      <p>
+        A daily automatic re-scan keeps the snapshot current between reviews, and you can run one on
+        demand at any time.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">05</div>
+    <div class="body">
+      <h2>What it does not do — read this part</h2>
+      <ul>
+        <li>
+          <strong>It does not make you compliant, and it does not claim to.</strong> It produces
+          evidence. A human still reviews it, decides, acts, and signs. There is no product that can
+          do that part, and treating a report as a control is how audits fail.
+        </li>
+        <li>
+          <strong>It is not a historical change log.</strong> A Forge app cannot reconstruct who
+          changed a restriction and when, before it was installed. The “since last scan” comparison
+          starts at your second scan. If your auditor specifically wants a change history rather than
+          periodic snapshots, this is not that, and no amount of configuration will make it that.
+        </li>
+        <li>
+          <strong>It does not remediate.</strong> Warden’s manifest declares no write scope for
+          Confluence content, so it cannot alter a restriction. That is a deliberate design decision —
+          a read-only tool has a much smaller blast radius in an access-control context — but it does
+          mean the fixing is your job.
+        </li>
+        <li>
+          <strong>Deactivated-user detection is best-effort</strong> under the Runs on Atlassian
+          constraints, while the empty-group and orphaned-principal flags are exact. Worth knowing
+          before you present the output as definitive.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">06</div>
+    <div class="body">
+      <h2>Where it runs, and what that is worth</h2>
+      <p>
+        Warden carries Atlassian’s <strong>Runs on Atlassian</strong> badge. It runs entirely inside
+        your own Atlassian cloud with no external servers, so the inventory of who can see what is
+        never transmitted to a vendor. Its scopes are read-only and in-tenant:
+        <code>read:page</code>, <code>read:space</code>, <code>read:content-details</code>,
+        <code>read:group</code> and <code>read:user</code> — all Confluence-scoped — plus
+        <code>storage:app</code> for the snapshot. There is no write scope in the manifest.
+      </p>
+      <p>
+        For a tool whose entire subject matter is access control, that is a meaningful property: adding
+        it does not add a data processor, and it does not add a system that could change your
+        restrictions.
+      </p>
+      <p>
+        Two honest qualifications. First, running on Atlassian means the app inherits Atlassian’s SOC 2
+        and ISO 27001 posture for <em>where it runs</em> — it is not a certification held by Slate, and
+        it does not substitute for your own controls. Second, roughly a third of the Marketplace
+        carries this badge, so it helps an app pass an enterprise filter rather than distinguishing it.
+        Slate is <strong>not</strong> Cloud Fortified, which several larger vendors are; if your
+        procurement process requires that, Warden does not qualify today.
+      </p>
+      <p>
+        The full report — inventory, red flags and the daily re-scan — is free at any team size. CSV
+        export, which is the artefact you actually file, is the paid part: free for sites of 10 users
+        or fewer, and from $1.10 per user per month above that.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num plain">▪</div>
+    <div class="body">
+      <h2>Questions</h2>
+      <dl class="faq">
+        <dt>Does Warden make my Confluence SOC 2 compliant?</dt>
+        <dd>No. No app can. It produces point-in-time evidence about page restrictions that a human reviews, acts on and signs off. Compliance is the outcome of your controls and your auditor’s opinion of them.</dd>
+        <dt>What part of an access review does it cover?</dt>
+        <dd>Page restrictions in Confluence, and only those. It does not cover space permissions, product access, group provisioning or anything in Jira. It exists to close the one part of the review Confluence Cloud will not show you across the site.</dd>
+        <dt>Can it show what changed since our last review?</dt>
+        <dd>Yes, from the second scan onwards. Each scan is compared with the previous one, new and resolved red flags are counted, and the red-flags CSV carries a New since last scan column. It cannot show changes made before the app was installed.</dd>
+        <dt>Is the export usable as audit evidence?</dt>
+        <dd>It is a dated, complete CSV of the restricted pages and the flagged findings, with partial scans marked as partial. Whether that satisfies a particular auditor is between you and them, and it is only evidence of the state — evidence of review is your record of what you decided.</dd>
+        <dt>Does our page content leave Atlassian?</dt>
+        <dd>No. Warden runs inside your own Atlassian cloud under the Runs on Atlassian badge, with read-only Confluence scopes and no external servers. The snapshot is stored in Atlassian-hosted storage in your tenant.</dd>
+        <dt>Can it fix the problems it finds?</dt>
+        <dd>No, deliberately. Its manifest carries no write scope for Confluence content, so it is incapable of modifying a restriction. It reports; you remediate.</dd>
+        <dt>Is Slate Cloud Fortified?</dt>
+        <dd>No. Cloud Fortified covers vendor operational maturity — reliability commitments, incident management, a bug bounty — and is earned over operating history. If your procurement requires it, Warden does not currently qualify.</dd>
+      </dl>
+      <p style="margin-top:1.4rem">
+        <a class="cta" href="https://marketplace.atlassian.com/apps/2132771964">See Warden on the Atlassian Marketplace</a>
+      </p>
+      <p style="margin-top:0.9rem">
+        Also worth reading:
+        <a href="../warden/find-restricted-pages-confluence.html">finding every restricted page in Confluence</a> ·
+        <a href="../warden/who-can-see-this-confluence-page.html">who can actually see this page</a> ·
+        <a href="../warden/privacy.html">Warden’s privacy policy</a>.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p>Slate · small, focused Atlassian apps that run on Atlassian.</p>
+    <p>Confluence is a trademark of Atlassian. SOC 2 is a trademark of the AICPA. ISO 27001 is a standard of the International Organization for Standardization. Slate is not affiliated with any of them beyond being an Atlassian Marketplace partner, and nothing here is compliance advice.</p>
+    <p>Support: <a href="mailto:phuongdang12697@gmail.com">phuongdang12697@gmail.com</a> · <a href="../">All documentation</a></p>
+  </footer>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Access review evidence for Confluence, without leaving Atlassian",
+      "author": { "@type": "Organization", "name": "Slate" },
+      "publisher": { "@type": "Organization", "name": "Slate" },
+      "datePublished": "2026-08-21"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does Warden make my Confluence SOC 2 compliant?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. No app can. It produces point-in-time evidence about page restrictions that a human reviews, acts on and signs off. Compliance is the outcome of your controls and your auditor's opinion of them." }
+        },
+        {
+          "@type": "Question",
+          "name": "What part of an access review does Warden cover?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Page restrictions in Confluence, and only those. It does not cover space permissions, product access, group provisioning or anything in Jira." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can it show what changed since our last review?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, from the second scan onwards. Each scan is compared with the previous one and the red-flags CSV carries a New since last scan column. It cannot show changes made before the app was installed." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can Warden fix the problems it finds?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No, deliberately. Its manifest carries no write scope for Confluence content, so it is incapable of modifying a restriction. It reports; you remediate." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Slate Cloud Fortified?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. Cloud Fortified covers vendor operational maturity and is earned over operating history. If your procurement requires it, Warden does not currently qualify." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+</body>
+</html>

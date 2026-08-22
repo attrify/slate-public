@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An honest comparison of Pact and Appfire Time to SLA for Jira: setup effort, alerting design, where each app runs, and real per-user prices. See the numbers.">
+<link rel="canonical" href="https://attrify.github.io/slate-public/pact/time-to-sla-alternative.html">
+<link rel="stylesheet" href="../slate-seo.css">
+<title>Time to SLA Alternative for Jira Software Teams | Pact</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+</head>
+<body>
+
+
+<div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="../">Slate</a><span>›</span><a href="../">Pact</a><span>›</span>Time to SLA alternative
+  </nav>
+
+  <header class="masthead">
+    <p class="vendor">Slate</p>
+    <h1>A Runs-on-Atlassian alternative to Time to SLA</h1>
+    <p class="standfirst">
+      Time to SLA is the best-selling SLA app on the Atlassian Marketplace, and it earned that
+      position. This page is not an argument that it is bad — it is an honest account of where Pact
+      differs, including the several places where Time to SLA is clearly the better choice.
+    </p>
+  </header>
+
+  <div class="definition">
+    <p>
+      <strong>Time to SLA</strong> (by Appfire) and <strong>Pact</strong> (by Slate) both add
+      service-level agreements to Jira: a countdown on each issue, notifications before and at breach,
+      and reporting on how often targets were met. The practical differences for most teams are four —
+      how much configuration you do before anything works, where the app runs, what the price is at
+      your size, and how much product maturity sits behind it.
+    </p>
+  </div>
+
+  <section>
+    <div class="num">01</div>
+    <div class="body">
+      <h2>The short version</h2>
+      <div class="verdict">
+        <dl>
+          <dt>Pact is best for</dt>
+          <dd>
+            Jira Software teams who want SLAs working within minutes rather than after a configuration
+            session, who want the app to run inside their own Atlassian cloud with no data egress, and
+            who are price-sensitive — Pact costs roughly a third to two-thirds less per user at every
+            tier measured below.
+          </dd>
+          <dt>Time to SLA is best for</dt>
+          <dd>
+            Teams who want a proven product with a long track record — 236 reviews averaging 4.80 out
+            of 5, and roughly 3,400 active installs when this page was written — who need Cloud
+            Fortified status for procurement, who run Jira Service Management as well as Jira
+            Software, or who depend on a specific capability in its considerably wider feature set.
+          </dd>
+          <dt>Bottom line</dt>
+          <dd>
+            If you are on Jira Software, want SLAs quickly, and care about where your data is
+            processed, Pact is worth an hour of evaluation — the panel, the policies and the alerting
+            are free at any team size, so trying it costs nothing. If your organisation asks “has this
+            been proven at scale?” or requires Cloud Fortified, Time to SLA answers that today and
+            Pact does not.
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">02</div>
+    <div class="body">
+      <h2>What both apps do</h2>
+      <p>
+        Both solve the same gap. Jira Software has no native SLAs — that engine lives in Jira Service
+        Management — yet plenty of work carries a deadline without needing a service desk around it.
+        Both apps therefore compute a clock from the issue’s own change history, show its state on the
+        issue, notify people as the deadline approaches, and report on the outcome.
+      </p>
+      <p>
+        Time to SLA describes itself on its listing as the “best-selling service level agreement (SLA)
+        tracking app with solid configuration, reporting &amp; search features”, and summarises the job
+        as: define SLAs, see a countdown to the target date, and configure notifiers for issues close
+        to critical time or just after breach. That is a fair description of what Pact does too. The
+        disagreement between the two products is not about the goal.
+      </p>
+      <p>
+        The scale gap is real and worth stating first. Read from Atlassian Marketplace public data in
+        August 2026, Time to SLA had roughly 3,378 active installs, 236 reviews and a 4.80 average
+        rating. Pact is new. No amount of argument on this page changes that, and if a long review
+        history is what your organisation needs, you already have your answer.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">03</div>
+    <div class="body">
+      <h2>Where Pact differs</h2>
+
+      <h3>A working SLA before you configure anything</h3>
+      <p>
+        Open an issue, choose <strong>Apps → SLA</strong>, and Pact already shows a default SLA derived
+        from that project’s own statuses. Nothing has been set up; the panel is populated because the
+        app inferred a sensible starting point from the workflow it found.
+      </p>
+      <p>
+        This matters more than it sounds. The usual failure mode of an SLA evaluation is not that the
+        app is bad — it is that somebody installs it, meets a blank policy editor, intends to come back
+        to it, and never does. Starting from something you correct is a different experience from
+        starting from something you must author.
+      </p>
+
+      <h3>Alerting that is opt-in, and that fires without an event</h3>
+      <p>
+        Pact emails the reporter and assignee once when an issue goes at-risk and once when it
+        breaches. Two design decisions sit behind that sentence.
+      </p>
+      <p>
+        The first: the email checkbox is <strong>off by default on a new policy</strong>. A policy you
+        have just written is a guess about thresholds, and a sweep runs every five minutes across every
+        configured project — so switching alerting on is a deliberate act after the numbers look right,
+        not something that happens the moment you click Save. Anyone who has watched a well-meaning
+        configuration change generate several hundred emails will recognise why.
+      </p>
+      <p>
+        The second: that five-minute sweep exists to catch the breach that generates no event. If
+        alerting is driven only by status changes and edits, the most dangerous issue on the board —
+        the one nobody has touched for a week — silently sails past its deadline without notifying
+        anybody. Pact re-checks on a timer precisely so untouched issues are still caught.
+      </p>
+
+      <h3>Warnings for policies that break silently</h3>
+      <p>
+        Three configuration mistakes produce no error and no obviously wrong behaviour, which is what
+        makes them expensive. A status ticked as both running and stopping the clock: the stop wins, so
+        time spent there is never counted, and your numbers are quietly too good. A policy with no stop
+        status at all: nothing can ever settle, so every matching issue eventually breaches and the
+        report becomes noise. Two policies sharing a name: the report and the alert emails become
+        ambiguous.
+      </p>
+      <p>
+        Pact checks for all three after you save and lists them on the settings page. They are warnings
+        rather than blockers — the policy still saves — but they turn up when you are looking at the
+        policy, not three weeks later when someone questions the report.
+      </p>
+
+      <h3>Runs on Atlassian</h3>
+      <p>
+        Pact carries Atlassian’s <strong>Runs on Atlassian</strong> badge: it runs and stores its
+        configuration entirely inside your own Atlassian cloud, with no external servers. Its alerts go
+        through Jira’s own in-tenant notification system rather than an external mail provider, and it
+        has no Slack integration and no outbound webhooks — deliberately, since either would send data
+        outside Atlassian and forfeit the badge.
+      </p>
+      <p>
+        Checked on the Marketplace in August 2026, <strong>Time to SLA’s listing does not carry that
+        badge</strong>. That is a statement about where processing happens, and nothing more. It is not
+        an accusation about what Appfire does with data — plenty of excellent apps are hosted by their
+        vendor, and the absence of the badge does not by itself tell you an app sends data anywhere.
+        Verify it yourself on either listing if it matters to your security review.
+      </p>
+      <p>
+        Worth keeping in proportion: roughly a third of the Marketplace carries the Runs on Atlassian
+        badge. It is hygiene that helps an app pass an enterprise filter, not a reason on its own to
+        choose one product over another.
+      </p>
+
+      <h3>Price, which here is a genuine difference</h3>
+      <p>
+        Usually price is the weakest argument in a comparison like this. In this particular pairing it
+        is not: the gap is between a third and two-thirds at every tier we measured. The table is in
+        section 05.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">04</div>
+    <div class="body">
+      <h2>Where Time to SLA is the better fit</h2>
+      <p>
+        Written plainly, because a comparison page that only flatters its own product is worth nothing
+        to you.
+      </p>
+      <ul>
+        <li>
+          <strong>Track record.</strong> 236 reviews at 4.80 stars and thousands of teams running it in
+          production. Pact has none of that yet, and “new” is a legitimate reason to say no.
+        </li>
+        <li>
+          <strong>Cloud Fortified.</strong> Time to SLA holds Atlassian’s Cloud Fortified status, which
+          covers operational maturity — reliability commitments, incident management, a bug bounty.
+          Slate does not hold it. If procurement asks, that is a genuine gap on our side, and it is one
+          that takes months of operating history to close rather than a feature we can ship.
+        </li>
+        <li>
+          <strong>A vendor with a support organisation.</strong> Appfire is a large publisher with
+          staffed support. Slate is small. For some buyers that is the whole decision.
+        </li>
+        <li>
+          <strong>Breadth of features.</strong> Time to SLA has been developed for years and its
+          configuration, reporting and search surface is considerably wider than Pact’s. We have
+          deliberately not enumerated its feature list here, because we have not audited it and would
+          rather say nothing than describe a competitor’s product inaccurately — read its listing.
+        </li>
+        <li>
+          <strong>Jira Service Management alongside Jira Software.</strong> If you run both and want one
+          SLA tool across them, that is not what Pact is built for. Pact exists specifically to serve
+          Jira Software teams who are not on JSM.
+        </li>
+        <li>
+          <strong>Reporting depth.</strong> Pact’s compliance report scans up to the 300 most recent
+          issues in a project. That is sized for a team’s regular review, not for a full-history audit
+          of a very large project.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">05</div>
+    <div class="body">
+      <h2>Pricing</h2>
+      <p>
+        Both are sold through Atlassian with per-user monthly pricing, and both are free for sites of
+        10 users or fewer. Figures below were read from the Marketplace pricing API in August 2026 —
+        check current prices before you buy, because they change.
+      </p>
+      <div class="scroll">
+        <table>
+          <caption>Per user, per month, monthly billing. Marketplace pricing API, August 2026.</caption>
+          <thead>
+            <tr><th>Up to</th><th class="num-cell">Pact</th><th class="num-cell">Time to SLA</th><th>Difference</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>10 users</td><td class="num-cell">Free</td><td class="num-cell">Free</td><td>Both free at this size</td></tr>
+            <tr><td>100 users</td><td class="num-cell">$1.20</td><td class="num-cell">$1.82</td><td>Pact is 34% cheaper</td></tr>
+            <tr><td>250 users</td><td class="num-cell">$0.87</td><td class="num-cell">$1.72</td><td>Pact is 49% cheaper</td></tr>
+            <tr><td>1,000 users</td><td class="num-cell">$0.38</td><td class="num-cell">$1.04</td><td>Pact is 63% cheaper</td></tr>
+            <tr><td>2,500 users</td><td class="num-cell">$0.22</td><td class="num-cell">$0.33</td><td>Pact is 33% cheaper</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        On a 250-user site that is a difference of a little over two hundred dollars a month. Whether
+        that matters depends entirely on your situation — for a team that already trusts Time to SLA
+        and depends on its feature set, it plainly should not be the deciding factor. For a team
+        choosing an SLA tool for the first time, it is real money.
+      </p>
+      <div class="note">
+        <p>
+          <strong>What is free in Pact is unusual, and worth checking against your needs.</strong> The
+          issue panel, the full policy configuration, and the at-risk and breach emails are free on
+          every project at any team size — including sites far above ten users. The paid surface is the
+          compliance report, the breached-issue drill-down and the two CSV exports. So the alerting,
+          which is the reason most teams adopt an SLA tool at all, sits in the free tier.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">06</div>
+    <div class="body">
+      <h2>Evaluating both without committing to either</h2>
+      <p>
+        You do not have to choose in order to compare. Both apps read the same Jira change history and
+        neither writes to your issues, so running them side by side for a fortnight changes nothing
+        about your data or your workflows.
+      </p>
+      <ul>
+        <li>Install Pact and open any issue via <strong>Apps → SLA</strong>. The default SLA is already there — that is the zero-configuration claim, and it either holds on your workflow or it does not.</li>
+        <li>In <strong>Project settings → SLA</strong>, adjust the starter policy to a target you actually promise. Save, and check whether the policy warnings flag anything — they often catch a status that both runs and stops the clock.</li>
+        <li>Leave email off for the first few days. Watch the panel on real issues and confirm the states match your intuition before anything is sent to anybody.</li>
+        <li>Compare the same period in both tools. Expect per-status elapsed times to agree, since both replay the same changelog, and expect headline compliance percentages to differ if one counts in-flight work as a miss and the other does not. Pact’s Met % is Met ÷ (Met + Breached), so unfinished work is excluded.</li>
+        <li>Keep whichever you prefer and uninstall the other at a billing boundary. Nothing of yours left your tenant through Pact either way.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="num plain">▪</div>
+    <div class="body">
+      <h2>Questions</h2>
+      <dl class="faq">
+        <dt>Is Pact a drop-in replacement for Time to SLA?</dt>
+        <dd>For working-hour SLA clocks on Jira Software issues, at-risk and breach alerting, and met/breach reporting with CSV export, it covers the same ground. For Time to SLA’s wider configuration, reporting and search features, and for Jira Service Management, it does not — Pact is built for Jira Software teams who are not on JSM.</dd>
+        <dt>Will the numbers match?</dt>
+        <dd>Per-status elapsed times should agree, since both compute from the same Jira changelog. Headline compliance figures can differ depending on whether in-flight work counts as a miss. Pact reports Met ÷ (Met + Breached), so starting a piece of work cannot lower your compliance percentage.</dd>
+        <dt>Does Time to SLA send data outside Atlassian?</dt>
+        <dd>Slate does not assert that and has no basis to. What is checkable is that its listing did not carry the Runs on Atlassian badge in August 2026, while Pact’s does. Where a vendor processes data is a question for that vendor’s listing and documentation.</dd>
+        <dt>Can I run both apps at the same time?</dt>
+        <dd>Yes. Both are read-only with respect to your issues, so they do not interfere with each other or with your workflows.</dd>
+        <dt>Is Pact Cloud Fortified?</dt>
+        <dd>No. Time to SLA is; Slate is not. Cloud Fortified covers operational maturity such as reliability commitments, incident management and a bug bounty, and it requires operating history rather than a feature release. If your procurement process requires it, Pact does not currently qualify.</dd>
+        <dt>What happens if I uninstall Pact?</dt>
+        <dd>Its policies and the small per-issue alert markers are deleted with the app. They lived in Atlassian-hosted storage inside your own tenant, and no copy exists anywhere else.</dd>
+      </dl>
+      <p style="margin-top:1.4rem">
+        <a class="cta" href="https://marketplace.atlassian.com/apps/1609771216">See Pact on the Atlassian Marketplace</a>
+      </p>
+      <p style="margin-top:0.9rem">
+        Also worth reading:
+        <a href="../pact/sla-time-and-report-alternative.html">Pact compared with SLA Time and Report</a> ·
+        <a href="../pact/sla-without-jsm.html">SLAs on Jira Software without JSM</a> ·
+        <a href="../pact/user-guide.html">the Pact user guide</a>.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p>Slate · small, focused Atlassian apps that run on Atlassian.</p>
+    <p>Time to SLA is a trademark of Appfire. Jira is a trademark of Atlassian. Slate is not affiliated with Appfire. Install counts, ratings and prices were read from Atlassian Marketplace public data in August 2026.</p>
+    <p>Support: <a href="mailto:phuongdang12697@gmail.com">phuongdang12697@gmail.com</a> · <a href="../">All documentation</a></p>
+  </footer>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "A Runs-on-Atlassian alternative to Time to SLA",
+      "author": { "@type": "Organization", "name": "Slate" },
+      "publisher": { "@type": "Organization", "name": "Slate" },
+      "datePublished": "2026-08-21"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is Pact a drop-in replacement for Time to SLA?",
+          "acceptedAnswer": { "@type": "Answer", "text": "For working-hour SLA clocks on Jira Software issues, at-risk and breach alerting, and met/breach reporting with CSV export, it covers the same ground. For Time to SLA's wider configuration, reporting and search features, and for Jira Service Management, it does not." }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Time to SLA send data outside Atlassian?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Slate does not assert that. What is checkable is that its listing did not carry the Runs on Atlassian badge in August 2026, while Pact's does." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I run both apps at the same time?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Both are read-only with respect to your issues, so they do not interfere with each other or with your workflows." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Pact Cloud Fortified?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. Time to SLA is; Slate is not. Cloud Fortified covers operational maturity such as reliability commitments, incident management and a bug bounty, and it requires operating history rather than a feature release." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+</body>
+</html>
