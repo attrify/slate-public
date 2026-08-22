@@ -3,19 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Provider-Specific Terms — Slate, publisher of Atlassian Marketplace apps.">
-<link rel="canonical" href="https://attrify.github.io/slate-public/terms.html">
+<meta name="description" content="Ballast — Privacy Policy — Slate, publisher of Atlassian Marketplace apps.">
+<link rel="canonical" href="https://attrify.github.io/slate-public/ballast/privacy.html">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Slate">
-<meta property="og:title" content="Slate Provider-Specific Terms">
-<meta property="og:description" content="Provider-Specific Terms — Slate, publisher of Atlassian Marketplace apps.">
-<meta property="og:url" content="https://attrify.github.io/slate-public/terms.html">
+<meta property="og:title" content="Ballast Privacy Policy">
+<meta property="og:description" content="Ballast — Privacy Policy — Slate, publisher of Atlassian Marketplace apps.">
+<meta property="og:url" content="https://attrify.github.io/slate-public/ballast/privacy.html">
 <meta name="twitter:card" content="summary">
-<title>Slate Provider-Specific Terms</title>
+<title>Ballast Privacy Policy</title>
 <style>
-  /* Slate document system, same as the privacy policies and user guides — one
-     visual identity across every public Slate document. Numbering is real: these
-     are numbered provider terms that attach to a numbered standard agreement. */
+  /* Slate document system — mineral neutrals, one wet-slate teal. For Warden the
+     read-only claim is the whole product, so the seal block carries it rather
+     than burying it in §6 prose. */
   :root {
     --ground: #F5F7F8;
     --surface: #FFFFFF;
@@ -118,40 +118,38 @@
 <body>
 
 
+
 <div class="wrap">
   <header class="masthead">
     <p class="vendor">Slate</p>
-    <h1>Provider-Specific Terms</h1>
+    <h1>Ballast Privacy Policy</h1>
     <p class="standfirst">
-      Slate's apps are licensed under the <strong>Bonterms Standard End User Agreement</strong> as
-      adopted through the Atlassian Marketplace. These Provider-Specific Terms add the details that
-      the Standard Agreement leaves to the provider &mdash; support, security and data handling.
-      They do not replace it.
+      Ballast reports on the attachments across your Confluence site &mdash; what is largest, oldest,
+      duplicated, and what nothing appears to reference. It runs entirely inside your own Atlassian
+      cloud environment, reads content bodies only to extract embedded file references, and holds no
+      write scope at all.
     </p>
     <dl class="stamps">
-      <div class="stamp"><dt>Effective</dt><dd>19 August 2026</dd></div>
-      <div class="stamp"><dt>Provider</dt><dd>Slate</dd></div>
-      <div class="stamp"><dt>Applies to</dt><dd>Dwell &middot; Pact &middot; Warden</dd></div>
-      <div class="stamp"><dt>Standard agreement</dt><dd>Bonterms Standard EUA v1.0</dd></div>
+      <div class="stamp"><dt>Effective</dt><dd>22 August 2026</dd></div>
+      <div class="stamp"><dt>Vendor</dt><dd>Slate</dd></div>
+      <div class="stamp"><dt>App</dt><dd>Ballast &mdash; Attachment Audit for Confluence</dd></div>
+      <div class="stamp"><dt>Platform</dt><dd>Atlassian Forge &middot; Runs on Atlassian</dd></div>
     </dl>
   </header>
 
   <section>
     <div class="num">&sect; 01</div>
     <div class="body">
-      <h2>What governs your use of the apps</h2>
+      <h2>Summary</h2>
       <p>
-        Your right to use a Slate app comes from the
-        <a href="https://www.atlassian.com/licensing/marketplace/end-user-agreement-v1">Bonterms
-        Standard End User Agreement</a>, which Slate has adopted for every app it lists on the
-        Atlassian Marketplace. Purchase, billing and renewal are handled by Atlassian under the
-        Atlassian Marketplace Terms of Use.
+        Ballast (&ldquo;the App&rdquo;) is an Atlassian Forge app that participates in Atlassian's
+        <strong>Runs on Atlassian</strong> program. It runs entirely inside your Atlassian cloud
+        environment. It does <strong>not</strong> send your data to Slate's servers or to any third
+        party &mdash; there are no external servers, no analytics calls, and no data egress.
       </p>
       <p>
-        This page is the &ldquo;Provider-Specific Terms&rdquo; the Standard Agreement refers to. Where
-        the Standard Agreement leaves something to the provider, the answer is here. Where this page
-        is silent, the Standard Agreement applies unchanged &mdash; including its governing-law
-        default, which Slate does <strong>not</strong> override.
+        The App is <strong>read-only</strong>: it reports on your attachments; it never deletes,
+        moves or modifies one, and the manifest declares no write scope with which it could.
       </p>
     </div>
   </section>
@@ -159,40 +157,67 @@
   <section>
     <div class="num">&sect; 02</div>
     <div class="body">
-      <h2>Apps covered</h2>
-      <p>These terms apply to every app published by Slate on the Atlassian Marketplace:</p>
+      <h2>Data we access</h2>
+      <p>
+        The App reads only what an attachment audit needs, using the granted Atlassian scopes
+        &mdash; all read-only, in-tenant, on your behalf:
+      </p>
       <div class="scopes">
         <div class="scope">
-          <code>Dwell</code>
-          <span>Time in Status, Cycle &amp; Lead Time for Jira.</span>
+          <code>read:attachment:confluence</code>
+          <span>Attachment metadata: file id, name, media type, size in bytes, creation date, and which content it hangs off. The App does <strong>not</strong> download attachment contents.</span>
         </div>
         <div class="scope">
-          <code>Pact</code>
-          <span>SLAs for Jira Software, without Jira Service Management.</span>
+          <code>read:page:confluence</code>
+          <span>Page bodies, read <strong>only</strong> to find embedded file references.</span>
         </div>
         <div class="scope">
-          <code>Warden</code>
-          <span>Access Audit for Confluence.</span>
+          <code>read:blogpost:confluence</code>
+          <span>Blog-post bodies, for the same reason.</span>
+        </div>
+        <div class="scope">
+          <code>read:comment:confluence</code>
+          <span>Footer and inline comment bodies. A file embedded only in a comment is genuinely in use, and a scan that skipped comments would wrongly report it as unreferenced.</span>
+        </div>
+        <div class="scope">
+          <code>read:custom-content:confluence</code>
+          <span>Custom content bodies &mdash; other apps store references here.</span>
+        </div>
+        <div class="scope">
+          <code>read:space:confluence</code>
+          <span>Spaces, and the rendered space description: a space header image is referenced there and nowhere else.</span>
+        </div>
+        <div class="scope">
+          <code>storage:app</code>
+          <span>Store the report snapshot.</span>
         </div>
       </div>
+      <p>
+        For every body it reads, the App extracts the file ids that body embeds and
+        <strong>discards the body</strong>. It does not store, index or transmit the text of your
+        content.
+      </p>
     </div>
   </section>
 
   <section>
     <div class="num">&sect; 03</div>
     <div class="body">
-      <h2>Support policy</h2>
+      <h2>Data we store</h2>
       <p>
-        Support is provided by email at
-        <a href="mailto:phuongdang12697@gmail.com">phuongdang12697@gmail.com</a>, in English, for
-        every customer including those on the free tier. There is no separate paid support contract
-        and no additional support fee.
+        The App stores one <strong>report snapshot</strong> in <strong>Atlassian-hosted Forge
+        storage</strong>, which lives inside your Atlassian cloud environment and inherits its
+        data-residency region. The snapshot contains only what the report shows:
       </p>
       <p>
-        Slate is a small independent publisher and answers on a <strong>best-effort</strong> basis;
-        no response time or uptime commitment is offered, and none should be inferred. When
-        reporting a problem, include the app name, the Atlassian site, and what you saw &mdash; that
-        is usually enough to reproduce it.
+        attachment metadata &mdash; file id, file name, media type, size and creation date; the id
+        of the page, blog post or custom content each file hangs off; whether a reference to each
+        file was found, and in how many surfaces the scan looked; duplicate groupings; and totals
+        per media type.
+      </p>
+      <p>
+        Page bodies are <strong>not</strong> stored. No attachment content is ever read or stored.
+        Each scan replaces the previous snapshot rather than accumulating history.
       </p>
     </div>
   </section>
@@ -200,43 +225,33 @@
   <section>
     <div class="num">&sect; 04</div>
     <div class="body">
-      <h2>Security measures</h2>
+      <h2>Personal data</h2>
       <p>
-        Every Slate app is an Atlassian Forge app in the <strong>Runs on Atlassian</strong> program.
-        It executes inside your own Atlassian cloud environment and declares no external
-        permissions and no web triggers, so there is no code path by which your data can leave your
-        Atlassian tenant. The apps therefore inherit Atlassian's platform security controls,
-        including SOC 2 Type II and ISO/IEC 27001, and Atlassian's data-residency options.
+        The App does not store display names, email addresses or account identifiers. An
+        attachment's uploader is not recorded, so no <code>report:personal-data</code> reporting
+        obligation arises and the scope is not requested.
       </p>
-      <p>
-        Each app requests the narrowest scopes its features need, and those scopes are shown to an
-        administrator on the install screen before installation is approved. Warden requests
-        read-only scopes only, and so cannot modify anything it audits.
-      </p>
-    </div>
-    <div class="seal">
-      <p>
-        <strong>Slate never receives your data.</strong> Because the apps run in-tenant with no
-        egress, Slate operates no servers that hold customer data, and there is nothing for Slate to
-        breach, sell, or hand over. This is a property of how the apps are built, not a promise
-        about how they are operated.
-      </p>
+      <div class="note">
+        <p>
+          <strong>One thing worth stating plainly: file names are user-supplied text and can
+          contain personal data.</strong> <code>payroll-2026-jane-doe.xlsx</code> is a real thing
+          people upload. The App stores file names because a storage report without them is
+          unusable, and it shows them to Confluence site administrators, who can already see them
+          in Confluence itself. It does not transmit them anywhere.
+        </p>
+      </div>
     </div>
   </section>
 
   <section>
     <div class="num">&sect; 05</div>
     <div class="body">
-      <h2>Data protection</h2>
+      <h2>Data we do NOT collect</h2>
       <p>
-        What each app reads and stores is set out in its privacy policy, linked from its Marketplace
-        listing. In summary: apps read only what their declared scopes allow, store derived data in
-        Atlassian-hosted Forge storage inside your tenant, and copy nothing outside Atlassian.
-        Uninstalling an app removes its stored data from your environment.
-      </p>
-      <p>
-        Slate engages <strong>no sub-processors</strong>. Atlassian hosts the apps as part of its own
-        platform; there is no third party in the chain.
+        We do not sell, rent, or share your data. We do not use it for advertising or to train
+        machine-learning models. We do not receive a copy of it &mdash; it never leaves your
+        Atlassian tenant. We do not read your page content beyond extracting embedded file
+        references, and we never modify or delete an attachment.
       </p>
     </div>
   </section>
@@ -244,15 +259,10 @@
   <section>
     <div class="num">&sect; 06</div>
     <div class="body">
-      <h2>Ordering, billing and refunds</h2>
+      <h2>Sub-processors</h2>
       <p>
-        Slate apps are sold through the Atlassian Marketplace. Atlassian handles ordering, invoicing,
-        payment, renewal and refunds under its own policies; Slate does not process payments and
-        does not hold payment details.
-      </p>
-      <p>
-        Every Slate app is <strong>free for instances of up to 10 users</strong>. Above that, the paid
-        features listed on each app's Marketplace page require an active licence or trial.
+        None beyond Atlassian itself (the platform hosting the App). Because the App runs on
+        Atlassian with no egress, no additional sub-processors are involved.
       </p>
     </div>
   </section>
@@ -260,23 +270,29 @@
   <section>
     <div class="num">&sect; 07</div>
     <div class="body">
-      <h2>Acceptable use</h2>
+      <h2>Security</h2>
       <p>
-        Use the apps for their intended purpose within your own Atlassian instance. Do not attempt to
-        circumvent licensing checks, resell access, or use an app to process data you are not
-        authorised to access in Atlassian &mdash; the apps resolve permissions through Atlassian, so
-        doing so would in any case fail.
+        The App inherits Atlassian's platform security controls, including SOC 2 Type II and
+        ISO/IEC 27001, and Atlassian's data-residency options. The report is an administrative
+        surface, available to your Confluence site administrators.
       </p>
+      <div class="seal">
+        <p>
+          <strong>No write scope.</strong> The manifest declares read scopes only. There is no
+          delete button in the App, and no permission behind one. Ballast could not remove an
+          attachment if a bug tried to.
+        </p>
+      </div>
     </div>
   </section>
 
   <section>
     <div class="num">&sect; 08</div>
     <div class="body">
-      <h2>Changes to these terms</h2>
+      <h2>Data retention and deletion</h2>
       <p>
-        Slate may update this page; material changes will be reflected here with a new effective
-        date. Changes apply to the version of an app published after the change.
+        The report snapshot is stored only while the App is installed. Uninstalling the App removes
+        the App's stored data from your Atlassian environment.
       </p>
     </div>
   </section>
@@ -284,15 +300,29 @@
   <section>
     <div class="num">&sect; 09</div>
     <div class="body">
+      <h2>Children</h2>
+      <p>The App is a business tool and is not directed to children under 16.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">&sect; 10</div>
+    <div class="body">
+      <h2>Changes</h2>
+      <p>We may update this policy; material changes will be reflected here with a new effective date.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">&sect; 11</div>
+    <div class="body">
       <h2>Contact</h2>
-      <p>
-        Slate &mdash; <a href="mailto:phuongdang12697@gmail.com">phuongdang12697@gmail.com</a>
-      </p>
+      <p>Questions or data requests: <a href="mailto:phuongdang12697@gmail.com">phuongdang12697@gmail.com</a></p>
     </div>
   </section>
 
   <footer>
-    Slate &middot; Provider-Specific Terms &middot; Effective 19 August 2026 &middot; Attaches to the Bonterms Standard End User Agreement v1.0
+    Slate &middot; Ballast &mdash; Attachment Audit for Confluence &middot; Privacy policy effective 22 August 2026
   </footer>
 </div>
 

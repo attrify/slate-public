@@ -15,6 +15,8 @@
 - [Pact — Privacy Policy](https://attrify.github.io/slate-public/pact/privacy.html)
 - [Pact — User Guide](https://attrify.github.io/slate-public/pact/user-guide.html)
 - [Warden — Privacy Policy](https://attrify.github.io/slate-public/warden/privacy.html)
+- [Ballast — Privacy Policy](https://attrify.github.io/slate-public/ballast/privacy.html)
+- [Ballast — User Guide](https://attrify.github.io/slate-public/ballast/user-guide.html)
 - [Warden — User Guide](https://attrify.github.io/slate-public/warden/user-guide.html)
 - [Provider-Specific Terms](https://attrify.github.io/slate-public/terms.html)
 - [Dwell — Time in Status with no data egress](https://attrify.github.io/slate-public/dwell/no-data-egress.html)

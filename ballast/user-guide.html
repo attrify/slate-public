@@ -3,19 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Provider-Specific Terms — Slate, publisher of Atlassian Marketplace apps.">
-<link rel="canonical" href="https://attrify.github.io/slate-public/terms.html">
+<meta name="description" content="Ballast — User Guide — Slate, publisher of Atlassian Marketplace apps.">
+<link rel="canonical" href="https://attrify.github.io/slate-public/ballast/user-guide.html">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Slate">
-<meta property="og:title" content="Slate Provider-Specific Terms">
-<meta property="og:description" content="Provider-Specific Terms — Slate, publisher of Atlassian Marketplace apps.">
-<meta property="og:url" content="https://attrify.github.io/slate-public/terms.html">
+<meta property="og:title" content="Ballast User Guide">
+<meta property="og:description" content="Ballast — User Guide — Slate, publisher of Atlassian Marketplace apps.">
+<meta property="og:url" content="https://attrify.github.io/slate-public/ballast/user-guide.html">
 <meta name="twitter:card" content="summary">
-<title>Slate Provider-Specific Terms</title>
+<title>Ballast User Guide</title>
 <style>
-  /* Slate document system, same as the privacy policies and user guides — one
-     visual identity across every public Slate document. Numbering is real: these
-     are numbered provider terms that attach to a numbered standard agreement. */
+  /* Slate document system. Warden's guide numbers three real steps — scan, read,
+     export — because that is the actual working order of an access review. The
+     red-flag list is a legend, so it is set as a definition list, not steps. */
   :root {
     --ground: #F5F7F8;
     --surface: #FFFFFF;
@@ -118,181 +118,195 @@
 <body>
 
 
+
 <div class="wrap">
   <header class="masthead">
     <p class="vendor">Slate</p>
-    <h1>Provider-Specific Terms</h1>
+    <h1>Ballast User Guide</h1>
     <p class="standfirst">
-      Slate's apps are licensed under the <strong>Bonterms Standard End User Agreement</strong> as
-      adopted through the Atlassian Marketplace. These Provider-Specific Terms add the details that
-      the Standard Agreement leaves to the provider &mdash; support, security and data handling.
-      They do not replace it.
+      Confluence Cloud shows attachments one page at a time, so nobody can answer &ldquo;what is our
+      storage actually going on?&rdquo;. Ballast answers it for the whole site in one report &mdash;
+      and is careful about the one question it cannot answer with certainty. It is
+      <strong>read-only</strong>: there is no delete button, and no write scope in the manifest.
     </p>
-    <dl class="stamps">
-      <div class="stamp"><dt>Effective</dt><dd>19 August 2026</dd></div>
-      <div class="stamp"><dt>Provider</dt><dd>Slate</dd></div>
-      <div class="stamp"><dt>Applies to</dt><dd>Dwell &middot; Pact &middot; Warden</dd></div>
-      <div class="stamp"><dt>Standard agreement</dt><dd>Bonterms Standard EUA v1.0</dd></div>
-    </dl>
   </header>
 
   <section>
-    <div class="num">&sect; 01</div>
+    <div class="num plain">&mdash;</div>
     <div class="body">
-      <h2>What governs your use of the apps</h2>
-      <p>
-        Your right to use a Slate app comes from the
-        <a href="https://www.atlassian.com/licensing/marketplace/end-user-agreement-v1">Bonterms
-        Standard End User Agreement</a>, which Slate has adopted for every app it lists on the
-        Atlassian Marketplace. Purchase, billing and renewal are handled by Atlassian under the
-        Atlassian Marketplace Terms of Use.
-      </p>
-      <p>
-        This page is the &ldquo;Provider-Specific Terms&rdquo; the Standard Agreement refers to. Where
-        the Standard Agreement leaves something to the provider, the answer is here. Where this page
-        is silent, the Standard Agreement applies unchanged &mdash; including its governing-law
-        default, which Slate does <strong>not</strong> override.
-      </p>
-    </div>
-  </section>
-
-  <section>
-    <div class="num">&sect; 02</div>
-    <div class="body">
-      <h2>Apps covered</h2>
-      <p>These terms apply to every app published by Slate on the Atlassian Marketplace:</p>
-      <div class="scopes">
-        <div class="scope">
-          <code>Dwell</code>
-          <span>Time in Status, Cycle &amp; Lead Time for Jira.</span>
+      <h2>What you get</h2>
+      <div class="surfaces">
+        <div class="surface-row">
+          <h3>Attachment audit</h3>
+          <p>Largest files, oldest files, totals by media type, and duplicate candidates &mdash; the four things that come from file metadata alone and are therefore certain.</p>
+          <p class="where">Confluence Settings &rarr; Apps &rarr; Ballast &mdash; Attachment Audit</p>
         </div>
-        <div class="scope">
-          <code>Pact</code>
-          <span>SLAs for Jira Software, without Jira Service Management.</span>
+        <div class="surface-row">
+          <h3>No reference found</h3>
+          <p>Files that no scanned surface points at, with the surfaces that were searched &mdash; and the ones that could not be &mdash; named on the same screen.</p>
+          <p class="where">In the report</p>
         </div>
-        <div class="scope">
-          <code>Warden</code>
-          <span>Access Audit for Confluence.</span>
+        <div class="surface-row">
+          <h3>CSV export</h3>
+          <p>Every file in the report, carrying the same coverage note in its first rows.</p>
+          <p class="where">In the report</p>
         </div>
       </div>
     </div>
   </section>
 
   <section>
-    <div class="num">&sect; 03</div>
+    <div class="num">01</div>
     <div class="body">
-      <h2>Support policy</h2>
+      <h2>Run a scan</h2>
       <p>
-        Support is provided by email at
-        <a href="mailto:phuongdang12697@gmail.com">phuongdang12697@gmail.com</a>, in English, for
-        every customer including those on the free tier. There is no separate paid support contract
-        and no additional support fee.
+        Go to <strong>Confluence Settings &rarr; Apps &rarr; Ballast &mdash; Attachment Audit</strong>
+        and click <strong>Run scan</strong>. The scan runs in the background, off the request clock,
+        so large sites don't time out; the report refreshes when it finishes. Ballast also
+        <strong>re-scans weekly</strong>.
       </p>
       <p>
-        Slate is a small independent publisher and answers on a <strong>best-effort</strong> basis;
-        no response time or uptime commitment is offered, and none should be inferred. When
-        reporting a problem, include the app name, the Atlassian site, and what you saw &mdash; that
-        is usually enough to reproduce it.
+        A scan does two passes: it lists every attachment on the site, then reads every surface that
+        can embed a file &mdash; pages, blog posts, footer and inline comments, custom content, and
+        space descriptions.
       </p>
     </div>
   </section>
 
   <section>
-    <div class="num">&sect; 04</div>
+    <div class="num">02</div>
     <div class="body">
-      <h2>Security measures</h2>
+      <h2>Read the certain half</h2>
       <p>
-        Every Slate app is an Atlassian Forge app in the <strong>Runs on Atlassian</strong> program.
-        It executes inside your own Atlassian cloud environment and declares no external
-        permissions and no web triggers, so there is no code path by which your data can leave your
-        Atlassian tenant. The apps therefore inherit Atlassian's platform security controls,
-        including SOC 2 Type II and ISO/IEC 27001, and Atlassian's data-residency options.
+        These four come from attachment metadata alone, so they are true regardless of what the
+        reference pass managed to read:
       </p>
-      <p>
-        Each app requests the narrowest scopes its features need, and those scopes are shown to an
-        administrator on the install screen before installation is approved. Warden requests
-        read-only scopes only, and so cannot modify anything it audits.
-      </p>
+      <dl class="defs">
+        <div>
+          <dt>Largest files</dt>
+          <dd>With the page each one hangs off. Click through to see it in context. This is nearly always where the recoverable space is.</dd>
+        </div>
+        <div>
+          <dt>Oldest files</dt>
+          <dd>Where to look first, <strong>not</strong> a delete list. A policy PDF from 2019 is old and entirely in use. Old <em>and</em> large together is a far better signal than either alone.</dd>
+        </div>
+        <div>
+          <dt>By type</dt>
+          <dd>Where the space actually went. Usually the surprise is video or design exports, not documents &mdash; chasing image counts is mostly wasted effort.</dd>
+        </div>
+        <div>
+          <dt>Possible duplicates</dt>
+          <dd>Same file name <strong>and</strong> same byte size, with what keeping one copy would free. Candidates, not proof: the API exposes no checksum, so two genuinely different files of identical name and size would appear here too.</dd>
+        </div>
+      </dl>
     </div>
-    <div class="seal">
+  </section>
+
+  <section>
+    <div class="num">03</div>
+    <div class="body">
+      <h2>Read the uncertain half carefully</h2>
       <p>
-        <strong>Slate never receives your data.</strong> Because the apps run in-tenant with no
-        egress, Slate operates no servers that hold customer data, and there is nothing for Slate to
-        breach, sell, or hand over. This is a property of how the apps are built, not a promise
-        about how they are operated.
+        The <strong>No reference found</strong> list is the one everybody wants, and the one to treat
+        with care. Ballast lists a file here when none of the surfaces it scanned embeds that file.
+        It does <strong>not</strong> call the file orphaned or unused, because that cannot be proven:
+      </p>
+      <dl class="defs">
+        <div>
+          <dt>Whiteboards and databases cannot be read</dt>
+          <dd>Both can embed files, and neither can be read through the Confluence API at all &mdash; the endpoints return an error. A file used only in a whiteboard will appear on this list.</dd>
+        </div>
+        <div>
+          <dt>Future content types are invisible</dt>
+          <dd>Any content type Atlassian adds later is invisible to this app until it learns about it.</dd>
+        </div>
+      </dl>
+      <p>
+        So the report prints, every time, the surfaces it searched and the surfaces it could not.
+        Read that line before deleting anything. The right way to use the list is as a shortlist to
+        check, not as a work queue.
+      </p>
+      <div class="note">
+        <p>
+          <strong>If the list looks impossibly long, check the coverage line first.</strong> A scan
+          that failed to read pages will report every file as unreferenced &mdash; and the coverage
+          line is what tells you that is what happened, rather than letting you believe the number.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">04</div>
+    <div class="body">
+      <h2>Export the CSV</h2>
+      <p>
+        <strong>Export CSV</strong> gives you every file in the report &mdash; id, file id, name,
+        type, size, date, container, whether a reference was found, and which duplicate group it
+        belongs to. The first rows carry the scan date and the same coverage sentence, because the
+        file will outlive the screen it came from and whoever opens it next needs to know what was
+        searched.
+      </p>
+      <p>
+        The CSV is UTF-8 with a BOM, so it opens cleanly in Excel and Google Sheets.
       </p>
     </div>
   </section>
 
   <section>
-    <div class="num">&sect; 05</div>
+    <div class="num plain">&mdash;</div>
     <div class="body">
-      <h2>Data protection</h2>
-      <p>
-        What each app reads and stores is set out in its privacy policy, linked from its Marketplace
-        listing. In summary: apps read only what their declared scopes allow, store derived data in
-        Atlassian-hosted Forge storage inside your tenant, and copy nothing outside Atlassian.
-        Uninstalling an app removes its stored data from your environment.
-      </p>
-      <p>
-        Slate engages <strong>no sub-processors</strong>. Atlassian hosts the apps as part of its own
-        platform; there is no third party in the chain.
-      </p>
+      <h2>Free vs paid</h2>
+      <div class="tiers">
+        <div class="tier">
+          <h3>Free forever</h3>
+          <p>The full report &mdash; every list above &mdash; at any team size.</p>
+        </div>
+        <div class="tier">
+          <h3>Paid &mdash; free up to 10 users</h3>
+          <p><strong>CSV export</strong>. Atlassian's free tier for teams of 10 or fewer counts as an active licence, so small teams get everything. Above 10 users export needs an active license; an admin can start a free trial under <strong>Settings &rarr; Apps &rarr; Manage apps</strong>.</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <section>
-    <div class="num">&sect; 06</div>
+    <div class="num plain">&mdash;</div>
     <div class="body">
-      <h2>Ordering, billing and refunds</h2>
-      <p>
-        Slate apps are sold through the Atlassian Marketplace. Atlassian handles ordering, invoicing,
-        payment, renewal and refunds under its own policies; Slate does not process payments and
-        does not hold payment details.
-      </p>
-      <p>
-        Every Slate app is <strong>free for instances of up to 10 users</strong>. Above that, the paid
-        features listed on each app's Marketplace page require an active licence or trial.
-      </p>
+      <h2>What Ballast does not do</h2>
+      <dl class="defs">
+        <div>
+          <dt>It never deletes, moves or modifies a file</dt>
+          <dd>There is no button, and the manifest declares no write scope, so it could not if it tried.</dd>
+        </div>
+        <div>
+          <dt>It does not promise to reclaim storage</dt>
+          <dd>It reports what removing duplicate copies would free; freeing it is your decision and your action.</dd>
+        </div>
+        <div>
+          <dt>It does not prove a file is unused</dt>
+          <dd>See section 03. If a tool tells you it can, ask which surfaces it read.</dd>
+        </div>
+      </dl>
     </div>
   </section>
 
   <section>
-    <div class="num">&sect; 07</div>
+    <div class="num plain">&mdash;</div>
     <div class="body">
-      <h2>Acceptable use</h2>
+      <h2>Privacy</h2>
       <p>
-        Use the apps for their intended purpose within your own Atlassian instance. Do not attempt to
-        circumvent licensing checks, resell access, or use an app to process data you are not
-        authorised to access in Atlassian &mdash; the apps resolve permissions through Atlassian, so
-        doing so would in any case fail.
-      </p>
-    </div>
-  </section>
-
-  <section>
-    <div class="num">&sect; 08</div>
-    <div class="body">
-      <h2>Changes to these terms</h2>
-      <p>
-        Slate may update this page; material changes will be reflected here with a new effective
-        date. Changes apply to the version of an app published after the change.
-      </p>
-    </div>
-  </section>
-
-  <section>
-    <div class="num">&sect; 09</div>
-    <div class="body">
-      <h2>Contact</h2>
-      <p>
-        Slate &mdash; <a href="mailto:phuongdang12697@gmail.com">phuongdang12697@gmail.com</a>
+        Ballast runs on Atlassian: no external servers, no egress. It stores one report snapshot in
+        Forge storage (file names, sizes, types, dates and the ids of the pages they hang off). It
+        reads no page text beyond looking for embedded file references, and keeps none. The full
+        Ballast Privacy Policy is linked from the app's Marketplace listing and from the Slate
+        documentation index.
       </p>
     </div>
   </section>
 
   <footer>
-    Slate &middot; Provider-Specific Terms &middot; Effective 19 August 2026 &middot; Attaches to the Bonterms Standard End User Agreement v1.0
+    Slate &middot; Ballast &mdash; Attachment Audit for Confluence
   </footer>
 </div>
 
